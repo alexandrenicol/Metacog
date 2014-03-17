@@ -1,3 +1,0 @@
-Metacog
-=======
-Welcome guys

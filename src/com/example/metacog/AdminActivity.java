@@ -79,11 +79,11 @@ public class AdminActivity extends Activity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         	@Override
         	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3){
-        		//Cursor c = (Cursor) arg0.getAdapter().getItem(position);
+        		//Cursor c = (Cursor) arg0.getAdapter().getItem(position); //WRONG
 				String modulechoisi = list2[position];
-        		//Intent second = new Intent(MainActivity.this,SecondActivity.class);
-        		//second.putExtra("textView1", modulechoisi);
-        		//startActivity(second);
+        		Intent second = new Intent(AdminActivity.this,AdminModuleActivity.class);
+        		second.putExtra("textView1", modulechoisi);
+        		startActivity(second);
         		
         	}    
         });

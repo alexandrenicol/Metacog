@@ -7,5 +7,6 @@
     <string name="title_activity_serie">SerieActivity</string>
     <string name="title_activity_question">QuestionActivity</string>
     <string name="title_activity_admin">AdminActivity</string>
+    <string name="title_activity_admin_module">AdminModuleActivity</string>
 
 </resources>

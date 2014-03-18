@@ -1,20 +1,38 @@
 package com.example.metacog;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.os.Build;
 
 public class AdminModuleActivity extends Activity {
 
 	private TextView text1;
+	private String[] list2;
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -27,27 +45,33 @@ public class AdminModuleActivity extends Activity {
 	    //text1.setText(extras.getString("textView1"));
 	    
 	    String selectedModule = extras.getString("textView1");
+	    text1.setText(selectedModule);
 
-	    list = (ListView)findViewById(R.id.listView1);
+	    ListView list = (ListView)findViewById(R.id.listView1);
         
         InputStream is = getResources().openRawResource(R.raw.modules);
         
         List<String> serieList = new ArrayList<String>();
 
-	    try {
+	    
+		try {
 			Document xml = Utils.readXml(is);
 			
 			TextView t = (TextView)findViewById(R.id.textView4);
 						
-			nodeModuleList = xml.getElementById(selectedModule);
-			nodeSerieList = xml.getChildNotes()
+			Element nodeModule = xml.getElementById(selectedModule);
+			NodeList nodeSerieList = nodeModule.getChildNodes();
 
 			for (int i = 0; i < nodeSerieList.getLength(); ++i)
 			{
-				Element nodeSerie = (Element) nodeSerieList.item(i);
-				//String nodeValue = nodeModule.getTextContent();
-				String nodeValue = nodeSerie.getAttribute("id");
-				serieList.add(nodeValue);
+				if (nodeSerieList.item(i).getNodeType()== Node.ELEMENT_NODE){
+					Element nodeSerie = (Element) nodeSerieList.item(i);
+					//String nodeValue = nodeModule.getTextContent();
+					
+					String nodeValue = nodeSerie.getAttribute("id");
+					serieList.add(nodeValue);
+				}
+				
 			}
 			
 			list2 = new String[serieList.size()];
@@ -81,7 +105,7 @@ public class AdminModuleActivity extends Activity {
         		//Cursor c = (Cursor) arg0.getAdapter().getItem(position); //WRONG
 				String serieChoisi = list2[position];
         		Intent third = new Intent(AdminModuleActivity.this,AdminSerieActivity.class);
-        		second.putExtra("serieChoisi", serieChoisi);
+        		third.putExtra("serieChoisi", serieChoisi);
         		startActivity(third);
         		
         	}    

@@ -24,7 +24,7 @@ public class AdminModuleActivity extends Activity {
 	    text1 = (TextView) findViewById(R.id.textView1);
 	    
 	    Bundle extras = getIntent().getExtras();
-	    text1.setText(extras.getString("textView1"));
+	    //text1.setText(extras.getString("textView1"));
 	    
 	    // TODO Auto-generated method stub
 	}

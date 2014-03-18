@@ -45,11 +45,13 @@ public class AdminActivity extends Activity {
 			TextView t = (TextView)findViewById(R.id.textView4);
 						
 			nodeModuleList = xml.getElementsByTagName("module");
-						
+			
+
 			for (int i = 0; i < nodeModuleList.getLength(); ++i)
 			{
 				Element nodeModule = (Element) nodeModuleList.item(i);
-				String nodeValue = nodeModule.getTextContent();
+				//String nodeValue = nodeModule.getTextContent();
+				String nodeValue = nodeModule.getAttribute("id");
 				moduleList.add(nodeValue);
 			}
 			

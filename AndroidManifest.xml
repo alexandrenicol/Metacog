@@ -38,6 +38,10 @@
             android:name="com.example.metacog.AdminModuleActivity"
             android:label="@string/title_activity_admin_module" >
         </activity>
+        <activity
+            android:name="com.example.metacog.AdminSerieActivity"
+            android:label="@string/title_activity_admin_serie" >
+        </activity>
     </application>
 
 </manifest>

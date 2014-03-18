@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metacog>
-<module>module 1</module>
-<module>module 2</module>
-<module>module 3</module>
+	<module id="module 1">
+		<serie id="serie1.1">toto</serie>
+		<serie id="serie1.2">toto</serie>
+		<serie id="serie1.3">toto</serie>
+	</module>
+	<module id="module 2">
+		<serie id="serie2.1">toto</serie>
+		<serie id="serie2.2">toto</serie>
+		<serie id="serie2.3">toto</serie>
+	</module>
+	<module id="module 3">
+		<serie id="serie3.1">toto</serie>
+		<serie id="serie3.2">toto</serie>
+		<serie id="serie3.3">toto</serie>
+	</module>
 </metacog>

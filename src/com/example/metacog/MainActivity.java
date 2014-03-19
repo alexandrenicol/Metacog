@@ -8,6 +8,7 @@ import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -89,7 +90,12 @@ try {
 
 List<String> tmp = new ArrayList<String>();
 for (int i = 0; i< nodeSerie.getLength();i++){
-	tmp.add(nodeSerie.item(i).getTextContent());
+	Element aNode = (Element) nodeSerie.item(i);
+	//String nodeValue = nodeModule.getTextContent();
+	String nodeValue = aNode.getAttribute("id");
+	
+	//tmp.add(nodeSerie.item(i).getTextContent());
+	tmp.add(nodeValue);
 }
 
 list = new String[tmp.size()];

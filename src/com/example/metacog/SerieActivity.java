@@ -7,6 +7,8 @@ import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -40,13 +42,14 @@ public class SerieActivity extends Activity{
             }
           });
         
-       // Bundle extra = getIntent().getExtras();
-       // module = extra.getString("module");
-        module="module 1";
-        InputStream is = getResources().openRawResource(R.raw.series);
+        Bundle extra = getIntent().getExtras();
+        module = extra.getString("module");
+        InputStream is = getResources().openRawResource(R.raw.modules);
         try {
 			Document xml = Utils.readXml(is);
-			nodeSerie = xml.getElementsByTagName("serie");
+			Element nodeModule = xml.getElementById(module);
+			nodeSerie = nodeModule.getChildNodes();
+			
 			
 		} catch (SAXException e) {
 			// TODO Auto-generated catch block
@@ -61,7 +64,13 @@ public class SerieActivity extends Activity{
 
         List<String> tmp = new ArrayList<String>();
         for (int i = 0; i< nodeSerie.getLength();i++){
-        	tmp.add(nodeSerie.item(i).getTextContent());
+        	if (nodeSerie.item(i).getNodeType()== Node.ELEMENT_NODE){
+				Element elementSerie = (Element) nodeSerie.item(i);
+				//String nodeValue = nodeModule.getTextContent();
+				
+				String nodeValue = elementSerie.getAttribute("id");
+				tmp.add(nodeValue);
+			}
         }
 
         list = new String[tmp.size()];
@@ -75,8 +84,8 @@ public class SerieActivity extends Activity{
             public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
             	String seriechoisi = list[position];
             	Intent t = new Intent(SerieActivity.this, QuestionActivity.class);
-            	//t.putExtra("serie",seriechoisi);
-            	//t.putExtra("module",module);
+            	t.putExtra("serie",seriechoisi);
+            	t.putExtra("module",module);
 				startActivity(t);
             }
         });

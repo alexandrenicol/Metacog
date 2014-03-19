@@ -106,7 +106,7 @@ moduleView.setOnItemClickListener(new OnItemClickListener() {
     public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
     	String modulechoisi = list[position];
     	Intent t = new Intent(MainActivity.this, SerieActivity.class);
-    	//t.putExtra("module",modulechoisi);
+    	t.putExtra("module",modulechoisi);
 		startActivity(t);
     }
 });

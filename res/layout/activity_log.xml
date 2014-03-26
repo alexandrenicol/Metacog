@@ -27,13 +27,15 @@ android:paddingTop="62dp">
 <LinearLayout
     android:id="@+id/userName"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="427dp"
+    android:layout_marginTop="25dp"
+    android:gravity="center"
     android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:gravity="center"
         android:orientation="vertical" >
 
         <TextView
@@ -44,18 +46,20 @@ android:paddingTop="62dp">
 
         <EditText
             android:id="@+id/editText1"
-            android:layout_width="wrap_content"
+            android:layout_width="267dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="300dp"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName" >
 
+            <requestFocus />
+        </EditText>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="75dp"
+        android:gravity="center|center_horizontal|center_vertical"
         android:orientation="vertical" >
 
         <TextView
@@ -66,11 +70,11 @@ android:paddingTop="62dp">
 
         <EditText
             android:id="@+id/editText2"
-            android:layout_width="wrap_content"
+            android:layout_width="267dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="300dp"
             android:ems="10"
             android:inputType="textPersonName" />
+
     </LinearLayout>
 
     <Button
@@ -78,12 +82,13 @@ android:paddingTop="62dp">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Valider" />
+
 </LinearLayout>
 
 <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
-        android:layout_height="576dp" >
+        android:layout_height="450dp" >
     </ListView>
     
 <LinearLayout 
@@ -97,7 +102,7 @@ android:paddingTop="62dp">
     android:layout_width="200dp"
     android:layout_height="wrap_content"
     android:text="Retour"
-    android:layout_marginTop="600dp"
+    android:layout_marginTop="500dp"
     android:layout_gravity="center_horizontal"
   />
     

@@ -44,7 +44,7 @@
 		    </question>
 		</serie>
 		<serie id="m1s2" name="Serie 2">
-			<question id="1">
+			<question id="m1s2q1">
 		        <img id="Q1" src="drawable/module1_serie2_question1_image1" />
 		        <img id="Q2" src="drawable/module1_serie2_question1_image2" />
 		        <img id="Q3" src="drawable/module1_serie2_question1_image3" />
@@ -52,7 +52,7 @@
 		        <img id="R2" src="drawable/module1_serie2_question1_image5" />
 		        <img id="R3" src="drawable/module1_serie2_question1_image6" />
 		    </question>
-		    <question id="2">
+		    <question id="m1s2q2">
 		        <img id="Q1" src="drawable/module1_serie2_question2_image1" />
 		        <img id="Q2" src="drawable/module1_serie2_question2_image2" />
 		        <img id="Q3" src="drawable/module1_serie2_question2_image3" />
@@ -60,7 +60,7 @@
 		        <img id="R2" src="drawable/module1_serie2_question2_image5" />
 		        <img id="R3" src="drawable/module1_serie2_question2_image6" />
 		    </question>
-		    <question id="3">
+		    <question id="m1s2q3">
 		        <img id="Q1" src="drawable/module1_serie2_question3_image1" />
 		        <img id="Q2" src="drawable/module1_serie2_question3_image2" />
 		        <img id="Q3" src="drawable/module1_serie2_question3_image3" />
@@ -68,7 +68,7 @@
 		        <img id="R2" src="drawable/module1_serie2_question3_image5" />
 		        <img id="R3" src="drawable/module1_serie2_question3_image6" />
 		    </question>
-		    <question id="4">
+		    <question id="m1s2q4">
 		        <img id="Q1" src="drawable/module1_serie2_question4_image1" />
 		        <img id="Q2" src="drawable/module1_serie2_question4_image2" />
 		        <img id="Q3" src="drawable/module1_serie2_question4_image3" />
@@ -76,7 +76,7 @@
 		        <img id="R2" src="drawable/module1_serie2_question4_image5" />
 		        <img id="R3" src="drawable/module1_serie2_question4_image6" />
 		    </question>
-		    <question id="5">
+		    <question id="m1s2q5">
 		        <img id="Q1" src="drawable/module1_serie2_question5_image1" />
 		        <img id="Q2" src="drawable/module1_serie2_question5_image2" />
 		        <img id="Q3" src="drawable/module1_serie2_question5_image3" />
@@ -85,39 +85,39 @@
 		        <img id="R3" src="drawable/module1_serie2_question5_image6" />
 		    </question>
 		</serie>
-		<serie id="3" name="Serie 3"></serie>
+		<serie id="m1s3" name="Serie 3"></serie>
 	</module>
-	<module id="2" name ="Sauter aux conclusions" consignes="TODO">
-		<serie id="1">
-		    <question id="1">
+	<module id="m2" name ="Sauter aux conclusions" consignes="TODO">
+		<serie id="m2s1">
+		    <question id="m2s1q1">
 		        <img id="1" src="drawable/module2_serie1_question1_image1"/>
 		        <img id="2" src="drawable/module2_serie1_question1_image2"/>
 		        <img id="3" src="drawable/module2_serie1_question1_image3"/>
 		        <img id="4" src="drawable/module2_serie1_question1_image4"/>
 		        <rep list="rep1,rep2,rep3,rep4,rep5" />
 		    </question>
-		    <question id="2">
+		    <question id="m2s1q2">
 		        <img id="1" src="drawable/module2_serie1_question2_image1"/>
 		        <img id="2" src="drawable/module2_serie1_question2_image2"/>
 		        <img id="3" src="drawable/module2_serie1_question2_image3"/>
 		        <img id="4" src="drawable/module2_serie1_question2_image4"/>
 		        <rep list="rep1,rep2,rep3,rep4,rep5" />
 		    </question>
-		    <question id="3">
+		    <question id="m2s1q3">
 		        <img id="1" src="drawable/module2_serie1_question3_image1"/>
 		        <img id="2" src="drawable/module2_serie1_question3_image2"/>
 		        <img id="3" src="drawable/module2_serie1_question3_image3"/>
 		        <img id="4" src="drawable/module2_serie1_question3_image4"/>
 		        <rep list="rep1,rep2,rep3,rep4,rep5" />		        
 		    </question>
-		    <question id="4">
+		    <question id="m2s1q4">
 		        <img id="1" src="drawable/module2_serie1_question4_image1"/>
 		        <img id="2" src="drawable/module2_serie1_question4_image2"/>
 		        <img id="3" src="drawable/module2_serie1_question4_image3"/>
 		        <img id="4" src="drawable/module2_serie1_question4_image4"/>
 		        <rep list="rep1,rep2,rep3,rep4,rep5" />		        
 		    </question>
-		    <question id="5">
+		    <question id="m2s1q5">
 		        <img id="1" src="drawable/module2_serie1_question5_image1"/>
 		        <img id="2" src="drawable/module2_serie1_question5_image2"/>
 		        <img id="3" src="drawable/module2_serie1_question5_image3"/>
@@ -125,44 +125,44 @@
 		        <rep list="rep1,rep2,rep3,rep4,rep5" />		        
 		    </question>
 		</serie>
-		<serie id="2">
-		    <question id="1">
+		<serie id="m2s2">
+		    <question id="m2s2q1">
 		        <img id="1" src="drawable/module2_serie2_question1_image1"/>
 		        <img id="2" src="drawable/module2_serie2_question1_image2"/>
 		        <img id="3" src="drawable/module2_serie2_question1_image3"/>
 		        <img id="4" src="drawable/module2_serie2_question1_image4"/>
 		        <rep list="rep1,rep2,rep3,rep4,rep5" />		        
 		    </question>
-		    <question id="2">
+		    <question id="m2s2q2">
 		        <img id="1" src="drawable/module2_serie2_question2_image1"/>
 		        <img id="2" src="drawable/module2_serie2_question2_image2"/>
 		        <img id="3" src="drawable/module2_serie2_question2_image3"/>
 		        <img id="4" src="drawable/module2_serie2_question2_image4"/>
 		        <rep list="rep1,rep2,rep3,rep4,rep5" />			        
 		    </question>
-		    <question id="3">
+		    <question id="m2s2q3">
 		        <img id="1" src="drawable/module2_serie2_question3_image1"/>
 		        <img id="2" src="drawable/module2_serie2_question3_image2"/>
 		        <img id="3" src="drawable/module2_serie2_question3_image3"/>
 		        <img id="4" src="drawable/module2_serie2_question3_image4"/>
 		        <rep list="rep1,rep2,rep3,rep4,rep5" />			        
 		    </question>
-		    <question id="4">
+		    <question id="m2s2q4">
 		        <img id="1" src="drawable/module2_serie2_question4_image1"/>
 		        <img id="2" src="drawable/module2_serie2_question4_image2"/>
 		        <img id="3" src="drawable/module2_serie2_question4_image3"/>
 		        <img id="4" src="drawable/module2_serie2_question4_image4"/>
 		        <rep list="rep1,rep2,rep3,rep4,rep5" />				        
 		    </question>
-	<!--	<question id="5">
+	<!--	<question id="m2s2q5">
 		        
 		    </question> -->
 		</serie>
-	<!--	<serie id="3"></serie>  -->
+	<!--	<serie id="m2s3"></serie>  -->
 	</module>
-	<module id="3" name="toto" consignes="tutu">
-		<serie id="1"></serie>
-		<serie id="2"></serie>
-		<serie id="3"></serie>
+	<module id="m3" name="toto" consignes="tutu">
+		<serie id="m3s1"></serie>
+		<serie id="m3s2"></serie>
+		<serie id="m3s3"></serie>
 	</module>
 </metacog>

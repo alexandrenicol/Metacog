@@ -29,6 +29,7 @@ public class SerieActivity extends Activity{
 	private NodeList nodeSerie = null;
 	private String[] list;
 	private String module;
+	private String moduleId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +45,11 @@ public class SerieActivity extends Activity{
         
         Bundle extra = getIntent().getExtras();
         module = extra.getString("module");
+        moduleId = extra.getString("moduleId");
         InputStream is = getResources().openRawResource(R.raw.modules);
         try {
 			Document xml = Utils.readXml(is);
-			Element nodeModule = xml.getElementById(module);
+			Element nodeModule = xml.getElementById(moduleId);
 			nodeSerie = nodeModule.getChildNodes();
 			
 			
@@ -68,7 +70,7 @@ public class SerieActivity extends Activity{
 				Element elementSerie = (Element) nodeSerie.item(i);
 				//String nodeValue = nodeModule.getTextContent();
 				
-				String nodeValue = elementSerie.getAttribute("id");
+				String nodeValue = elementSerie.getAttribute("name");
 				tmp.add(nodeValue);
 			}
         }

@@ -60,110 +60,114 @@ setContentView(R.layout.activity_log);
 	}
 	});
 		
-TabHost tabs=(TabHost)findViewById(R.id.tabhost); 
-tabs.setup();
+	TabHost tabs=(TabHost)findViewById(R.id.tabhost); 
+	tabs.setup();
 
-TabHost.TabSpec spec=tabs.newTabSpec("tag1"); 
-spec.setContent(R.id.userName);
-spec.setIndicator("New User");
+	TabHost.TabSpec spec=tabs.newTabSpec("tag1"); 
+	spec.setContent(R.id.userName);
+	spec.setIndicator("New User");
  
 
-tabs.addTab(spec); 
-spec=tabs.newTabSpec("tag2"); 
-spec.setContent(R.id.listView1);
-spec.setIndicator("Choose User"); 
+	tabs.addTab(spec); 
+	spec=tabs.newTabSpec("tag2"); 
+	spec.setContent(R.id.listView1);
+	spec.setIndicator("Choose User"); 
 
-tabs.addTab(spec); 
-tabs.setCurrentTab(0); 
+	tabs.addTab(spec); 
+	tabs.setCurrentTab(0); 
 
-name = (EditText) findViewById(R.id.editText1);
-firstname = (EditText) findViewById(R.id.editText2);
-//InputStream is = getResources().openRawResource(R.raw.users);
-try {
-	//Document xml = Utils.readXml(is);
-	DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-	DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
-	Document xml = docBuilder.parse(new File("/sdcard/users.xml"));
-	nodeUser = xml.getElementsByTagName("user");
-} catch (SAXException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-} catch (IOException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-} catch (ParserConfigurationException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
+	name = (EditText) findViewById(R.id.editText1);
+	firstname = (EditText) findViewById(R.id.editText2);
 
-List<String> tmp = new ArrayList<String>();
-for (int i = 0; i< nodeUser.getLength();i++){
-	Element Node = (Element) nodeUser.item(i);
-	//String nodeValue = nodeModule.getTextContent();
-	String nodeValue = Node.getAttribute("id");
-	//tmp.add(nodeUser.item(i).getTextContent());
-	tmp.add(nodeValue);
-}
-
-list = new String[tmp.size()];
-tmp.toArray(list);
-userView.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list));
-userView.setOnItemClickListener(new OnItemClickListener() {
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
-    	String userchoisi = list[position];
-    	Intent t = new Intent(LogActivity.this, MainActivity.class);
-    	//t.putExtra("user",userchoisi);
-		startActivity(t);
-    }
-	});
-
-valid = (Button) findViewById(R.id.valid);
-valid.setOnClickListener(new View.OnClickListener() {
-	@Override
-	public void onClick(View v) {
-	// TODO Auto-generated method stub
-		NodeList NodeUsers = null;
-		Document xml = null;
-		try {
-			//String filepath = "C:/test/users.xml";
-			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
-			xml = docBuilder.parse(new File("/sdcard/users.xml"));
-			NodeUsers = xml.getElementsByTagName("users");
-			Element Node = xml.createElement("user");
-			Node.setAttribute("id", firstname.getText().toString()+" "+name.getText().toString());
-			Element tmp = (Element) NodeUsers.item(0);
-			tmp.appendChild(Node);
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		Transformer transformer = null;
-		try {
-			transformer = transformerFactory.newTransformer();
-		} catch (TransformerConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		DOMSource source = new DOMSource(xml);
-		StreamResult result = new StreamResult("/sdcard/users.xml");
-		try {
-			transformer.transform(source, result);
-		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	InputStream is = getResources().openRawResource(R.raw.users);
+	try {
+		Document xml = Utils.readXml(is);
+		//DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+		//DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+		//Document xml = docBuilder.parse(new File("/sdcard/users.xml"));
+		nodeUser = xml.getElementsByTagName("user");
+	} catch (SAXException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (ParserConfigurationException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
-	});
-}
+	
+	List<String> tmp = new ArrayList<String>();
+	for (int i = 0; i< nodeUser.getLength();i++){
+		Element Node = (Element) nodeUser.item(i);
+		//String nodeValue = nodeModule.getTextContent();
+		String nodeValue = Node.getAttribute("id");
+		//tmp.add(nodeUser.item(i).getTextContent());
+		tmp.add(nodeValue);
+	}
+	
+	list = new String[tmp.size()];
+	tmp.toArray(list);
+	userView.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list));
+	userView.setOnItemClickListener(new OnItemClickListener() {
+	    @Override
+	    public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
+	    	String userchoisi = list[position];
+	    	//Intent t = new Intent(LogActivity.this, ModulesActivity.class);
+	    	//t.putExtra("name",userchoisi);
+			//startActivity(t);
+	    }
+		});
+	
+	valid = (Button) findViewById(R.id.valid);
+	/*valid.setOnClickListener(new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+		// TODO Auto-generated method stub
+			NodeList NodeUsers = null;
+			Document xml = null;
+			String filepath = "/sdcard/users.xml";
+			try {
+				
+				DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+				xml = docBuilder.parse(new File(filepath));
+				NodeUsers = xml.getElementsByTagName("users");
+				Element Node = xml.createElement("user");
+				Node.setAttribute("id", firstname.getText().toString()+" "+name.getText().toString());
+				Element tmp = (Element) NodeUsers.item(0);
+				tmp.appendChild(Node);
+			} catch (SAXException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ParserConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = null;
+			try {
+				transformer = transformerFactory.newTransformer();
+			} catch (TransformerConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			DOMSource source = new DOMSource(xml);
+			StreamResult result = new StreamResult(filepath);
+			try {
+				transformer.transform(source, result);
+			} catch (TransformerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//Intent t = new Intent(LogActivity.this,ModulesActivity.class);
+			//startActivity(t);
+		}
+		});*/
+	}
 
 }
 

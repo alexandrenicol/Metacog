@@ -109,7 +109,7 @@ public class ModulesActivity extends Activity {
 	    	String moduleIdchoisi = listId[position];
 	    	String modulechoisi = list[position];
 	    	Intent t = new Intent(ModulesActivity.this, SerieActivity.class);
-	    	t.putExtra("moduleId",moduleIdchoisi);
+	    	t.putExtra("moduleId",position+1);
 	    	t.putExtra("module",modulechoisi);
 			startActivity(t);
 	    }

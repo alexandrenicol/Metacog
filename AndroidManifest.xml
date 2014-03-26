@@ -3,7 +3,8 @@
     package="com.example.metacog"
     android:versionCode="1"
     android:versionName="1.0" >
-
+<uses-permission  
+    android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="14" />
@@ -42,6 +43,7 @@
             android:name="com.example.metacog.AdminSerieActivity"
             android:label="@string/title_activity_admin_serie" >
         </activity>
+        <activity android:name="com.example.metacog.LogActivity"></activity>
     </application>
 
 </manifest>

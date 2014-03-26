@@ -43,12 +43,14 @@ public class LogActivity extends Activity
 	private NodeList nodeUser = null;
 	private String[] list;
 	private ListView userView;
+	private String filepath = "/sdcard/users.xml";
 /** Called when the activity is first created. */ 
 @Override 
 public void onCreate(Bundle savedInstanceState) 
 { 
 super.onCreate(savedInstanceState); 
 setContentView(R.layout.activity_log);
+	
 	userView = (ListView) findViewById(R.id.listView1);
 	name = (EditText) findViewById(R.id.editText1);
 	quit = (Button) findViewById(R.id.Quit);
@@ -78,13 +80,44 @@ setContentView(R.layout.activity_log);
 
 	name = (EditText) findViewById(R.id.editText1);
 	firstname = (EditText) findViewById(R.id.editText2);
-
+	File f =  new File(filepath);
+	if (!f.exists()){
+		try {
+			 
+			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+	 
+			// root elements
+			Document xml = docBuilder.newDocument();
+			Element rootElement = xml.createElement("users");
+			xml.appendChild(rootElement);
+	
+			// write the content into xml file
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			DOMSource source = new DOMSource(xml);
+			StreamResult result = new StreamResult(new File(filepath));
+	 
+			// Output to console for testing
+			// StreamResult result = new StreamResult(System.out);
+	 
+			transformer.transform(source, result);
+	 
+			//System.out.println("File saved!");
+	 
+		  } catch (ParserConfigurationException pce) {
+			pce.printStackTrace();
+		  } catch (TransformerException tfe) {
+			tfe.printStackTrace();
+		  }
+	}
+	
 	InputStream is = getResources().openRawResource(R.raw.users);
 	try {
-		Document xml = Utils.readXml(is);
-		//DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-		//DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
-		//Document xml = docBuilder.parse(new File("/sdcard/users.xml"));
+		//Document xml = Utils.readXml(is);
+		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+	    Document xml = docBuilder.parse(new File("/sdcard/users.xml"));
 		nodeUser = xml.getElementsByTagName("user");
 	} catch (SAXException e) {
 		// TODO Auto-generated catch block
@@ -113,20 +146,21 @@ setContentView(R.layout.activity_log);
 	    @Override
 	    public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
 	    	String userchoisi = list[position];
-	    	//Intent t = new Intent(LogActivity.this, ModulesActivity.class);
-	    	//t.putExtra("name",userchoisi);
-			//startActivity(t);
+	    	//Intent t = new Intent(LogActivity.this,MainActivity.class); // a commenter
+			Intent t = new Intent(LogActivity.this,ModulesActivity.class); // A decommenter
+	    	t.putExtra("name",userchoisi);
+			startActivity(t);
 	    }
 		});
 	
 	valid = (Button) findViewById(R.id.valid);
-	/*valid.setOnClickListener(new View.OnClickListener() {
+	valid.setOnClickListener(new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
 		// TODO Auto-generated method stub
 			NodeList NodeUsers = null;
 			Document xml = null;
-			String filepath = "/sdcard/users.xml";
+			String userName = null;
 			try {
 				
 				DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -134,7 +168,8 @@ setContentView(R.layout.activity_log);
 				xml = docBuilder.parse(new File(filepath));
 				NodeUsers = xml.getElementsByTagName("users");
 				Element Node = xml.createElement("user");
-				Node.setAttribute("id", firstname.getText().toString()+" "+name.getText().toString());
+				userName = firstname.getText().toString()+" "+name.getText().toString();
+				Node.setAttribute("id", userName);
 				Element tmp = (Element) NodeUsers.item(0);
 				tmp.appendChild(Node);
 			} catch (SAXException e) {
@@ -163,10 +198,12 @@ setContentView(R.layout.activity_log);
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//Intent t = new Intent(LogActivity.this,ModulesActivity.class);
-			//startActivity(t);
+			//Intent t = new Intent(LogActivity.this,MainActivity.class); // a commenter
+			Intent t = new Intent(LogActivity.this,ModulesActivity.class); // A decommenter
+			t.putExtra("name",userName);
+			startActivity(t);
 		}
-		});*/
+		});
 	}
 
 }

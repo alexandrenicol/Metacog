@@ -23,13 +23,13 @@
         android:text="Choisir la suite logique"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <LinearLayout
+   <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/textView1"
         android:orientation="vertical" >
 
-        <LinearLayout
+      <!--   <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/q2_rc" />
-        </LinearLayout>
+        </LinearLayout> -->
 
         <RadioGroup
             android:id="@+id/radioGroup1"

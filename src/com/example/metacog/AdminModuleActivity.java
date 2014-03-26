@@ -33,6 +33,9 @@ public class AdminModuleActivity extends Activity {
 
 	private TextView text1;
 	private String[] list2;
+	private Integer selectedModuleId;
+	private String selectedModuleName;
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -44,8 +47,11 @@ public class AdminModuleActivity extends Activity {
 	    Bundle extras = getIntent().getExtras();
 	    //text1.setText(extras.getString("textView1"));
 	    
-	    String selectedModule = extras.getString("textView1");
-	    text1.setText(selectedModule);
+	    selectedModuleId = extras.getInt("id_module");
+	    selectedModuleName = extras.getString("name_module");
+	    
+	    String selectedModule = "m"+selectedModuleId;
+	    text1.setText(selectedModuleName);
 
 	    ListView list = (ListView)findViewById(R.id.listView1);
         
@@ -66,9 +72,8 @@ public class AdminModuleActivity extends Activity {
 			{
 				if (nodeSerieList.item(i).getNodeType()== Node.ELEMENT_NODE){
 					Element nodeSerie = (Element) nodeSerieList.item(i);
-					//String nodeValue = nodeModule.getTextContent();
 					
-					String nodeValue = nodeSerie.getAttribute("id");
+					String nodeValue = nodeSerie.getAttribute("name");
 					serieList.add(nodeValue);
 				}
 				
@@ -105,7 +110,10 @@ public class AdminModuleActivity extends Activity {
         		//Cursor c = (Cursor) arg0.getAdapter().getItem(position); //WRONG
 				String serieChoisi = list2[position];
         		Intent third = new Intent(AdminModuleActivity.this,AdminSerieActivity.class);
-        		third.putExtra("serieChoisi", serieChoisi);
+        		third.putExtra("selectedModuleId", selectedModuleId);
+        		third.putExtra("selectedModuleName", selectedModuleName);
+        		third.putExtra("selectedSerieId", position+1);
+        		third.putExtra("selectedSerieName", serieChoisi);
         		startActivity(third);
         		
         	}    

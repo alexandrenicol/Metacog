@@ -51,7 +51,7 @@ public class AdminActivity extends Activity {
 			{
 				Element nodeModule = (Element) nodeModuleList.item(i);
 				//String nodeValue = nodeModule.getTextContent();
-				String nodeValue = nodeModule.getAttribute("id");
+				String nodeValue = nodeModule.getAttribute("name");
 				moduleList.add(nodeValue);
 			}
 			
@@ -84,7 +84,8 @@ public class AdminActivity extends Activity {
         		//Cursor c = (Cursor) arg0.getAdapter().getItem(position); //WRONG
 				String modulechoisi = list2[position];
         		Intent second = new Intent(AdminActivity.this,AdminModuleActivity.class);
-        		second.putExtra("textView1", modulechoisi);
+        		second.putExtra("id_module", position+1);
+        		second.putExtra("name_module", modulechoisi);
         		startActivity(second);
         		
         	}    

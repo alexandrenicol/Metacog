@@ -9,5 +9,6 @@
     <string name="title_activity_admin">AdminActivity</string>
     <string name="title_activity_admin_module">AdminModuleActivity</string>
     <string name="title_activity_admin_serie">AdminSerieActivity</string>
+    <string name="title_activity_modules">ModulesActivity</string>
 
 </resources>

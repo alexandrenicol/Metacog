@@ -34,7 +34,7 @@ public class AdminSerieActivity extends Activity {
 	    selectedSerieId = extras.getInt("selectedSerieId");
 	    selectedSerieName = extras.getString("selectedSerieName");
 	    
-	    text1.setText(selectedSerieName);
+	    text1.setText(selectedModuleName+" - "+selectedSerieName);
 	}
 
 	@Override

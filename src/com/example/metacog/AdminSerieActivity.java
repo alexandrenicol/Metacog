@@ -14,6 +14,13 @@ import android.os.Build;
 
 public class AdminSerieActivity extends Activity {
 	private TextView text1;
+	
+	private Integer selectedModuleId;
+	private String selectedModuleName;
+	private Integer selectedSerieId;
+	private String selectedSerieName;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -22,7 +29,12 @@ public class AdminSerieActivity extends Activity {
 		text1 = (TextView) findViewById(R.id.textView1);
 	    
 	    Bundle extras = getIntent().getExtras();
-	    text1.setText(extras.getString("serieChoisi"));
+	    selectedModuleId = extras.getInt("selectedModuleId");
+	    selectedModuleName = extras.getString("selectedModuleName");
+	    selectedSerieId = extras.getInt("selectedSerieId");
+	    selectedSerieName = extras.getString("selectedSerieName");
+	    
+	    text1.setText(selectedSerieName);
 	}
 
 	@Override

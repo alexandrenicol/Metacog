@@ -48,6 +48,7 @@ public class QuestionActivity extends Activity {
 	private Integer id_module;
 	private Integer id_serie;
 	private Integer id_question = 1;
+	private Integer nbQuestion = 0;
 	private Dictionary<String, String> imagesList = new Hashtable<String, String>();
 	
 
@@ -64,36 +65,62 @@ public class QuestionActivity extends Activity {
         
         moduleName = (TextView) findViewById(R.id.moduleName);
         moduleName.setText(module);
-             
-        loadPictures();
+           
+    	nbQuestion = countQuestions();
+    	loadPictures();
+     
+    }
+    
+    protected int countQuestions(){
+    	try {
+	    	InputStream is = getResources().openRawResource(R.raw.modules);
+			Document xml = Utils.readXml(is);
+			Element nodeSerie = xml.getElementById("m"+id_module.toString()+"s"+id_serie.toString());
+			NodeList nodeQuestionsList = nodeSerie.getChildNodes();
+			for (int i = 0; i < nodeQuestionsList.getLength(); ++i)
+			{
+				if (nodeQuestionsList.item(i).getNodeType()== Node.ELEMENT_NODE){
+					nbQuestion += 1;
+				}
+			}
+			
+			TextView questionCount = (TextView) findViewById(R.id.questionsCount);
+			questionCount.setText("Serie number : "+id_serie);
+    	} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return nbQuestion;
     }
     
     public void loadPictures(){
-    	// TODO : y'a que 5 images 
-    	// TODO : a pusher : QuestionActivity, MainActivity et le layout activity_question
         try {
         	InputStream is = getResources().openRawResource(R.raw.modules);
 			Document xml = Utils.readXml(is);
 									
 			Element nodeQuestion = xml.getElementById("m"+id_module.toString()+"s"+id_serie.toString()+"q"+id_question.toString());
 			
-			
 			questionNumber = (TextView) findViewById(R.id.questionNumber);
 			questionNumber.setText("Question "+ id_question);
 			
-			NodeList nodeQuestionsList = nodeQuestion.getChildNodes();
+			NodeList nodePictsQuestList = nodeQuestion.getChildNodes();
 
-			for (int i = 0; i < nodeQuestionsList.getLength(); ++i)
+			for (int i = 0; i < nodePictsQuestList.getLength(); ++i)
 			{
-				if (nodeQuestionsList.item(i).getNodeType()== Node.ELEMENT_NODE){
-					Element nodeImage = (Element) nodeQuestionsList.item(i);
+				if (nodePictsQuestList.item(i).getNodeType()== Node.ELEMENT_NODE){
+					Element nodeImage = (Element) nodePictsQuestList.item(i);
 					//String nodeValue = nodeModule.getTextContent();
 					
 					String imageId = nodeImage.getAttribute("id");
 					String imageSrc = nodeImage.getAttribute("src");
 					imagesList.put(imageId,imageSrc);
 				}
-				
 			}
 			
 		} catch (SAXException e) {
@@ -134,14 +161,16 @@ public class QuestionActivity extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-				if(id_question < 4){ //TODO change the condition
+				if(id_question < nbQuestion){ //TODO change the condition
 					id_question = id_question + 1;
 					loadPictures();
 				}else{
 					Intent t=new Intent (QuestionActivity.this,EndExerciceActivity.class);
+					id_question = 1;
 					t.putExtra("moduleId",id_module);
 			    	t.putExtra("module",module);
 					startActivity(t);
+					finish();
 				}
 			}
 		});

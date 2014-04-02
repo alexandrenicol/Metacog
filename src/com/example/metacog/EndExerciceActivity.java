@@ -33,6 +33,7 @@ public class EndExerciceActivity extends Activity {
     			// TODO Auto-generated method stub
     			Intent t=new Intent (EndExerciceActivity.this,MainActivity.class);
 				startActivity(t);
+				finish();
     		}
     		});
 	    
@@ -45,7 +46,7 @@ public class EndExerciceActivity extends Activity {
 				t.putExtra("moduleId",id_module);
 		    	t.putExtra("module",module_name);
 				startActivity(t);
-				
+				finish();
 			}
 		});
 	}

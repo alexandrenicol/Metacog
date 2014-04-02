@@ -12,20 +12,21 @@
         android:id="@+id/SerieActivity_consigne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="80dp"
         android:orientation="vertical" >
 
         <ListView
             android:id="@+id/SerieActivity_listView"
             android:layout_width="match_parent"
-            android:layout_height="480dp" >
+            android:layout_height="460dp" >
         </ListView>
-
     </LinearLayout>
 
     <LinearLayout
@@ -39,6 +40,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Retour" />
-
     </LinearLayout>
+
 </RelativeLayout>

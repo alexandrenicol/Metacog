@@ -22,19 +22,24 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class SerieActivity extends Activity{
 	private Button quit = null;
 	private ListView serieView = null;
 	private NodeList nodeSerie = null;
+	private Element elModule = null;
 	private String[] list;
 	private String module;
 	private Integer moduleId;
+	private String consigne;
+	private TextView consigneView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_serie);
-        serieView = (ListView) findViewById(R.id.listView2);
+        serieView = (ListView) findViewById(R.id.SerieActivity_listView);
+        consigneView = (TextView) findViewById(R.id.SerieActivity_consigne);
         quit = (Button) findViewById(R.id.retourSerie);
         quit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,8 +54,10 @@ public class SerieActivity extends Activity{
         InputStream is = getResources().openRawResource(R.raw.modules);
         try {
 			Document xml = Utils.readXml(is);
-			Element nodeModule = xml.getElementById("m"+moduleId.toString());
-			nodeSerie = nodeModule.getChildNodes();
+			elModule = xml.getElementById("m"+moduleId.toString());
+			nodeSerie = elModule.getChildNodes();
+			consigne = elModule.getAttribute("consigne");
+			
 			
 			
 		} catch (SAXException e) {
@@ -63,7 +70,7 @@ public class SerieActivity extends Activity{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+        consigneView.setText("Consigne : "+consigne);
         List<String> tmp = new ArrayList<String>();
         for (int i = 0; i< nodeSerie.getLength();i++){
         	if (nodeSerie.item(i).getNodeType()== Node.ELEMENT_NODE){

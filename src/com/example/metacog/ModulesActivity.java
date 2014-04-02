@@ -40,9 +40,9 @@ public class ModulesActivity extends Activity {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_modules);
 	    
-	    quitter = (Button) findViewById(R.id.quitModule);
-	    changeUser = (Button) findViewById(R.id.changeUser);
-	    bonjour = (TextView) findViewById(R.id.bonjour);
+	    quitter = (Button) findViewById(R.id.activity_modules_quitModule);
+	    changeUser = (Button) findViewById(R.id.activity_modules_changeUser);
+	    bonjour = (TextView) findViewById(R.id.activity_modules_bonjour);
 	    
 	    Bundle extra=getIntent().getExtras();
 	    bonjourName="Bonjour "+ extra.getString("name");
@@ -101,7 +101,7 @@ public class ModulesActivity extends Activity {
 
 	list = new String[tmp.size()];
 	tmp.toArray(list);
-	moduleView = (ListView) findViewById(R.id.listModule);
+	moduleView = (ListView) findViewById(R.id.activity_modules_listModule);
     moduleView.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list));
 	moduleView.setOnItemClickListener(new OnItemClickListener() {
 	    @Override

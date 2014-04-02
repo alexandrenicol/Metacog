@@ -22,6 +22,7 @@ import android.view.Menu;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -34,8 +35,8 @@ public class QuestionActivity extends Activity {
 	
 	private TextView moduleName;
 	private TextView questionNumber;
-	private Button button1;
-	private Button button2;
+	private Button menu;
+	private Button next;
 	private ImageView image1;
 	private ImageView image2;
 	private ImageView image3;
@@ -128,18 +129,25 @@ public class QuestionActivity extends Activity {
         image5.setImageURI(uri5);
         image6.setImageURI(uri6);
 
-        button2=(Button) findViewById(R.id.suivant);
-        button2.setOnClickListener(new View.OnClickListener() {
+        next=(Button) findViewById(R.id.suivant);
+        next.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
-				id_question = id_question + 1;
-				loadPictures();
+				if(id_question < 4){ //TODO change the condition
+					id_question = id_question + 1;
+					loadPictures();
+				}else{
+					Intent t=new Intent (QuestionActivity.this,EndExerciceActivity.class);
+					t.putExtra("moduleId",id_module);
+			    	t.putExtra("module",module);
+					startActivity(t);
+				}
 			}
 		});
         
-        button1=(Button) findViewById(R.id.menu);
-        button1.setOnClickListener(new View.OnClickListener() {
+        menu=(Button) findViewById(R.id.menu);
+        menu.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {

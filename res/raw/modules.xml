@@ -94,35 +94,56 @@
 		        <img id="2" src="drawable/module02_serie01_question01_image02"/>
 		        <img id="3" src="drawable/module02_serie01_question01_image03"/>
 		        <img id="4" src="drawable/module02_serie01_question01_image04"/>
-		        <rep list="rep1,rep2,rep3,rep4,rep5" />
+		        <img id="5" src="drawable/module02_serie01_question01_image05"/>
+		        <img id="6" src="drawable/module02_serie01_question01_image06"/>
+		        <img id="7" src="drawable/module02_serie01_question01_image07"/>
+		        <img id="8" src="drawable/module02_serie01_question01_image08"/>
+		        <rep list="Sourire,Bol,Bateau,Traîneau,Chaise à bascule,Tête d'éléphant" />
 		    </question>
 		    <question id="m2s1q2">
 		        <img id="1" src="drawable/module02_serie01_question02_image01"/>
 		        <img id="2" src="drawable/module02_serie01_question02_image02"/>
 		        <img id="3" src="drawable/module02_serie01_question02_image03"/>
 		        <img id="4" src="drawable/module02_serie01_question02_image04"/>
-		        <rep list="rep1,rep2,rep3,rep4,rep5" />
+		        <img id="5" src="drawable/module02_serie01_question02_image05"/>
+		        <img id="6" src="drawable/module02_serie01_question02_image06"/>
+		        <img id="7" src="drawable/module02_serie01_question02_image07"/>
+		        <img id="8" src="drawable/module02_serie01_question02_image08"/>
+		        <rep list="Pont,Radeau,Voies ferées,Mat,Tas de bois,Pinceau" />
 		    </question>
 		    <question id="m2s1q3">
 		        <img id="1" src="drawable/module02_serie01_question03_image01"/>
 		        <img id="2" src="drawable/module02_serie01_question03_image02"/>
 		        <img id="3" src="drawable/module02_serie01_question03_image03"/>
 		        <img id="4" src="drawable/module02_serie01_question03_image04"/>
-		        <rep list="rep1,rep2,rep3,rep4,rep5" />		        
+		        <img id="5" src="drawable/module02_serie01_question03_image05"/>
+		        <img id="6" src="drawable/module02_serie01_question03_image06"/>
+		        <img id="7" src="drawable/module02_serie01_question03_image07"/>
+		        <img id="8" src="drawable/module02_serie01_question03_image08"/>
+		        <rep list="Poire,Femme,Guitare,Etui à violon,Trou de serrure,Hibou,Langue,Ampoule éléctrique,Trace de pas" />		        
 		    </question>
 		    <question id="m2s1q4">
 		        <img id="1" src="drawable/module02_serie01_question04_image01"/>
 		        <img id="2" src="drawable/module02_serie01_question04_image02"/>
 		        <img id="3" src="drawable/module02_serie01_question04_image03"/>
 		        <img id="4" src="drawable/module02_serie01_question04_image04"/>
-		        <rep list="rep1,rep2,rep3,rep4,rep5" />		        
+		        <img id="5" src="drawable/module02_serie01_question04_image05"/>
+		        <img id="6" src="drawable/module02_serie01_question04_image06"/>
+		        <img id="7" src="drawable/module02_serie01_question04_image07"/>
+		        <img id="8" src="drawable/module02_serie01_question04_image08"/>
+		        <img id="9" src="drawable/module02_serie01_question04_image09"/>
+		        <rep list="Chemise,Rocher,Cave,Jeune fille,Vieille tente,Fontaine" />		        
 		    </question>
 		    <question id="m2s1q5">
 		        <img id="1" src="drawable/module02_serie01_question05_image01"/>
 		        <img id="2" src="drawable/module02_serie01_question05_image02"/>
 		        <img id="3" src="drawable/module02_serie01_question05_image03"/>
 		        <img id="4" src="drawable/module02_serie01_question05_image04"/>
-		        <rep list="rep1,rep2,rep3,rep4,rep5" />		        
+		        <img id="5" src="drawable/module02_serie01_question05_image05"/>
+		        <img id="6" src="drawable/module02_serie01_question05_image06"/>
+		        <img id="7" src="drawable/module02_serie01_question05_image07"/>
+		        <img id="8" src="drawable/module02_serie01_question05_image08"/>
+		        <rep list="Coupe,Femme avec décolleté plongeant,Lampe à huile,Tente,Carosse,Armoiries,Lampe magique,Théière,Bêche" />		        
 		    </question>
 		</serie>
 		<serie id="m2s2" name="Serie 2">
@@ -131,28 +152,44 @@
 		        <img id="2" src="drawable/module02_serie02_question01_image02"/>
 		        <img id="3" src="drawable/module02_serie02_question01_image03"/>
 		        <img id="4" src="drawable/module02_serie02_question01_image04"/>
-		        <rep list="rep1,rep2,rep3,rep4,rep5" />		        
+		        <img id="5" src="drawable/module02_serie02_question01_image05"/>
+		        <img id="6" src="drawable/module02_serie02_question01_image06"/>
+		        <img id="7" src="drawable/module02_serie02_question01_image07"/>
+		        <img id="8" src="drawable/module02_serie02_question01_image08"/>
+		        <rep list="Corde,Ancre,Collier avec pendentif,Serpent,Perroquet,Spaghetti,Pousse de haricot,Fleur,Autoroute" />		        
 		    </question>
 		    <question id="m2s2q2">
 		        <img id="1" src="drawable/module02_serie02_question02_image01"/>
 		        <img id="2" src="drawable/module02_serie02_question02_image02"/>
 		        <img id="3" src="drawable/module02_serie02_question02_image03"/>
 		        <img id="4" src="drawable/module02_serie02_question02_image04"/>
-		        <rep list="rep1,rep2,rep3,rep4,rep5" />			        
+		        <img id="5" src="drawable/module02_serie02_question02_image05"/>
+		        <img id="6" src="drawable/module02_serie02_question02_image06"/>
+		        <img id="7" src="drawable/module02_serie02_question02_image07"/>
+		        <img id="8" src="drawable/module02_serie02_question02_image08"/>
+		        <rep list="Pomme de terre,Soleil,Poisson,Cafard,Antenne parabolique,Homme obèse,OVNI,Araignée,Arbre" />			        
 		    </question>
 		    <question id="m2s2q3">
 		        <img id="1" src="drawable/module02_serie02_question03_image01"/>
 		        <img id="2" src="drawable/module02_serie02_question03_image02"/>
 		        <img id="3" src="drawable/module02_serie02_question03_image03"/>
 		        <img id="4" src="drawable/module02_serie02_question03_image04"/>
-		        <rep list="rep1,rep2,rep3,rep4,rep5" />			        
+		        <img id="5" src="drawable/module02_serie02_question03_image05"/>
+		        <img id="6" src="drawable/module02_serie02_question03_image06"/>
+		        <img id="7" src="drawable/module02_serie02_question03_image07"/>
+		        <img id="8" src="drawable/module02_serie02_question03_image08"/>
+		        <rep list="Phoque,Homme en habits d'hiver,Fleur,Paysage prés d'une rivière,Sirène,Pieuvre,Harpe,Coquillage,Poisson" />			        
 		    </question>
 		    <question id="m2s2q4">
 		        <img id="1" src="drawable/module02_serie02_question04_image01"/>
 		        <img id="2" src="drawable/module02_serie02_question04_image02"/>
 		        <img id="3" src="drawable/module02_serie02_question04_image03"/>
 		        <img id="4" src="drawable/module02_serie02_question04_image04"/>
-		        <rep list="rep1,rep2,rep3,rep4,rep5" />				        
+		        <img id="5" src="drawable/module02_serie02_question04_image05"/>
+		        <img id="6" src="drawable/module02_serie02_question04_image06"/>
+		        <img id="7" src="drawable/module02_serie02_question04_image07"/>
+		        <img id="8" src="drawable/module02_serie02_question04_image08"/>
+		        <rep list="Scie,Vieux pont,Herison,Touffe d'herbe,Dragon,Clôture,Paysage de montagne,Porc-épic,Oreille" />				        
 		    </question>
 	<!--	<question id="m2s2q5">
 		        

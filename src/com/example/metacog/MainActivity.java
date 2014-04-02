@@ -20,7 +20,7 @@ public class MainActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		utilisateur=(Button) findViewById(R.id.utilisateur);
+		utilisateur=(Button) findViewById(R.id.activity_main_utilisateur);
         utilisateur.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -31,7 +31,7 @@ public class MainActivity extends Activity
 				
 			}
 		});
-        admin=(Button) findViewById(R.id.administrateur);
+        admin=(Button) findViewById(R.id.activity_main_administrateur);
         admin.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -41,7 +41,7 @@ public class MainActivity extends Activity
 			}
 		});
         
-        quit=(Button) findViewById(R.id.quitter);
+        quit=(Button) findViewById(R.id.activity_main_quitter);
     	quit.setOnClickListener(new View.OnClickListener() {
     		@Override
     		public void onClick(View v) {

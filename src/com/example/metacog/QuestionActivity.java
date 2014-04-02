@@ -34,6 +34,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -317,6 +318,7 @@ public class QuestionActivity extends Activity {
     	 
     	String radioButtonSelected = "";
     	boolean isChecked = true;
+    	
     	switch (checkedRadioButton) {
     	  case R.id.radio0 :
     		  radioButtonSelected = "A";

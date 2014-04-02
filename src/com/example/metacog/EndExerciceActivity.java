@@ -14,6 +14,7 @@ public class EndExerciceActivity extends Activity {
 	private Button next_serie ;
 	private Integer id_module;
 	private String module_name;
+	private String name;
 	
 
 	@Override
@@ -26,6 +27,7 @@ public class EndExerciceActivity extends Activity {
 		Bundle extra = getIntent().getExtras();
 		module_name = extra.getString("module");
 		id_module = extra.getInt("moduleId");
+		name = extra.getString("name");
 	    
 		menu.setOnClickListener(new View.OnClickListener() {
     		@Override
@@ -45,6 +47,7 @@ public class EndExerciceActivity extends Activity {
 				Intent t=new Intent (EndExerciceActivity.this,SerieActivity.class);
 				t.putExtra("moduleId",id_module);
 		    	t.putExtra("module",module_name);
+		    	t.putExtra("name",name);
 				startActivity(t);
 				finish();
 			}

@@ -32,7 +32,7 @@ public class ModulesActivity extends Activity {
 	private String[] listId = null;
 	private ListView moduleView;
 	private TextView bonjour;
-	private String bonjourName;
+	private String name;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -45,8 +45,8 @@ public class ModulesActivity extends Activity {
 	    bonjour = (TextView) findViewById(R.id.activity_modules_bonjour);
 	    
 	    Bundle extra=getIntent().getExtras();
-	    bonjourName="Bonjour "+ extra.getString("name");
-	    bonjour.setText(bonjourName);
+	    name=extra.getString("name");
+	    bonjour.setText("Bonjour "+name);
 	    
 	    quitter.setOnClickListener(new View.OnClickListener() {
     		@Override
@@ -111,6 +111,7 @@ public class ModulesActivity extends Activity {
 	    	Intent t = new Intent(ModulesActivity.this, SerieActivity.class);
 	    	t.putExtra("moduleId",position+1);
 	    	t.putExtra("module",modulechoisi);
+	    	t.putExtra("name", name);
 			startActivity(t);
 	    }
 	});

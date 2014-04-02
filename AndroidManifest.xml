@@ -50,6 +50,10 @@
             android:name="com.example.metacog.ModulesActivity"
             android:label="@string/title_activity_modules" >
         </activity>
+        <activity
+            android:name="com.example.metacog.EndExerciceActivity"
+            android:label="@string/title_activity_end_exercice" >
+        </activity>
     </application>
 
 </manifest>

@@ -85,7 +85,7 @@
 		        <img id="R3" src="drawable/module1_serie2_question5_image6" />
 		    </question>
 		</serie>
-		<serie id="m1s3" name="Serie 3"></serie>
+	<!-- 	<serie id="m1s3" name="Serie 3"></serie>  -->
 	</module>
 	<module id="m2" name ="Sauter aux conclusions" consigne="Dans ce qui suit, vous allez voir une série d’images. On commence par vous présenter un seul détail, pour ajouter ensuite progressivement les autres éléments, jusqu’à formation complète de l’image. Votre tâche consiste à identifier l’objet.">
 		<serie id="m2s1" name="Serie 1">

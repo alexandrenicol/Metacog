@@ -68,6 +68,8 @@ public class QuestionActivity extends Activity {
 	private int sec;
 	private RadioGroup radio;
 	private String rep;
+	private String name;
+	private Date Date;
 	
 	
     @Override
@@ -80,13 +82,15 @@ public class QuestionActivity extends Activity {
         serie = extra.getString("serie");
         id_module = extra.getInt("id_module");
         id_serie = extra.getInt("id_serie");
+        name = extra.getString("name");
         
         moduleName = (TextView) findViewById(R.id.moduleName);
         moduleName.setText(module);
         
         radio = (RadioGroup)findViewById(R.id.radioGroup1);
-        Date maDate = new Date(); 
-        filePath=Environment.getExternalStorageDirectory().getAbsolutePath()+"/m"+id_module.toString()+"_"+"s"+id_serie.toString()+"_"+maDate.getHours()+"_"+maDate.getMinutes()+"_"+maDate.getDay()+"_"+maDate.getMonth()+"_"+maDate.getYear()+".xml";
+        Date = new Date(); 
+        filePath=Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+name.replace(" ", "_")+"_results.xml";
+        //+"m"+id_module.toString()+"_"+"s"+id_serie.toString()+"_"+maDate.getHours()+"_"+maDate.getMinutes()+"_"+maDate.getDay()+"_"+maDate.getMonth()+"_"+maDate.getYear()+".xml";
         initFileTimer();
         
     	nbQuestion = countQuestions();
@@ -194,6 +198,7 @@ public class QuestionActivity extends Activity {
 					id_question = 1;
 					t.putExtra("moduleId",id_module);
 			    	t.putExtra("module",module);
+			    	t.putExtra("name",name);
 					startActivity(t);
 					finish();
 				}
@@ -212,6 +217,7 @@ public class QuestionActivity extends Activity {
     
     public void initFileTimer(){
     	File f =  new File(filePath);
+    	Document xml = null;
     	if (!f.exists()){
     		try {
     			 
@@ -219,12 +225,13 @@ public class QuestionActivity extends Activity {
     			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
     	 
     			// root elements
-    			Document xml = docBuilder.newDocument();
-    			Element rootElement = xml.createElement("result");
-    			
-    			rootElement.setAttribute("module", id_module.toString());
-    			rootElement.setAttribute("serie", id_serie.toString());
-    			
+    			xml = docBuilder.newDocument();
+    			Element rootElement = xml.createElement("results");
+    			rootElement.setAttribute("name",name);
+    			Element childElement = xml.createElement("result");
+    			childElement.setAttribute("module", id_module.toString());
+    			childElement.setAttribute("serie", id_serie.toString());
+    			rootElement.appendChild(childElement);
     			xml.appendChild(rootElement);
     	
     			// write the content into xml file
@@ -246,6 +253,45 @@ public class QuestionActivity extends Activity {
     			tfe.printStackTrace();
     		  }
     	}
+    	else{
+    		try {		
+				DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+				xml = docBuilder.parse(new File(filePath));				
+				Element childElement = xml.createElement("result");
+    			childElement.setAttribute("module", id_module.toString());
+    			childElement.setAttribute("serie", id_serie.toString());
+    			NodeList rootList = xml.getElementsByTagName("results");
+    			Element rootElement = (Element) rootList.item(0);
+    			rootElement.appendChild(childElement);
+				
+    		} catch (SAXException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ParserConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = null;
+			try {
+				transformer = transformerFactory.newTransformer();
+			} catch (TransformerConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			DOMSource source = new DOMSource(xml);
+			StreamResult result = new StreamResult(filePath);
+			try {
+				transformer.transform(source, result);
+			} catch (TransformerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();		
+			}
+    	}
     	startTime = SystemClock.uptimeMillis();
     	updateTimerThread = new Runnable() {
     		        public void run() {
@@ -261,7 +307,6 @@ public class QuestionActivity extends Activity {
     		            customHandler.postDelayed(this, 0);
     		        }
     		    };
-
     	customHandler.postDelayed(updateTimerThread, 0);
     }
     
@@ -291,7 +336,8 @@ public class QuestionActivity extends Activity {
 				DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
 				xml = docBuilder.parse(new File(filePath));
-				NodeResult = xml.getElementsByTagName("result");
+				NodeResult = xml.getElementsByTagName("results");
+				Node node = NodeResult.item(0);
 				Element Node = xml.createElement("reponse");
 				String time = min + ":"
 	                    + String.format("%02d", sec);
@@ -303,7 +349,7 @@ public class QuestionActivity extends Activity {
 					Rep ="true";
 				}
 				Node.setAttribute("correct", Rep);
-				Element tmp = (Element) NodeResult.item(0);
+				Element tmp = (Element) node.getLastChild();
 				tmp.appendChild(Node);
 			} catch (SAXException e) {
 				// TODO Auto-generated catch block

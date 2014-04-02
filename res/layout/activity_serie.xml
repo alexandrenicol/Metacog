@@ -8,11 +8,25 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SerieActivity" >
 
-    <ListView
-        android:id="@+id/listView2"
-        android:layout_width="match_parent"
-        android:layout_height="576dp" >
-    </ListView>
+    <TextView
+        android:id="@+id/SerieActivity_consigne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/SerieActivity_listView"
+            android:layout_width="match_parent"
+            android:layout_height="480dp" >
+        </ListView>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

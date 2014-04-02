@@ -43,7 +43,7 @@ public class LogActivity extends Activity
 	private NodeList nodeUser = null;
 	private String[] list;
 	private ListView userView;
-	private String filepath = "/sdcard/users.xml";
+	private String filepath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/users.xml";
 /** Called when the activity is first created. */ 
 @Override 
 public void onCreate(Bundle savedInstanceState) 
@@ -117,7 +117,7 @@ setContentView(R.layout.activity_log);
 		//Document xml = Utils.readXml(is);
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
-	    Document xml = docBuilder.parse(new File("/sdcard/users.xml"));
+	    Document xml = docBuilder.parse(new File(filepath));
 		nodeUser = xml.getElementsByTagName("user");
 	} catch (SAXException e) {
 		// TODO Auto-generated catch block

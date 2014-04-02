@@ -12,14 +12,14 @@
         android:layout_marginTop="50dp" >
 
         <ListView
-            android:id="@+id/listModule"
+            android:id="@+id/activity_modules_listModule"
             android:layout_width="match_parent"
             android:layout_height="526dp" >
         </ListView>
     </LinearLayout>
 
     <Button
-        android:id="@+id/quitModule"
+        android:id="@+id/activity_modules_quitModule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -27,7 +27,7 @@
         android:text="Quitter" />
 
     <Button
-        android:id="@+id/changeUser"
+        android:id="@+id/activity_modules_changeUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -36,7 +36,7 @@
 
 
         <TextView
-            android:id="@+id/bonjour"
+            android:id="@+id/activity_modules_bonjour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"

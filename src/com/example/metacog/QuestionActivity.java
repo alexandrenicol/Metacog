@@ -84,8 +84,6 @@ public class QuestionActivity extends Activity {
 				}
 			}
 			
-			TextView questionCount = (TextView) findViewById(R.id.questionsCount);
-			questionCount.setText("Serie number : "+id_serie);
     	} catch (SAXException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

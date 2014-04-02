@@ -61,12 +61,12 @@
 		        <img id="R3" src="drawable/module01_serie02_question02_image06" />
 		    </question>
 		    <question id="m1s2q3" reponse="C">
-		        <img id="Q1" src="drawable/module1_serie2_question03_image1" />
-		        <img id="Q2" src="drawable/module1_serie2_question03_image2" />
-		        <img id="Q3" src="drawable/module1_serie2_question03_image3" />
-		        <img id="R1" src="drawable/module1_serie2_question03_image4" />
-		        <img id="R2" src="drawable/module1_serie2_question03_image5" />
-		        <img id="R3" src="drawable/module1_serie2_question03_image6" />
+		        <img id="Q1" src="drawable/module1_serie2_question03_image01" />
+		        <img id="Q2" src="drawable/module1_serie2_question03_image02" />
+		        <img id="Q3" src="drawable/module1_serie2_question03_image03" />
+		        <img id="R1" src="drawable/module1_serie2_question03_image04" />
+		        <img id="R2" src="drawable/module1_serie2_question03_image05" />
+		        <img id="R3" src="drawable/module1_serie2_question03_image06" />
 		    </question>
 		    <question id="m1s2q4" reponse="B">
 		        <img id="Q1" src="drawable/module01_serie02_question04_image01" />

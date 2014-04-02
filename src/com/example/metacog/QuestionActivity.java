@@ -67,6 +67,7 @@ public class QuestionActivity extends Activity {
 	private int min;
 	private int sec;
 	private RadioGroup radio;
+	private String rep;
 	
 	
     @Override
@@ -91,7 +92,6 @@ public class QuestionActivity extends Activity {
     	nbQuestion = countQuestions();
     	loadPictures();
      
-    	
     	
     }
     
@@ -127,7 +127,7 @@ public class QuestionActivity extends Activity {
 			Document xml = Utils.readXml(is);
 									
 			Element nodeQuestion = xml.getElementById("m"+id_module.toString()+"s"+id_serie.toString()+"q"+id_question.toString());
-			
+			rep = nodeQuestion.getAttribute("reponse");
 			questionNumber = (TextView) findViewById(R.id.questionNumber);
 			questionNumber.setText("Question "+ id_question);
 			
@@ -184,9 +184,10 @@ public class QuestionActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				if(id_question < nbQuestion){ //TODO change the condition
-					id_question = id_question + 1;
-					majResultat();
-					loadPictures();
+					if(majResultat()){
+						id_question = id_question + 1;
+						loadPictures();
+					}
 				}else{
 					majResultat();
 					Intent t=new Intent (QuestionActivity.this,EndExerciceActivity.class);
@@ -264,64 +265,77 @@ public class QuestionActivity extends Activity {
     	customHandler.postDelayed(updateTimerThread, 0);
     }
     
-    public void majResultat(){
+    public boolean majResultat(){
     	NodeList NodeResult = null;
     	Document xml = null;
     	int checkedRadioButton = radio.getCheckedRadioButtonId();
     	 
     	String radioButtonSelected = "";
-    	 
+    	boolean isChecked = true;
     	switch (checkedRadioButton) {
     	  case R.id.radio0 :
-    		  moduleName.setText("A");
+    		  radioButtonSelected = "A";
     	      break;
     	  case R.id.radio1: 
-    		  moduleName.setText("B");
+    		  radioButtonSelected = "B";
     		  break;
     	  case R.id.radio2 :
     		  radioButtonSelected = "C";
     		  break;
+    	  default:
+    		  isChecked=false;
     	}
-    	try {		
-			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
-			xml = docBuilder.parse(new File(filePath));
-			NodeResult = xml.getElementsByTagName("result");
-			Element Node = xml.createElement("reponse");
-			String time = min + ":"
-                    + String.format("%02d", sec);
-			Node.setAttribute("time", time);
-			Node.setAttribute("choice", radioButtonSelected);
-			Element tmp = (Element) NodeResult.item(0);
-			tmp.appendChild(Node);
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		Transformer transformer = null;
-		try {
-			transformer = transformerFactory.newTransformer();
-		} catch (TransformerConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		DOMSource source = new DOMSource(xml);
-		StreamResult result = new StreamResult(filePath);
-		try {
-			transformer.transform(source, result);
-		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();		
-		}
-		startTime = SystemClock.uptimeMillis();
-		//moduleName.setText(radio.getCheckedRadioButtonId());
+    	
+    	if(isChecked){
+	    	try {		
+				DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+				xml = docBuilder.parse(new File(filePath));
+				NodeResult = xml.getElementsByTagName("result");
+				Element Node = xml.createElement("reponse");
+				String time = min + ":"
+	                    + String.format("%02d", sec);
+				Node.setAttribute("time", time);
+				Node.setAttribute("choice", radioButtonSelected);
+				boolean reponse = radioButtonSelected.equals(rep);
+				String Rep ="false";
+				if(reponse){
+					Rep ="true";
+				}
+				Node.setAttribute("correct", Rep);
+				Element tmp = (Element) NodeResult.item(0);
+				tmp.appendChild(Node);
+			} catch (SAXException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ParserConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = null;
+			try {
+				transformer = transformerFactory.newTransformer();
+			} catch (TransformerConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			DOMSource source = new DOMSource(xml);
+			StreamResult result = new StreamResult(filePath);
+			try {
+				transformer.transform(source, result);
+			} catch (TransformerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();		
+			}
+			startTime = SystemClock.uptimeMillis();
+			//moduleName.setText(radio.getCheckedRadioButtonId());
+    	}
+    	
+    	return isChecked;
     }
     
 }

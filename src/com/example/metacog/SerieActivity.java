@@ -34,6 +34,7 @@ public class SerieActivity extends Activity{
 	private Integer moduleId;
 	private String consigne;
 	private TextView consigneView;
+	private String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +52,7 @@ public class SerieActivity extends Activity{
         Bundle extra = getIntent().getExtras();
         module = extra.getString("module");
         moduleId = extra.getInt("moduleId");
+        name=extra.getString("name");
         InputStream is = getResources().openRawResource(R.raw.modules);
         try {
 			Document xml = Utils.readXml(is);
@@ -97,6 +99,7 @@ public class SerieActivity extends Activity{
             	t.putExtra("module",module);
             	t.putExtra("id_module",moduleId);
             	t.putExtra("id_serie", position+1);
+            	t.putExtra("name", name);
 				startActivity(t);
             }
         });

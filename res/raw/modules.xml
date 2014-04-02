@@ -43,8 +43,8 @@
 		        <img id="R3" src="drawable/module01_serie01_question05_image06" />
 		    </question>
 		</serie>
-		<serie id="m1s2" name="Serie 2" reponse="B">
-			<question id="m1s2q1">
+		<serie id="m1s2" name="Serie 2">
+			<question id="m1s2q1" reponse="B">
 		        <img id="Q1" src="drawable/module01_serie02_question01_image01" />
 		        <img id="Q2" src="drawable/module01_serie02_question01_image02" />
 		        <img id="Q3" src="drawable/module01_serie02_question01_image03" />
@@ -61,12 +61,12 @@
 		        <img id="R3" src="drawable/module01_serie02_question02_image06" />
 		    </question>
 		    <question id="m1s2q3" reponse="C">
-		        <img id="Q1" src="drawable/module1_serie2_question03_image01" />
-		        <img id="Q2" src="drawable/module1_serie2_question03_image02" />
-		        <img id="Q3" src="drawable/module1_serie2_question03_image03" />
-		        <img id="R1" src="drawable/module1_serie2_question03_image04" />
-		        <img id="R2" src="drawable/module1_serie2_question03_image05" />
-		        <img id="R3" src="drawable/module1_serie2_question03_image06" />
+		        <img id="Q1" src="drawable/module1_serie02_question03_image01" />
+		        <img id="Q2" src="drawable/module1_serie02_question03_image02" />
+		        <img id="Q3" src="drawable/module1_serie02_question03_image03" />
+		        <img id="R1" src="drawable/module1_serie02_question03_image04" />
+		        <img id="R2" src="drawable/module1_serie02_question03_image05" />
+		        <img id="R3" src="drawable/module1_serie02_question03_image06" />
 		    </question>
 		    <question id="m1s2q4" reponse="B">
 		        <img id="Q1" src="drawable/module01_serie02_question04_image01" />

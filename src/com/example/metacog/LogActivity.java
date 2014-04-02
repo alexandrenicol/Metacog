@@ -51,9 +51,9 @@ public void onCreate(Bundle savedInstanceState)
 super.onCreate(savedInstanceState); 
 setContentView(R.layout.activity_log);
 	
-	userView = (ListView) findViewById(R.id.listView1);
-	name = (EditText) findViewById(R.id.editText1);
-	quit = (Button) findViewById(R.id.Quit);
+	userView = (ListView) findViewById(R.id.activity_log_listView1);
+	name = (EditText) findViewById(R.id.activity_log_textPersonName);
+	quit = (Button) findViewById(R.id.activity_log_Quit);
 	quit.setOnClickListener(new View.OnClickListener() {
 	@Override
 	public void onClick(View v) {
@@ -66,20 +66,20 @@ setContentView(R.layout.activity_log);
 	tabs.setup();
 
 	TabHost.TabSpec spec=tabs.newTabSpec("tag1"); 
-	spec.setContent(R.id.userName);
+	spec.setContent(R.id.activity_log_userName);
 	spec.setIndicator("New User");
  
 
 	tabs.addTab(spec); 
 	spec=tabs.newTabSpec("tag2"); 
-	spec.setContent(R.id.listView1);
+	spec.setContent(R.id.activity_log_listView1);
 	spec.setIndicator("Choose User"); 
 
 	tabs.addTab(spec); 
 	tabs.setCurrentTab(0); 
 
-	name = (EditText) findViewById(R.id.editText1);
-	firstname = (EditText) findViewById(R.id.editText2);
+	name = (EditText) findViewById(R.id.activity_log_textPersonName);
+	firstname = (EditText) findViewById(R.id.activity_log_textPersonName2);
 	File f =  new File(filepath);
 	if (!f.exists()){
 		try {
@@ -153,7 +153,7 @@ setContentView(R.layout.activity_log);
 	    }
 		});
 	
-	valid = (Button) findViewById(R.id.valid);
+	valid = (Button) findViewById(R.id.activity_log_valid);
 	valid.setOnClickListener(new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {

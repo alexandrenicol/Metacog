@@ -25,7 +25,7 @@ android:layout_height="fill_parent"
 android:paddingTop="62dp">
 
 <LinearLayout
-    android:id="@+id/userName"
+    android:id="@+id/activity_log_userName"
     android:layout_width="fill_parent"
     android:layout_height="427dp"
     android:layout_marginTop="25dp"
@@ -39,13 +39,13 @@ android:paddingTop="62dp">
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/textViewName"
+            android:id="@+id/activity_log_textViewName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nom :" />
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/activity_log_textPersonName"
             android:layout_width="267dp"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -63,13 +63,13 @@ android:paddingTop="62dp">
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/textViewFirstName"
+            android:id="@+id/activity_log_textViewFirstName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Prénom :" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/activity_log_textPersonName2"
             android:layout_width="267dp"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -78,7 +78,7 @@ android:paddingTop="62dp">
     </LinearLayout>
 
     <Button
-        android:id="@+id/valid"
+        android:id="@+id/activity_log_valid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Valider" />
@@ -86,19 +86,19 @@ android:paddingTop="62dp">
 </LinearLayout>
 
 <ListView
-        android:id="@+id/listView1"
+        android:id="@+id/activity_log_listView1"
         android:layout_width="match_parent"
         android:layout_height="450dp" >
     </ListView>
     
 <LinearLayout 
-	android:id="@+id/bouton1"
+	android:id="@+id/activity_log_linearLayout1"
     android:orientation="vertical" 
 	android:layout_width="fill_parent" 
 	android:layout_height="fill_parent"
     >
 <Button
-    android:id="@+id/Quit"
+    android:id="@+id/activity_log_Quit"
     android:layout_width="200dp"
     android:layout_height="wrap_content"
     android:text="Retour"

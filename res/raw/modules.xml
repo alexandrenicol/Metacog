@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metacog>
-	<module id="m1" name="Completer l'histoire" consigne="Choississez l'image qui complète l'histoire" >
+	<module id="m1" name="Completer l'histoire" consigne="Dans ce qui suit, vous aller voir six images. Les trois premières 'racontent' une histoire. Choissisez comment se poursuit l'histoire en choississant une des trois images du bas de la page. " >
 		<serie id="m1s1" name="Serie 1">
 		    <question id="m1s1q1">
 		        <img id="Q1" src="drawable/module1_serie1_question1_image1" />
@@ -87,8 +87,8 @@
 		</serie>
 		<serie id="m1s3" name="Serie 3"></serie>
 	</module>
-	<module id="m2" name ="Sauter aux conclusions" consignes="TODO">
-		<serie id="m2s1">
+	<module id="m2" name ="Sauter aux conclusions" consigne="Dans ce qui suit, vous allez voir une série d’images. On commence par vous présenter un seul détail, pour ajouter ensuite progressivement les autres éléments, jusqu’à formation complète de l’image. Votre tâche consiste à identifier l’objet.">
+		<serie id="m2s1" name="Serie 1">
 		    <question id="m2s1q1">
 		        <img id="1" src="drawable/module2_serie1_question1_image1"/>
 		        <img id="2" src="drawable/module2_serie1_question1_image2"/>
@@ -125,7 +125,7 @@
 		        <rep list="rep1,rep2,rep3,rep4,rep5" />		        
 		    </question>
 		</serie>
-		<serie id="m2s2">
+		<serie id="m2s2" name="Serie 2">
 		    <question id="m2s2q1">
 		        <img id="1" src="drawable/module2_serie2_question1_image1"/>
 		        <img id="2" src="drawable/module2_serie2_question1_image2"/>
@@ -160,7 +160,7 @@
 		</serie>
 	<!--	<serie id="m2s3"></serie>  -->
 	</module>
-	<module id="m3" name="toto" consignes="tutu">
+	<module id="m3" name="toto" consigne="tutu">
 		<serie id="m3s1"></serie>
 		<serie id="m3s2"></serie>
 		<serie id="m3s3"></serie>

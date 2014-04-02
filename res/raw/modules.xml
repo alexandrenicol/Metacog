@@ -2,7 +2,7 @@
 <metacog>
 	<module id="m1" name="Completer l'histoire" consigne="Dans ce qui suit, vous aller voir six images. Les trois premières 'racontent' une histoire. Choissisez comment se poursuit l'histoire en choississant une des trois images du bas de la page. " >
 		<serie id="m1s1" name="Serie 1">
-		    <question id="m1s1q1">
+		    <question id="m1s1q1" reponse="C">
 		        <img id="Q1" src="drawable/module01_serie01_question01_image01" />
 		        <img id="Q2" src="drawable/module01_serie01_question01_image02" />
 		        <img id="Q3" src="drawable/module01_serie01_question01_image03" />
@@ -10,7 +10,7 @@
 		        <img id="R2" src="drawable/module01_serie01_question01_image05" />
 		        <img id="R3" src="drawable/module01_serie01_question01_image06" />
 		    </question>
-		    <question id="m1s1q2">
+		    <question id="m1s1q2" reponse="C">
 		        <img id="Q1" src="drawable/module01_serie01_question02_image01" />
 		        <img id="Q2" src="drawable/module01_serie01_question02_image02" />
 		        <img id="Q3" src="drawable/module01_serie01_question02_image03" />
@@ -18,7 +18,7 @@
 		        <img id="R2" src="drawable/module01_serie01_question02_image05" />
 		        <img id="R3" src="drawable/module01_serie01_question02_image06" />
 		    </question>
-		    <question id="m1s1q3">
+		    <question id="m1s1q3" reponse="A">
 		        <img id="Q1" src="drawable/module01_serie01_question03_image01" />
 		        <img id="Q2" src="drawable/module01_serie01_question03_image02" />
 		        <img id="Q3" src="drawable/module01_serie01_question03_image03" />
@@ -26,7 +26,7 @@
 		        <img id="R2" src="drawable/module01_serie01_question03_image05" />
 		        <img id="R3" src="drawable/module01_serie01_question03_image06" />
 		    </question>
-		    <question id="m1s1q4">
+		    <question id="m1s1q4" reponse="C">
 		        <img id="Q1" src="drawable/module01_serie01_question04_image01" />
 		        <img id="Q2" src="drawable/module01_serie01_question04_image02" />
 		        <img id="Q3" src="drawable/module01_serie01_question04_image03" />
@@ -34,7 +34,7 @@
 		        <img id="R2" src="drawable/module01_serie01_question04_image05" />
 		        <img id="R3" src="drawable/module01_serie01_question04_image06" />
 		    </question>
-		    <question id="m1s1q5">
+		    <question id="m1s1q5" reponse="A">
 		        <img id="Q1" src="drawable/module01_serie01_question05_image01" />
 		        <img id="Q2" src="drawable/module01_serie01_question05_image02" />
 		        <img id="Q3" src="drawable/module01_serie01_question05_image03" />
@@ -43,7 +43,7 @@
 		        <img id="R3" src="drawable/module01_serie01_question05_image06" />
 		    </question>
 		</serie>
-		<serie id="m1s2" name="Serie 2">
+		<serie id="m1s2" name="Serie 2" reponse="B">
 			<question id="m1s2q1">
 		        <img id="Q1" src="drawable/module01_serie02_question01_image01" />
 		        <img id="Q2" src="drawable/module01_serie02_question01_image02" />
@@ -52,7 +52,7 @@
 		        <img id="R2" src="drawable/module01_serie02_question01_image05" />
 		        <img id="R3" src="drawable/module01_serie02_question01_image06" />
 		    </question>
-		    <question id="m1s2q2">
+		    <question id="m1s2q2" reponse="A">
 		        <img id="Q1" src="drawable/module01_serie02_question02_image01" />
 		        <img id="Q2" src="drawable/module01_serie02_question02_image02" />
 		        <img id="Q3" src="drawable/module01_serie02_question02_image03" />
@@ -60,7 +60,7 @@
 		        <img id="R2" src="drawable/module01_serie02_question02_image05" />
 		        <img id="R3" src="drawable/module01_serie02_question02_image06" />
 		    </question>
-		    <question id="m1s2q3">
+		    <question id="m1s2q3" reponse="C">
 		        <img id="Q1" src="drawable/module1_serie2_question3_image1" />
 		        <img id="Q2" src="drawable/module1_serie2_question3_image2" />
 		        <img id="Q3" src="drawable/module1_serie2_question3_image3" />
@@ -68,7 +68,7 @@
 		        <img id="R2" src="drawable/module1_serie2_question3_image5" />
 		        <img id="R3" src="drawable/module1_serie2_question3_image6" />
 		    </question>
-		    <question id="m1s2q4">
+		    <question id="m1s2q4" reponse="B">
 		        <img id="Q1" src="drawable/module01_serie02_question04_image01" />
 		        <img id="Q2" src="drawable/module01_serie02_question04_image02" />
 		        <img id="Q3" src="drawable/module01_serie02_question04_image03" />
@@ -76,7 +76,7 @@
 		        <img id="R2" src="drawable/module01_serie02_question04_image05" />
 		        <img id="R3" src="drawable/module01_serie02_question04_image06" />
 		    </question>
-		    <question id="m1s2q5">
+		    <question id="m1s2q5" reponse="B">
 		        <img id="Q1" src="drawable/module01_serie02_question05_image01" />
 		        <img id="Q2" src="drawable/module01_serie02_question05_image02" />
 		        <img id="Q3" src="drawable/module01_serie02_question05_image03" />
@@ -89,7 +89,7 @@
 	</module>
 	<module id="m2" name ="Sauter aux conclusions" consigne="Dans ce qui suit, vous allez voir une série d’images. On commence par vous présenter un seul détail, pour ajouter ensuite progressivement les autres éléments, jusqu’à formation complète de l’image. Votre tâche consiste à identifier l’objet.">
 		<serie id="m2s1" name="Serie 1">
-		    <question id="m2s1q1">
+		    <question id="m2s1q1" >
 		        <img id="1" src="drawable/module02_serie01_question01_image01"/>
 		        <img id="2" src="drawable/module02_serie01_question01_image02"/>
 		        <img id="3" src="drawable/module02_serie01_question01_image03"/>

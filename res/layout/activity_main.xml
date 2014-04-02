@@ -5,7 +5,7 @@
     tools:context=".ModuleChoice" >
 
 <Button
-    android:id="@+id/utilisateur"
+    android:id="@+id/activity_main_utilisateur"
     android:layout_width="200dp"
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
@@ -14,20 +14,20 @@
     android:text="Utilisateur" />
 
 <Button
-    android:id="@+id/administrateur"
-    android:layout_width="200dp"
-    android:layout_height="wrap_content"
-    android:layout_alignLeft="@+id/utilisateur"
-    android:layout_centerVertical="true"
-    android:text="Administrateur" />
-
-<Button
-    android:id="@+id/quitter"
+    android:id="@+id/activity_main_quitter"
     android:layout_width="200dp"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
     android:layout_alignParentLeft="true"
     android:text="Quitter" />
+
+<Button
+    android:id="@+id/activity_main_administrateur"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@+id/activity_main_utilisateur"
+    android:layout_centerVertical="true"
+    android:text="Administrateur" />
 
 </RelativeLayout>
 

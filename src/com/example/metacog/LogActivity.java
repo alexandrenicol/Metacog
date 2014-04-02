@@ -80,7 +80,7 @@ setContentView(R.layout.activity_log);
 
 	name = (EditText) findViewById(R.id.editText1);
 	firstname = (EditText) findViewById(R.id.editText2);
-	File f =  new File(filepath);
+	/*File f =  new File(filepath);
 	if (!f.exists()){
 		try {
 			 
@@ -110,14 +110,14 @@ setContentView(R.layout.activity_log);
 		  } catch (TransformerException tfe) {
 			tfe.printStackTrace();
 		  }
-	}
+	}*/
 	
 	InputStream is = getResources().openRawResource(R.raw.users);
 	try {
-		//Document xml = Utils.readXml(is);
-		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
-	    Document xml = docBuilder.parse(new File("/sdcard/users.xml"));
+		Document xml = Utils.readXml(is);
+		//DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+		//DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+	    //Document xml = docBuilder.parse(new File("/sdcard/users.xml"));
 		nodeUser = xml.getElementsByTagName("user");
 	} catch (SAXException e) {
 		// TODO Auto-generated catch block
@@ -161,7 +161,7 @@ setContentView(R.layout.activity_log);
 			NodeList NodeUsers = null;
 			Document xml = null;
 			String userName = null;
-			try {
+			/*try {
 				
 				DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
@@ -197,7 +197,7 @@ setContentView(R.layout.activity_log);
 			} catch (TransformerException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 			//Intent t = new Intent(LogActivity.this,MainActivity.class); // a commenter
 			Intent t = new Intent(LogActivity.this,ModulesActivity.class); // A decommenter
 			t.putExtra("name",userName);

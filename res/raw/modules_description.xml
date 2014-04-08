@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metacog>
+    <modules id="m1">
+        <question noQuestion ="True" nb_img_q="3" nb_img_r="3" />
+    </modules>
+</metacog>

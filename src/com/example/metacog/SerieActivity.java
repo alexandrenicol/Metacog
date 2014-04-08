@@ -53,6 +53,7 @@ public class SerieActivity extends Activity{
         module = extra.getString("module");
         moduleId = extra.getInt("moduleId");
         name=extra.getString("name");
+
         InputStream is = getResources().openRawResource(R.raw.modules);
         try {
 			Document xml = Utils.readXml(is);
@@ -86,7 +87,7 @@ public class SerieActivity extends Activity{
 
         list = new String[tmp.size()];
         tmp.toArray(list);
-        
+
        // File dir = new File("C:/workspace/meta/res/raw/"+module);
        // final String items[] = dir.list();
         serieView.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list));
@@ -94,13 +95,28 @@ public class SerieActivity extends Activity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
             	String seriechoisi = list[position];
-            	Intent t = new Intent(SerieActivity.this, QuestionActivity.class);
-            	t.putExtra("serie",seriechoisi);
-            	t.putExtra("module",module);
-            	t.putExtra("id_module",moduleId);
-            	t.putExtra("id_serie", position+1);
-            	t.putExtra("name", name);
-				startActivity(t);
+            		
+            	if(moduleId == 1){
+        /*            TextView text = (TextView) findViewById(R.id.textView1);
+                    text.setText(moduleId.toString());*/
+            		
+            		Intent t = new Intent(SerieActivity.this, QuestionActivity.class);
+            		t.putExtra("serie",seriechoisi);
+                	t.putExtra("module",module);
+                	t.putExtra("id_module",moduleId);
+                	t.putExtra("id_serie", position+1);
+                	t.putExtra("name", name);
+    				startActivity(t);
+            	}else if(moduleId == 2){
+            		Intent t = new Intent(SerieActivity.this, SauterConcluActivity.class);
+            		t.putExtra("serie",seriechoisi);
+                	t.putExtra("module",module);
+                	t.putExtra("id_module",moduleId);
+                	t.putExtra("id_serie", position+1);
+                	t.putExtra("name", name);
+    				startActivity(t);
+            	}
+            	
             }
         });
     }

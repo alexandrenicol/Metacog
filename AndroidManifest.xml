@@ -54,6 +54,10 @@
             android:name="com.example.metacog.EndExerciceActivity"
             android:label="@string/title_activity_end_exercice" >
         </activity>
+        <activity
+            android:name="com.example.metacog.SauterConcluActivity"
+            android:label="@string/title_activity_sauter_conclu" >
+        </activity>
     </application>
 
 </manifest>

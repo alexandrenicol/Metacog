@@ -10,5 +10,7 @@
     <string name="title_activity_admin_module">AdminModuleActivity</string>
     <string name="title_activity_admin_serie">AdminSerieActivity</string>
     <string name="title_activity_modules">ModulesActivity</string>
+    <string name="title_activity_end_exercice">EndExerciceActivity</string>
+    <string name="title_activity_sauter_conclu">SauterConcluActivity</string>
 
 </resources>

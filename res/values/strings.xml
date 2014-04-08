@@ -40,4 +40,5 @@
 
     <string name="title_activity_admin_add_serie">AdminAddSerieActivity</string>
     <string name="title_activity_admin_del_node">AdminDelNodeActivity</string>
+    <string name="title_activity_admin_serie_add">AdminSerieAddM1Activity</string>
 </resources>

@@ -1,11 +1,20 @@
 package com.example.metacog;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -18,6 +27,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,8 +35,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.os.Build;
 
 public class AdminModuleActivity extends Activity {
@@ -35,12 +47,21 @@ public class AdminModuleActivity extends Activity {
 	private String[] list2;
 	private Integer selectedModuleId;
 	private String selectedModuleName;
+	private String externalStorage;
+	private String structureFilename;
+	private Button add;
+	private Button del;
+
 	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_admin_module);
+	    
+	    
+	    externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath();
+        structureFilename = externalStorage+"/structure_modules.xml";
 	    
 	    text1 = (TextView) findViewById(R.id.textView1);
 	    
@@ -55,13 +76,17 @@ public class AdminModuleActivity extends Activity {
 
 	    ListView list = (ListView)findViewById(R.id.listView1);
         
-        InputStream is = getResources().openRawResource(R.raw.modules);
+        //InputStream is = getResources().openRawResource(R.raw.modules);
         
         List<String> serieList = new ArrayList<String>();
 
 	    
 		try {
-			Document xml = Utils.readXml(is);
+			//Document xml = Utils.readXml(is);
+			
+			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+    		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+    	    Document xml = docBuilder.parse(new File(structureFilename));
 			
 			TextView t = (TextView)findViewById(R.id.textView4);
 						
@@ -118,6 +143,89 @@ public class AdminModuleActivity extends Activity {
         		
         	}    
         });
+        
+        
+        add=(Button) findViewById(R.id.add_serie);
+	    add.setOnClickListener(new View.OnClickListener() {
+	    	
+	    	@Override
+			public void onClick(View arg0) {
+				DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+	    		DocumentBuilder docBuilder;
+				try {
+					docBuilder = docFactory.newDocumentBuilder();
+					Document xml = docBuilder.parse(new File(structureFilename));
+					
+					Element nodeModule = xml.getElementById("m"+selectedModuleId);
+					Element nodeSerie = xml.createElement("serie");
+					
+					NodeList nodeModuleChild = nodeModule.getChildNodes();
+					Integer num_serie = 0;
+					
+					for (int i = 0; i < nodeModuleChild.getLength(); ++i)
+					{
+						if (nodeModuleChild.item(i).getNodeType()== Node.ELEMENT_NODE){
+							num_serie++;
+						}
+					}
+					num_serie++;
+					
+					String serie_id = "m"+selectedModuleId+"s"+num_serie.toString();
+					nodeSerie.setAttribute("id", serie_id);
+					nodeSerie.setAttribute("name", "Serie "+num_serie.toString());
+					nodeModule.appendChild(nodeSerie);
+	
+	
+					TransformerFactory transformerFactory = TransformerFactory.newInstance();
+					Transformer transformer = null;
+					try {
+						transformer = transformerFactory.newTransformer();
+					} catch (TransformerConfigurationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					DOMSource source = new DOMSource(xml);
+					StreamResult result = new StreamResult(structureFilename);
+					try {
+						transformer.transform(source, result);
+					} catch (TransformerException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					Toast toast = Toast.makeText(AdminModuleActivity.this,"Votre série a été ajoutée", Toast.LENGTH_LONG);
+					toast.show();
+					finish();
+					startActivity(getIntent());
+	
+				} catch (ParserConfigurationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SAXException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	    	}
+		});
+	    
+	    del=(Button) findViewById(R.id.del_serie);
+	    del.setOnClickListener(new View.OnClickListener() {
+	    	
+	    	@Override
+			public void onClick(View arg0) {
+	    		Intent third = new Intent(AdminModuleActivity.this,AdminDelNodeActivity.class);
+        		third.putExtra("selectedModuleId", selectedModuleId);
+        		third.putExtra("selectedModuleName", selectedModuleName);
+        		third.putExtra("selectedSerieId", -1);
+        		third.putExtra("selectedSerieName", "None");
+        		third.putExtra("type", "Serie");
+        		startActivity(third);
+	    	}
+	    });
+        
 	}
 
 	@Override

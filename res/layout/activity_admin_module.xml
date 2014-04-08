@@ -65,7 +65,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/add_serie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/linearLayout1"
@@ -83,12 +83,12 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/del_serie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_below="@+id/textView4"
-        android:layout_marginTop="50dp"
+        android:layout_alignLeft="@+id/add_serie"
+        android:layout_below="@+id/add_serie"
+        android:layout_marginTop="62dp"
         android:text="Supprimer une série" />
 
 </RelativeLayout>

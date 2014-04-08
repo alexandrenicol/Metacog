@@ -58,6 +58,25 @@
             android:name="com.example.metacog.SauterConcluActivity"
             android:label="@string/title_activity_sauter_conclu" >
         </activity>
+	<activity
+            android:name="com.example.metacog.AdminSerieAddM1Activity"
+            android:label="@string/title_activity_admin_serie_add" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.metacog.AdminSerieActivity" />
+        </activity>
+        <activity android:name="ar.com.daidalos.afiledialog.FileChooserActivity" />
+        <activity
+            android:name="com.example.metacog.AdminAddSerieActivity"
+            android:label="@string/title_activity_admin_add_serie" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.metacog.AdminModuleActivity" />
+        </activity>
+        <activity
+            android:name="com.example.metacog.AdminDelNodeActivity"
+            android:label="@string/title_activity_admin_del_node" >
+        </activity>
     </application>
 
 </manifest>

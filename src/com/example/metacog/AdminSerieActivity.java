@@ -3,17 +3,23 @@ package com.example.metacog;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.os.Build;
 
 public class AdminSerieActivity extends Activity {
 	private TextView text1;
+	
+	private Button add;
+	private Button update;
+	private Button delete;
 	
 	private Integer selectedModuleId;
 	private String selectedModuleName;
@@ -35,6 +41,54 @@ public class AdminSerieActivity extends Activity {
 	    selectedSerieName = extras.getString("selectedSerieName");
 	    
 	    text1.setText(selectedModuleName+" - "+selectedSerieName);
+	    
+	    add=(Button) findViewById(R.id.activity_admin_serie_add);
+	    add.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Intent t;
+				if (selectedModuleName=="Completer l'histoire") {
+					t = new Intent(AdminSerieActivity.this, AdminSerieAddM1Activity.class);
+				}else if (selectedModuleName=="Sauter aux conclusions"){
+					t = new Intent(AdminSerieActivity.this, AdminSerieAddM1Activity.class);
+				}else{
+					t = new Intent(AdminSerieActivity.this, AdminSerieAddM1Activity.class);
+			    }
+				t.putExtra("selectedModuleId", selectedModuleId);
+        		t.putExtra("selectedModuleName", selectedModuleName);
+        		t.putExtra("selectedSerieId", selectedSerieId);
+        		t.putExtra("selectedSerieName", selectedSerieName);
+				startActivity(t);
+			}
+		});
+        
+        update=(Button) findViewById(R.id.activity_admin_serie_update);
+        update.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				
+			}
+		});
+        
+        delete=(Button) findViewById(R.id.activity_admin_serie_delete);
+        delete.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Intent t = new Intent(AdminSerieActivity.this, AdminDelNodeActivity.class);
+				t.putExtra("selectedModuleId", selectedModuleId);
+        		t.putExtra("selectedModuleName", selectedModuleName);
+        		t.putExtra("selectedSerieId", selectedSerieId);
+        		t.putExtra("selectedSerieName", selectedSerieName);
+        		t.putExtra("type", "Question");
+				startActivity(t);
+			}
+		});
+	    
+	    
+	    
 	}
 
 	@Override

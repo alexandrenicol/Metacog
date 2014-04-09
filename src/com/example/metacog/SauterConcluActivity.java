@@ -1,11 +1,21 @@
 package com.example.metacog;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -15,6 +25,9 @@ import org.xml.sax.SAXException;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
@@ -48,7 +61,18 @@ public class SauterConcluActivity extends Activity {
 	private String [] answersList;
 	private String goodAnswer;
 	
-
+	private Handler customHandler = new Handler();
+	private long timeInMilliseconds = 0L;
+	private long timeSwapBuff = 0L;
+	private long updatedTime = 0L;
+	private long startTime = 0L;
+	private Runnable updateTimerThread;
+	private String filePath;
+	private int min;
+	private int sec;
+	private String playerName;
+	private Date Date;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,6 +82,7 @@ public class SauterConcluActivity extends Activity {
         module = extra.getString("module");
         id_module = extra.getInt("id_module");
         id_serie = extra.getInt("id_serie");
+        playerName = extra.getString("name");
         
         moduleName = (TextView) findViewById(R.id.moduleName);
         moduleName.setText(module);
@@ -69,13 +94,16 @@ public class SauterConcluActivity extends Activity {
 			public void onClick(View arg0) {
 				if(id_question_state < nbQuestionStates){
 					id_question_state++;
+					radioGroup.clearCheck();
 					loadElements();
+					majResultat();
 				}else{
 					if(id_question < nbQuestions){
 						id_question++;
 						id_question_state = 1;
 						setImageList();
 						createAnswers();
+						createquestion();
 						loadElements();
 					}else{
 						Intent t=new Intent (SauterConcluActivity.this,EndExerciceActivity.class);
@@ -90,7 +118,13 @@ public class SauterConcluActivity extends Activity {
         
         
     	nbQuestions = countQuestions();
-    	setImageList();
+    	
+    	Date = new Date(); 
+        filePath=Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+playerName.replace(" ", "_")+"_results.xml";
+        initFileTimer();
+        createquestion();
+        
+    	setImageList(); 	
     	createAnswers();
     	loadElements();
 	}
@@ -208,5 +242,211 @@ public class SauterConcluActivity extends Activity {
 		getMenuInflater().inflate(R.menu.sauter_conclu, menu);
 		return true;
 	}
+	
+	
+	 public void initFileTimer(){
+	    	File f =  new File(filePath);
+	    	Document xml = null;
+	    	if (!f.exists()){
+	    		try {
+	    			 
+	    			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+	    			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+	    	 
+	    			// root elements
+	    			xml = docBuilder.newDocument();
+	    			Element rootElement = xml.createElement("results");
+	    			rootElement.setAttribute("name",playerName);
+	    			Element childElement = xml.createElement("result");
+	    			childElement.setAttribute("module", id_module.toString());
+	    			childElement.setAttribute("serie", id_serie.toString());
+	    			rootElement.appendChild(childElement);
+	    			xml.appendChild(rootElement);
+	    	
+	    			// write the content into xml file
+	    			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+	    			Transformer transformer = transformerFactory.newTransformer();
+	    			DOMSource source = new DOMSource(xml);
+	    			StreamResult result = new StreamResult(new File(filePath));
+	    	 
+	    			// Output to console for testing
+	    			// StreamResult result = new StreamResult(System.out);
+	    	 
+	    			transformer.transform(source, result);
+	    	 
+	    			//System.out.println("File saved!");
+	    	 
+	    		  } catch (ParserConfigurationException pce) {
+	    			pce.printStackTrace();
+	    		  } catch (TransformerException tfe) {
+	    			tfe.printStackTrace();
+	    		  }
+	    	}
+	    	else{
+	    		try {		
+					DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+					DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+					xml = docBuilder.parse(new File(filePath));				
+					Element childElement = xml.createElement("result");
+	    			childElement.setAttribute("module", id_module.toString());
+	    			childElement.setAttribute("serie", id_serie.toString());
+	    			NodeList rootList = xml.getElementsByTagName("results");
+	    			Element rootElement = (Element) rootList.item(0);
+	    			rootElement.appendChild(childElement);
+					
+	    		} catch (SAXException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ParserConfigurationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				TransformerFactory transformerFactory = TransformerFactory.newInstance();
+				Transformer transformer = null;
+				try {
+					transformer = transformerFactory.newTransformer();
+				} catch (TransformerConfigurationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				DOMSource source = new DOMSource(xml);
+				StreamResult result = new StreamResult(filePath);
+				try {
+					transformer.transform(source, result);
+				} catch (TransformerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();		
+				}
+	    	}
+	    	startTime = SystemClock.uptimeMillis();
+	    	updateTimerThread = new Runnable() {
+	    		        public void run() {
+	    		            timeInMilliseconds = SystemClock.uptimeMillis()-startTime;
+	    		            updatedTime = timeSwapBuff + timeInMilliseconds;
+	    		            sec = (int) (updatedTime / 1000);
+	    		            min = sec / 60;
+	    		            sec = sec % 60;
+	    		            //int milliseconds = (int) (updatedTime % 1000);
+	    		           /* timerValue.setText("" + mins + ":"
+	    		                    + String.format("%02d", secs) + ":"
+	    		                    + String.format("%03d", milliseconds));*/
+	    		            customHandler.postDelayed(this, 0);
+	    		        }
+	    		    };
+	    	customHandler.postDelayed(updateTimerThread, 0);
+	    }
+	 public void createquestion(){
+		 	NodeList NodeResult = null;
+	    	Document xml = null;
 
+		    	try {		
+					DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+					DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+					xml = docBuilder.parse(new File(filePath));
+					NodeResult = xml.getElementsByTagName("result");
+					Element element = (Element) NodeResult.item(NodeResult.getLength()-1);
+					Element quest = xml.createElement("question");
+					quest.setAttribute("question", ""+id_question+"");
+					element.appendChild(quest);
+					
+				} catch (SAXException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ParserConfigurationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				TransformerFactory transformerFactory = TransformerFactory.newInstance();
+				Transformer transformer = null;
+				try {
+					transformer = transformerFactory.newTransformer();
+				} catch (TransformerConfigurationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				DOMSource source = new DOMSource(xml);
+				StreamResult result = new StreamResult(filePath);
+				try {
+					transformer.transform(source, result);
+				} catch (TransformerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();		
+				}
+	 }
+	 public void majResultat(){
+	    	NodeList NodeResult = null;
+	    	NodeList NodeQuestion = null;
+	    	Document xml = null;
+	    	int checkedRadioButton = -1;
+	    	checkedRadioButton = radioGroup.getCheckedRadioButtonId();
+	    	RadioButton radio = (RadioButton) findViewById(checkedRadioButton);
+	    	String playerAnswer = "";
+	    	if (checkedRadioButton != -1){
+	    		playerAnswer = radio.getText().toString();
+	    	}
+
+		    	try {		
+					DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+					DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+					xml = docBuilder.parse(new File(filePath));
+					NodeResult = xml.getElementsByTagName("results");
+					Node node = NodeResult.item(0);
+					NodeQuestion = node.getChildNodes();
+					node=NodeQuestion.item(NodeQuestion.getLength()-1);
+					
+					Element Node = xml.createElement("reponse");
+					String time = min + ":"
+		                    + String.format("%02d", sec);
+					Node.setAttribute("time", time);
+					Node.setAttribute("choice", playerAnswer);
+					String Rep;
+					if(playerAnswer != null){
+						boolean reponse = playerAnswer.equals(goodAnswer);
+						Rep ="Wrong";
+						if(reponse){
+							Rep ="Good";
+						}
+					}else {
+						Rep ="Unknow";
+					}
+					Node.setAttribute("correct", Rep);
+					Element tmp = (Element) node.getLastChild();
+					tmp.appendChild(Node);
+				} catch (SAXException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ParserConfigurationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				TransformerFactory transformerFactory = TransformerFactory.newInstance();
+				Transformer transformer = null;
+				try {
+					transformer = transformerFactory.newTransformer();
+				} catch (TransformerConfigurationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				DOMSource source = new DOMSource(xml);
+				StreamResult result = new StreamResult(filePath);
+				try {
+					transformer.transform(source, result);
+				} catch (TransformerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();		
+				}
+				startTime = SystemClock.uptimeMillis();
+				//moduleName.setText(radio.getCheckedRadioButtonId());
+	    	
+	    
+	    }
 }

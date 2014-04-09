@@ -54,6 +54,7 @@ public class ModulesActivity extends Activity {
     			// TODO Auto-generated method stub
     			Intent t=new Intent (ModulesActivity.this,MainActivity.class);
 				startActivity(t);
+				finish();
     		}
     		});
 	    
@@ -64,7 +65,7 @@ public class ModulesActivity extends Activity {
 				// TODO Auto-generated method stub
 				Intent t=new Intent (ModulesActivity.this,LogActivity.class);
 				startActivity(t);
-				
+				finish();
 			}
 		});
 	

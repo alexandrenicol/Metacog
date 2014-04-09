@@ -191,7 +191,6 @@ public class SauterConcluActivity extends Activity {
     	for(int i = 0; i<answersList.length;i++){
     		RadioButton rb = new RadioButton(this);
             rb.setText(answersList[i]);
-            moduleName.setText(answersList[i]);
             radioGroup.addView(rb);
     	}
     }

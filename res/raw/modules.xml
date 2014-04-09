@@ -98,7 +98,7 @@
 		        <img id="6" src="drawable/module02_serie01_question01_image06"/>
 		        <img id="7" src="drawable/module02_serie01_question01_image07"/>
 		        <img id="8" src="drawable/module02_serie01_question01_image08"/>
-		        <rep list="Sourire,Bol,Bateau,Traîneau,Chaise à bascule,Tête d'éléphant" />
+		        <rep list="Sourire,Bol,Bateau,Traîneau,Chaise à bascule,Tête d'éléphant" goodanswer="Chaise à bascule"/>
 		    </question>
 		    <question id="m2s1q2">
 		        <img id="1" src="drawable/module02_serie01_question02_image01"/>

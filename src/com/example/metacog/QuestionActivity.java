@@ -72,12 +72,16 @@ public class QuestionActivity extends Activity {
 	private String rep;
 	private String name;
 	private Date Date;
-	
+	private String externalStorage;
+	private String structureFilename;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
+        
+        externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath();
+        structureFilename = externalStorage+"/structure_modules.xml";
         
         Bundle extra = getIntent().getExtras();
         module = extra.getString("module");
@@ -109,7 +113,7 @@ public class QuestionActivity extends Activity {
 						radio.clearCheck();
 						loadPictures();
 					}else{
-						Toast toast = Toast.makeText(QuestionActivity.this,"Veuillez selectionner une réponse.", Toast.LENGTH_LONG);
+						Toast toast = Toast.makeText(QuestionActivity.this,"Veuillez selectionner une rï¿½ponse.", Toast.LENGTH_LONG);
 						toast.show();
 					}
 				}else{
@@ -128,8 +132,10 @@ public class QuestionActivity extends Activity {
     
     protected int countQuestions(){
     	try {
-	    	InputStream is = getResources().openRawResource(R.raw.modules);
-			Document xml = Utils.readXml(is);
+    		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+    		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+    	    Document xml = docBuilder.parse(new File(structureFilename));
+    	    
 			Element nodeSerie = xml.getElementById("m"+id_module.toString()+"s"+id_serie.toString());
 			NodeList nodeQuestionsList = nodeSerie.getChildNodes();
 			for (int i = 0; i < nodeQuestionsList.getLength(); ++i)
@@ -154,8 +160,9 @@ public class QuestionActivity extends Activity {
     
     public void loadPictures(){
         try {
-        	InputStream is = getResources().openRawResource(R.raw.modules);
-			Document xml = Utils.readXml(is);
+        	DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+    		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+    	    Document xml = docBuilder.parse(new File(structureFilename));
 									
 			Element nodeQuestion = xml.getElementById("m"+id_module.toString()+"s"+id_serie.toString()+"q"+id_question.toString());
 			rep = nodeQuestion.getAttribute("reponse");
@@ -188,12 +195,55 @@ public class QuestionActivity extends Activity {
 		}
         
         
-        Uri uri1 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("Q1"));
+        Uri uri1;
+        Uri uri2;
+        Uri uri3;
+        Uri uri4;
+        Uri uri5;
+        Uri uri6;
+        
+        if (imagesList.get("Q1").startsWith("drawable")){
+        	uri1 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("Q1"));
+        }else{
+        	File file1 = new File (imagesList.get("Q1"));
+        	uri1 = Uri.fromFile(file1);
+        }
+        if (imagesList.get("Q2").startsWith("drawable")){
+        	uri2 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("Q2"));
+        }else{
+        	File file2 = new File (imagesList.get("Q2"));
+        	uri2 = Uri.fromFile(file2);
+        }
+        if (imagesList.get("Q3").startsWith("drawable")){
+        	uri3 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("Q3"));
+        }else{
+        	File file3 = new File (imagesList.get("Q3"));
+        	uri3 = Uri.fromFile(file3);
+        }
+        if (imagesList.get("R1").startsWith("drawable")){
+        	uri4 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("R1"));
+        }else{
+        	File file4 = new File (imagesList.get("R1"));
+        	uri4 = Uri.fromFile(file4);
+        }
+        if (imagesList.get("R2").startsWith("drawable")){
+        	uri5 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("R2"));
+        }else{
+        	File file5 = new File (imagesList.get("R2"));
+        	uri5 = Uri.fromFile(file5);
+        }
+        if (imagesList.get("R3").startsWith("drawable")){
+        	uri6 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("R3"));
+        }else{
+        	File file6 = new File (imagesList.get("R3"));
+        	uri6 = Uri.fromFile(file6);
+        }
+        /*Uri uri1 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("Q1"));
         Uri uri2 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("Q2"));
         Uri uri3 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("Q3"));
         Uri uri4 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("R1"));
         Uri uri5 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("R2"));
-        Uri uri6 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("R3"));
+        Uri uri6 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("R3"));*/
         
         image1 = (ImageView) findViewById(R.id.imageQuestion1);
         image2 = (ImageView) findViewById(R.id.imageQuestion2);
@@ -208,6 +258,20 @@ public class QuestionActivity extends Activity {
         image4.setImageURI(uri4);
         image5.setImageURI(uri5);
         image6.setImageURI(uri6);
+
+        image1.setAdjustViewBounds(true);
+        image2.setAdjustViewBounds(true);
+        image3.setAdjustViewBounds(true);
+        image4.setAdjustViewBounds(true);
+        image5.setAdjustViewBounds(true);
+        image6.setAdjustViewBounds(true);
+        
+        image1.setMaxHeight(248);
+        image2.setMaxHeight(248);
+        image3.setMaxHeight(248);
+        image4.setMaxHeight(248);
+        image5.setMaxHeight(248);
+        image6.setMaxHeight(248);
         
     }
 

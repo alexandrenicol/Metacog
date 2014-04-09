@@ -42,7 +42,7 @@
             >
 
             <RadioGroup
-                android:id="@+id/radioGroup1"
+                android:id="@+id/radioGroupSauterConclu"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -73,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:src="@drawable/module02_serie01_question05_image08" />
+                android:src="@drawable/module02_serie01_question01_image08" />
 
         </LinearLayout>
 

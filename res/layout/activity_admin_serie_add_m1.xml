@@ -15,7 +15,7 @@
         android:text="Metacog" />
 
     <Button
-        android:id="@+id/add_question_m1"
+        android:id="@+id/add_image1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
@@ -27,8 +27,8 @@
         android:id="@+id/image1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/add_question_m1"
-        android:layout_below="@+id/add_question_m1"
+        android:layout_alignLeft="@+id/add_image1"
+        android:layout_below="@+id/add_image1"
         android:layout_marginTop="45dp"
         android:text="Image 1 :" />
 
@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
         android:layout_marginLeft="375dp"
-        android:layout_toRightOf="@+id/add_question_m1"
+        android:layout_toRightOf="@+id/add_image1"
         android:text="TextView" />
 
     <EditText
@@ -101,7 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/image2"
         android:layout_marginLeft="256dp"
-        android:layout_toRightOf="@+id/add_question_m1"
+        android:layout_toRightOf="@+id/add_image1"
         android:ems="10" />
 
 </RelativeLayout>

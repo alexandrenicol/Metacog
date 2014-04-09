@@ -48,10 +48,10 @@ public class AdminSerieActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				Intent t;
-				if (selectedModuleName=="Completer l'histoire") {
+				if (selectedModuleId==1) {
 					t = new Intent(AdminSerieActivity.this, AdminSerieAddM1Activity.class);
-				}else if (selectedModuleName=="Sauter aux conclusions"){
-					t = new Intent(AdminSerieActivity.this, AdminSerieAddM1Activity.class);
+				}else if (selectedModuleId==2){
+					t = new Intent(AdminSerieActivity.this, AdminSerieAddSauterConcluActivity.class);
 				}else{
 					t = new Intent(AdminSerieActivity.this, AdminSerieAddM1Activity.class);
 			    }

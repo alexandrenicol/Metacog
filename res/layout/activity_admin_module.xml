@@ -48,7 +48,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
+        android:id="@+id/linearLayoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView2"
@@ -68,7 +68,7 @@
         android:id="@+id/add_serie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/linearLayout1"
+        android:layout_alignTop="@+id/linearLayoutButton"
         android:layout_toLeftOf="@+id/button3"
         android:text="Ajouter une série" />
 
@@ -76,8 +76,8 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_below="@+id/button1"
+        android:layout_alignLeft="@+id/add_image_field"
+        android:layout_below="@+id/add_image_field"
         android:layout_marginTop="50dp"
         android:text="Cliquez sur une série pour la modifier"
         android:textAppearance="?android:attr/textAppearanceMedium" />

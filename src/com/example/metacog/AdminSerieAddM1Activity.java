@@ -79,7 +79,7 @@ public class AdminSerieAddM1Activity extends Activity {
 	    selectedSerieId = extras.getInt("selectedSerieId");
 	    selectedSerieName = extras.getString("selectedSerieName");
 		
-	    add=(Button) findViewById(R.id.add_question_m1);
+	    add=(Button) findViewById(R.id.add_image1);
 	    add.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

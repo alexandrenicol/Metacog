@@ -17,8 +17,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.example.metacog.MainActivity"
-            android:label="@string/app_name" 
-            android:screenOrientation="landscape">
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,7 +50,7 @@
             android:label="@string/title_activity_admin_serie"
             android:screenOrientation="landscape" >
         </activity>
-        <activity 
+        <activity
             android:name="com.example.metacog.LogActivity"
             android:screenOrientation="landscape" >
         </activity>
@@ -69,7 +69,7 @@
             android:label="@string/title_activity_sauter_conclu"
             android:screenOrientation="landscape" >
         </activity>
-	<activity
+        <activity
             android:name="com.example.metacog.AdminSerieAddM1Activity"
             android:label="@string/title_activity_admin_serie_add"
             android:screenOrientation="landscape" >
@@ -77,8 +77,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.metacog.AdminSerieActivity" />
         </activity>
-        <activity 
-            android:name="ar.com.daidalos.afiledialog.FileChooserActivity" />
+        <activity android:name="ar.com.daidalos.afiledialog.FileChooserActivity" />
         <activity
             android:name="com.example.metacog.AdminAddSerieActivity"
             android:label="@string/title_activity_admin_add_serie"
@@ -91,6 +90,13 @@
             android:name="com.example.metacog.AdminDelNodeActivity"
             android:label="@string/title_activity_admin_del_node"
             android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.example.metacog.AdminSerieAddSauterConcluActivity"
+            android:label="@string/title_activity_admin_serie_add_sauter_conclu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.metacog.AdminSerieActivity" />
         </activity>
     </application>
 

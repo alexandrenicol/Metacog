@@ -21,6 +21,8 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class SauterConcluActivity extends Activity {
@@ -32,6 +34,8 @@ public class SauterConcluActivity extends Activity {
 	
 	private ImageView image;
 	
+	private RadioGroup radioGroup;
+	
 	private String module;
 	private Integer id_module;
 	private Integer id_serie;
@@ -40,6 +44,9 @@ public class SauterConcluActivity extends Activity {
 	private Integer nbQuestions = 0;
 	private Integer nbQuestionStates = 0;
 	private Dictionary<Integer, String> imagesList = new Hashtable<Integer, String>();
+	
+	private String [] answersList;
+	private String goodAnswer;
 	
 
 	@Override
@@ -68,6 +75,7 @@ public class SauterConcluActivity extends Activity {
 						id_question++;
 						id_question_state = 1;
 						setImageList();
+						createAnswers();
 						loadElements();
 					}else{
 						Intent t=new Intent (SauterConcluActivity.this,EndExerciceActivity.class);
@@ -83,6 +91,7 @@ public class SauterConcluActivity extends Activity {
         
     	nbQuestions = countQuestions();
     	setImageList();
+    	createAnswers();
     	loadElements();
 	}
 	
@@ -155,9 +164,40 @@ public class SauterConcluActivity extends Activity {
 		}
     }
     
+    public void createAnswers(){
+    	try {
+        	InputStream is = getResources().openRawResource(R.raw.modules);
+			Document xml = Utils.readXml(is);
+									
+			Element nodeQuestion = xml.getElementById("m"+id_module.toString()+"s"+id_serie.toString()+"q"+id_question.toString());
+			NodeList nodePictsQuestList = nodeQuestion.getElementsByTagName("rep");
+			Element rep = (Element) nodePictsQuestList.item(0);
+			String tmpAnswer = rep.getAttribute("list");
+			answersList=tmpAnswer.split(",");
+			goodAnswer = rep.getAttribute("goodanswer");
+    	}catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	radioGroup= (RadioGroup) findViewById(R.id.radioGroupSauterConclu);
+    	radioGroup.removeAllViews();
+    	for(int i = 0; i<answersList.length;i++){
+    		RadioButton rb = new RadioButton(this);
+            rb.setText(answersList[i]);
+            moduleName.setText(answersList[i]);
+            radioGroup.addView(rb);
+    	}
+    }
+    
     public void loadElements(){
     	Uri uri1 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get(id_question_state));
-    	moduleName.setText(imagesList.get(id_question_state)+"  "+nbQuestionStates);
         image = (ImageView) findViewById(R.id.imageSauterConclu);
         image.setImageURI(uri1);
         

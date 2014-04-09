@@ -17,7 +17,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.example.metacog.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,56 +27,70 @@
         </activity>
         <activity
             android:name="com.example.metacog.SerieActivity"
-            android:label="@string/title_activity_serie" >
+            android:label="@string/title_activity_serie"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.example.metacog.QuestionActivity"
-            android:label="@string/title_activity_question" >
+            android:label="@string/title_activity_question"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.example.metacog.AdminActivity"
-            android:label="@string/title_activity_admin" >
+            android:label="@string/title_activity_admin"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.example.metacog.AdminModuleActivity"
-            android:label="@string/title_activity_admin_module" >
+            android:label="@string/title_activity_admin_module"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.example.metacog.AdminSerieActivity"
-            android:label="@string/title_activity_admin_serie" >
+            android:label="@string/title_activity_admin_serie"
+            android:screenOrientation="landscape" >
         </activity>
-        <activity android:name="com.example.metacog.LogActivity" >
+        <activity 
+            android:name="com.example.metacog.LogActivity"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.example.metacog.ModulesActivity"
-            android:label="@string/title_activity_modules" >
+            android:label="@string/title_activity_modules"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.example.metacog.EndExerciceActivity"
-            android:label="@string/title_activity_end_exercice" >
+            android:label="@string/title_activity_end_exercice"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.example.metacog.SauterConcluActivity"
-            android:label="@string/title_activity_sauter_conclu" >
+            android:label="@string/title_activity_sauter_conclu"
+            android:screenOrientation="landscape" >
         </activity>
 	<activity
             android:name="com.example.metacog.AdminSerieAddM1Activity"
-            android:label="@string/title_activity_admin_serie_add" >
+            android:label="@string/title_activity_admin_serie_add"
+            android:screenOrientation="landscape" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.metacog.AdminSerieActivity" />
         </activity>
-        <activity android:name="ar.com.daidalos.afiledialog.FileChooserActivity" />
+        <activity 
+            android:name="ar.com.daidalos.afiledialog.FileChooserActivity" />
         <activity
             android:name="com.example.metacog.AdminAddSerieActivity"
-            android:label="@string/title_activity_admin_add_serie" >
+            android:label="@string/title_activity_admin_add_serie"
+            android:screenOrientation="landscape" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.metacog.AdminModuleActivity" />
         </activity>
         <activity
             android:name="com.example.metacog.AdminDelNodeActivity"
-            android:label="@string/title_activity_admin_del_node" >
+            android:label="@string/title_activity_admin_del_node"
+            android:screenOrientation="landscape" >
         </activity>
     </application>
 

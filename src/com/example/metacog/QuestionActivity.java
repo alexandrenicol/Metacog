@@ -37,6 +37,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class QuestionActivity extends Activity {
 	
@@ -97,7 +98,32 @@ public class QuestionActivity extends Activity {
     	nbQuestion = countQuestions();
     	loadPictures();
      
-    	
+    	next=(Button) findViewById(R.id.suivant);
+        next.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				if(id_question < nbQuestion){ //TODO change the condition
+					if(majResultat()){
+						id_question = id_question + 1;
+						radio.clearCheck();
+						loadPictures();
+					}else{
+						Toast toast = Toast.makeText(QuestionActivity.this,"Veuillez selectionner une réponse.", Toast.LENGTH_LONG);
+						toast.show();
+					}
+				}else{
+					majResultat();
+					Intent t=new Intent (QuestionActivity.this,EndExerciceActivity.class);
+					id_question = 1;
+					t.putExtra("moduleId",id_module);
+			    	t.putExtra("module",module);
+			    	t.putExtra("name",name);
+					startActivity(t);
+					finish();
+				}
+			}
+		});
     }
     
     protected int countQuestions(){
@@ -182,29 +208,6 @@ public class QuestionActivity extends Activity {
         image4.setImageURI(uri4);
         image5.setImageURI(uri5);
         image6.setImageURI(uri6);
-
-        next=(Button) findViewById(R.id.suivant);
-        next.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				if(id_question < nbQuestion){ //TODO change the condition
-					if(majResultat()){
-						id_question = id_question + 1;
-						loadPictures();
-					}
-				}else{
-					majResultat();
-					Intent t=new Intent (QuestionActivity.this,EndExerciceActivity.class);
-					id_question = 1;
-					t.putExtra("moduleId",id_module);
-			    	t.putExtra("module",module);
-			    	t.putExtra("name",name);
-					startActivity(t);
-					finish();
-				}
-			}
-		});
         
     }
 

@@ -98,6 +98,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.metacog.AdminSerieActivity" />
         </activity>
+        <activity
+            android:name="com.example.metacog.EtreEmpathiqueII_Activity"
+            android:label="@string/title_activity_etre_empathique_ii_" >
+        </activity>
     </application>
 
 </manifest>

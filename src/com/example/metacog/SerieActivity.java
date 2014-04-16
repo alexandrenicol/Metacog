@@ -100,7 +100,7 @@ public class SerieActivity extends Activity{
         /*            TextView text = (TextView) findViewById(R.id.textView1);
                     text.setText(moduleId.toString());*/
             		
-            		Intent t = new Intent(SerieActivity.this, QuestionActivity.class);
+            		Intent t = new Intent(SerieActivity.this, EtreEmpathiqueI_Activity.class);
             		t.putExtra("serie",seriechoisi);
                 	t.putExtra("module",module);
                 	t.putExtra("id_module",moduleId);
@@ -108,7 +108,7 @@ public class SerieActivity extends Activity{
                 	t.putExtra("name", name);
     				startActivity(t);
             	}else if(moduleId == 2){
-            		Intent t = new Intent(SerieActivity.this, SauterConcluActivity.class);
+            		Intent t = new Intent(SerieActivity.this, SauterConclu_Activity.class);
             		t.putExtra("serie",seriechoisi);
                 	t.putExtra("module",module);
                 	t.putExtra("id_module",moduleId);

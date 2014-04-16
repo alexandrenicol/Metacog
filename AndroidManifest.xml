@@ -31,7 +31,7 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name="com.example.metacog.QuestionActivity"
+            android:name="com.example.metacog.EtreEmpathiqueI_Activity"
             android:label="@string/title_activity_question"
             android:screenOrientation="landscape" >
         </activity>
@@ -65,7 +65,7 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name="com.example.metacog.SauterConcluActivity"
+            android:name="com.example.metacog.SauterConclu_Activity"
             android:label="@string/title_activity_sauter_conclu"
             android:screenOrientation="landscape" >
         </activity>

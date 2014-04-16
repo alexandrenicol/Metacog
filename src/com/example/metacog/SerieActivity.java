@@ -108,6 +108,22 @@ public class SerieActivity extends Activity{
                 	t.putExtra("name", name);
     				startActivity(t);
             	}else if(moduleId == 2){
+            		Intent t = new Intent(SerieActivity.this, EtreEmpathiqueII_Activity.class);
+            		t.putExtra("serie",seriechoisi);
+                	t.putExtra("module",module);
+                	t.putExtra("id_module",moduleId);
+                	t.putExtra("id_serie", position+1);
+                	t.putExtra("name", name);
+    				startActivity(t);
+            	/*}else if(moduleId == 3){
+            		Intent t = new Intent(SerieActivity.this, EtreEmpathiqueIII_Activity.class);
+            		t.putExtra("serie",seriechoisi);
+                	t.putExtra("module",module);
+                	t.putExtra("id_module",moduleId);
+                	t.putExtra("id_serie", position+1);
+                	t.putExtra("name", name);
+    				startActivity(t);*/
+            	}else if(moduleId == 4){
             		Intent t = new Intent(SerieActivity.this, SauterConclu_Activity.class);
             		t.putExtra("serie",seriechoisi);
                 	t.putExtra("module",module);

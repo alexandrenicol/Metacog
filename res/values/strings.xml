@@ -42,6 +42,5 @@
     <string name="title_activity_admin_del_node">AdminDelNodeActivity</string>
     <string name="title_activity_admin_serie_add">AdminSerieAddM1Activity</string>
     <string name="title_activity_admin_serie_add_sauter_conclu">AdminSerieAddSauterConcluActivity</string>
-    <string name="title_activity_etre_empathique_2">EtreEmpathiqueII_Activity</string>
-
+	<string name="title_activity_admin_serie_add_etre_empa_ii">AdminSerieAddSauterConcluActivity</string>
 </resources>

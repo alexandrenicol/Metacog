@@ -106,6 +106,10 @@
             android:name="com.example.metacog.AdminSerieAddEtreEmpaIIActivity"
             android:label="@string/title_activity_admin_serie_add_etre_empa_ii" >
         </activity>
+        <activity
+            android:name="com.example.metacog.EtreEmpathiqueIII_Activity"
+            android:label="@string/title_activity_etre_empathique_iii_" >
+        </activity>
     </application>
 
 </manifest>

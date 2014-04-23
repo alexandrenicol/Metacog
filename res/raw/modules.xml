@@ -188,7 +188,7 @@
 		    <question id="m2s1q4">
 		        <img id="1" src="drawable/module02_serie01_question04_image01" />
 		        <img id="2" src="drawable/module02_serie01_question04_image02" />
-		        <rep list="Joueur engagé dans son équipe,Moine aveugle,Regard méfiant, Tir à l'arc" goodanswer="Tir à l'arc"/>
+		        <rep list="Joueur engagé dans son équipe,Moine aveugle,Regard méfiant,Tir à l'arc" goodanswer="Tir à l'arc"/>
 		    </question>
 		    <question id="m2s1q5">
 		        <img id="1" src="drawable/module02_serie01_question05_image01" />

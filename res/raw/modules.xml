@@ -315,7 +315,7 @@
 		        <img id="2" src="drawable/module03_serie01_question05_image02"/>
 		        <img id="3" src="drawable/module03_serie01_question05_image03"/>
 		        <img id="4" src="drawable/module03_serie01_question05_image04"/>
-		        <rep list="Cueillir des fleurs pour sa petite amie, Capturer une abeille pour faire du miel Faire une blague à son amie" goodanswer="Faire une blague à son amie"/>
+		        <rep list="Cueillir des fleurs pour sa petite amie, Capturer une abeille pour faire du miel, Faire une blague à son amie" goodanswer="Faire une blague à son amie"/>
 		    </question>
 		    <question id="m3s1q6" >
 		        <img id="1" src="drawable/module03_serie01_question06_image01"/>

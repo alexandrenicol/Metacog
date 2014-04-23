@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -30,6 +31,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -42,6 +44,7 @@ public class EtreEmpathiqueII_Activity extends Activity {
 
 	private TextView moduleName;
 	private TextView questionNumber;
+	private TextView encouragement;
 	
 	private Button next;
 	
@@ -60,6 +63,7 @@ public class EtreEmpathiqueII_Activity extends Activity {
 	
 	private String [] answersList;
 	private String goodAnswer;
+	private int id_radio_goodanswer;
 	
 	private Handler customHandler = new Handler();
 	private long timeInMilliseconds = 0L;
@@ -87,32 +91,37 @@ public class EtreEmpathiqueII_Activity extends Activity {
         moduleName = (TextView) findViewById(R.id.moduleName);
         moduleName.setText(module);
         
+        encouragement = (TextView) findViewById(R.id.encouragement);
+        encouragement.setText("");
+        
         next=(Button) findViewById(R.id.suivant);
         next.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
-				if(id_question_state < nbQuestionStates){
+				if(id_question_state < nbQuestionStates-1){
 					id_question_state++;
 					radioGroup.clearCheck();
 					loadElements();
 					majResultat();
+				}else if(id_question_state == nbQuestionStates-1){
+					id_question_state++;
+					loadElements();
+					ShowGoodAnswer();
+				}else if(id_question < nbQuestions){
+					id_question++;
+					id_question_state = 1;
+					setImageList();
+					createAnswers();
+					createquestion();
+					loadElements();
 				}else{
-					if(id_question < nbQuestions){
-						id_question++;
-						id_question_state = 1;
-						setImageList();
-						createAnswers();
-						createquestion();
-						loadElements();
-					}else{
-						Intent t=new Intent (EtreEmpathiqueII_Activity.this,EndExerciceActivity.class);
-						t.putExtra("moduleId",id_module);
-				    	t.putExtra("module",module);
-				    	t.putExtra("name", playerName);
-						startActivity(t);
-						finish();
-					}
+					Intent t=new Intent (EtreEmpathiqueII_Activity.this,EndExerciceActivity.class);
+					t.putExtra("moduleId",id_module);
+			    	t.putExtra("module",module);
+			    	t.putExtra("name", playerName);
+					startActivity(t);
+					finish();	
 				}
 			}
 		});
@@ -227,6 +236,9 @@ public class EtreEmpathiqueII_Activity extends Activity {
     		RadioButton rb = new RadioButton(this);
             rb.setText(answersList[i]);
             radioGroup.addView(rb);
+            if(rb.getText().equals(goodAnswer)){
+            	id_radio_goodanswer = rb.getId();
+            };
     	}
     }
     
@@ -451,4 +463,47 @@ public class EtreEmpathiqueII_Activity extends Activity {
 	    
 	    }
 
+	public void ShowGoodAnswer(){
+		 String encouragementTxt = "";
+		 try {
+			 InputStream is = getResources().openRawResource(R.raw.encouragement);
+			 Document xml = Utils.readXml(is);
+			 Element nodeText= xml.getElementById("encouragements");
+			 NodeList nodeEncouragementList = nodeText.getElementsByTagName("encouragement");
+			 int nbElements = nodeEncouragementList.getLength();
+			 Random randomno = new Random();
+			 int idEncouragement = randomno.nextInt(nbElements);
+			 encouragementTxt = nodeEncouragementList.item(idEncouragement).getTextContent();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 int checkedRadioButton = -1;
+		 checkedRadioButton = radioGroup.getCheckedRadioButtonId();
+		 RadioButton radio = (RadioButton) findViewById(checkedRadioButton);
+		 RadioButton radioGood = (RadioButton) findViewById(id_radio_goodanswer);
+		 String playerAnswer = "";
+		 if (checkedRadioButton != -1){
+			 playerAnswer = radio.getText().toString();
+			 if(playerAnswer != null){
+				 boolean reponse = playerAnswer.equals(goodAnswer);
+				 if(reponse){
+					 radio.setTextColor(Color.GREEN);
+					 encouragement.setText(encouragementTxt);
+				 }else{
+					 radio.setTextColor(Color.RED);
+					 radioGood.setTextColor(Color.GREEN);
+				 }
+			 }
+		 }else{
+			 radioGood.setTextColor(Color.GREEN);
+		 }
+		 id_question_state++;
+	 }
 }

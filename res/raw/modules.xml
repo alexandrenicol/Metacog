@@ -183,99 +183,99 @@
 		    <question id="m2s1q3" >
 		        <img id="1" src="drawable/module02_serie01_question03_image01" />
 		        <img id="2" src="drawable/module02_serie01_question03_image02" />
-		        <rep list=" Instantané d’un criminel de guerre africain recherché (General Dbeki), Homme courant un marathon, Aveugle désespéré, Politicien américain courant parmi ses gardes du corps" goodanswer="Homme courant un marathon"/>
+		        <rep list=" Instantané d’un criminel de guerre africain recherché (General Dbeki),Homme courant un marathon,Aveugle désespéré,Politicien américain courant parmi ses gardes du corps" goodanswer="Homme courant un marathon"/>
 		    </question>
 		    <question id="m2s1q4">
 		        <img id="1" src="drawable/module02_serie01_question04_image01" />
 		        <img id="2" src="drawable/module02_serie01_question04_image02" />
-		        <rep list="Joueur engagé dans son équipe, Moine aveugle, Regard méfiant, Tir à l'arc" goodanswer="Tir à l'arc"/>
+		        <rep list="Joueur engagé dans son équipe,Moine aveugle,Regard méfiant, Tir à l'arc" goodanswer="Tir à l'arc"/>
 		    </question>
 		    <question id="m2s1q5">
 		        <img id="1" src="drawable/module02_serie01_question05_image01" />
 		        <img id="2" src="drawable/module02_serie01_question05_image02" />
-		        <rep list="Commande de boissons au bar, Entraîneur qui encourage son équipe, Courtier enragé, Homme qui décide de se battre" goodanswer="Commande de boissons au bar"/>
+		        <rep list="Commande de boissons au bar,Entraîneur qui encourage son équipe,Courtier enragé,Homme qui décide de se battre" goodanswer="Commande de boissons au bar"/>
 		    </question>
 		    <question id="m2s1q6">
 		        <img id="1" src="drawable/module02_serie01_question06_image01" />
 		        <img id="2" src="drawable/module02_serie01_question06_image02" />
-		        <rep list="Femme qui mange des asticots avec dégoût, Femme embarrassée baissant les yeux, Femme qui prie, Plaisir sadique" goodanswer="Femme qui mange des asticots avec dégoût"/>
+		        <rep list="Femme qui mange des asticots avec dégoût,Femme embarrassée baissant les yeux,Femme qui prie,Plaisir sadique" goodanswer="Femme qui mange des asticots avec dégoût"/>
 		    </question>
 		    <question id="m2s1q7">
 		        <img id="1" src="drawable/module02_serie01_question07_image01" />
 		        <img id="2" src="drawable/module02_serie01_question07_image02" />
-		        <rep list="Avant la bagarre, Récit d'un poète, Flirt, Geste d'insulte" goodanswer="Flirt"/>
+		        <rep list="Avant la bagarre,Récit d'un poète,Flirt,Geste d'insulte" goodanswer="Flirt"/>
 		    </question>
 		    <question id="m2s1q8">
 		        <img id="1" src="drawable/module02_serie01_question08_image01" />
 		        <img id="2" src="drawable/module02_serie01_question08_image02" />
-		        <rep list="Mariée disant oui lors de son mariage, Femme dans un bar, Femme qui montre fièrement son alliance, Femme qui se plaint au sujet de son ticket de parking" goodanswer="Femme dans un bar"/>
+		        <rep list="Mariée disant oui lors de son mariage,Femme dans un bar,Femme qui montre fièrement son alliance,Femme qui se plaint au sujet de son ticket de parking" goodanswer="Femme dans un bar"/>
 		    </question>
 		    <question id="m2s1q9">
 		        <img id="1" src="drawable/module02_serie01_question09_image01" />
 		        <img id="2" src="drawable/module02_serie01_question09_image02" />
-		        <rep list="Supporter agressif (hooligan), Tenancier de bar jovial, Bagarre, Joueur célébrant un but" goodanswer="Tenancier de bar jovial"/>
+		        <rep list="Supporter agressif (hooligan),Tenancier de bar jovial,Bagarre,Joueur célébrant un but" goodanswer="Tenancier de bar jovial"/>
 		    </question>
 		    <question id="m2s1q10">
 		        <img id="1" src="drawable/module02_serie01_question10_image01" />
 		        <img id="2" src="drawable/module02_serie01_question10_image02" />
-		        <rep list="Survivants d'un accident dans une mine, Travailleurs en pause, La grève échouée, Déguisement drôle (mineur)" goodanswer="Travailleurs en pause"/>
+		        <rep list="Survivants d'un accident dans une mine,Travailleurs en pause,La grève échouée,Déguisement drôle (mineur)" goodanswer="Travailleurs en pause"/>
 		    </question>
 		    <question id="m2s1q11">
 		        <img id="1" src="drawable/module02_serie01_question11_image01" />
 		        <img id="2" src="drawable/module02_serie01_question11_image02" />
-		        <rep list="Homme qui lit une lettre d'amour (rougit sur l’image suivante), Homme qui lit un article intéressant (il prend des notes sur l'image suivante),Homme qui lit une lettre de refus (colère sur l'image suivante),Homme qui lit des gags (il rit sur l'image suivante)" goodanswer="Homme qui lit une lettre de refus (colère sur l'image suivante)"/>
+		        <rep list="Homme qui lit une lettre d'amour (rougit sur l’image suivante),Homme qui lit un article intéressant (il prend des notes sur l'image suivante),Homme qui lit une lettre de refus (colère sur l'image suivante),Homme qui lit des gags (il rit sur l'image suivante)" goodanswer="Homme qui lit une lettre de refus (colère sur l'image suivante)"/>
 		    </question>
 		</serie>
 		<serie id="m2s2" name="Serie 2">
 			<question id="m2s2q1">
 		        <img id="1" src="drawable/module02_serie02_question01_image01" />
 		        <img id="2" src="drawable/module02_serie02_question01_image02" />
-		        <rep list="Musicien de rue, Homme qui s'est fait piétiner le pied, Bagarre de rue, Homme qui a reçu une mauvaise nouvelle" goodanswer="Musicien de rue"/>
+		        <rep list="Musicien de rue,Homme qui s'est fait piétiner le pied,Bagarre de rue,Homme qui a reçu une mauvaise nouvelle" goodanswer="Musicien de rue"/>
 		    </question>
 		    <question id="m2s2q2" >
 		        <img id="1" src="drawable/module02_serie02_question02_image01" />
 		        <img id="2" src="drawable/module02_serie02_question02_image02" />
-		        <rep list="Femme chez le dentiste, Femme dans le train fantôme, Femme dans la salle d‘accouchement, Femme joviale en soirée" goodanswer="Femme joviale en soirée"/>
+		        <rep list="Femme chez le dentiste,Femme dans le train fantôme,Femme dans la salle d‘accouchement,Femme joviale en soirée" goodanswer="Femme joviale en soirée"/>
 		    </question>
 		    <question id="m2s2q3">
 		        <img id="1" src="drawable/module02_serie02_question03_image01" />
 		        <img id="2" src="drawable/module02_serie02_question03_image02" />
-		        <rep list="Garçon criant au secours après un tremblement de terre, Manifestation (Uganda), Joueur brandissant son drapeau d'Israel, Chanteur dans une chorale de gospel" goodanswer="Joueur brandissant son drapeau d'Israel"/>
+		        <rep list="Garçon criant au secours après un tremblement de terre,Manifestation (Uganda),Joueur brandissant son drapeau d'Israel,Chanteur dans une chorale de gospel" goodanswer="Joueur brandissant son drapeau d'Israel"/>
 		    </question>
 		    <question id="m2s2q4">
 		        <img id="1" src="drawable/module02_serie02_question04_image01" />
 		        <img id="2" src="drawable/module02_serie02_question04_image02" />
-		        <rep list="Jeune femme criant quelque chose à son copain incarcéré, Marchandage du meilleur prix au marché, Fan hystérique, Chanteuse durant un live show" goodanswer="Fan hystérique"/>
+		        <rep list="Jeune femme criant quelque chose à son copain incarcéré,Marchandage du meilleur prix au marché,Fan hystérique,Chanteuse durant un live show" goodanswer="Fan hystérique"/>
 		    </question>
 		    <question id="m2s2q5">
 		        <img id="1" src="drawable/module02_serie02_question05_image01" />
 		        <img id="2" src="drawable/module02_serie02_question05_image02" />
-		        <rep list="Athlète accusé de dopage, Joueur qui manque une occasion en or, Homme aux toilettes, Homme en prière" goodanswer="Homme aux toilettes"/>
+		        <rep list="Athlète accusé de dopage,Joueur qui manque une occasion en or,Homme aux toilettes,Homme en prière" goodanswer="Homme aux toilettes"/>
 		    </question>
 		    <question id="m2s2q6">
 		        <img id="1" src="drawable/module02_serie02_question06_image01" />
 		        <img id="2" src="drawable/module02_serie02_question06_image02" />
-		        <rep list="Coureur de marathon épuisé, Homme inconscient, Moine en prière profonde, Dschinghis Khan (empereur mongol)" goodanswer="Coureur de marathon épuisé"/>
+		        <rep list="Coureur de marathon épuisé,Homme inconscient,Moine en prière profonde,Dschinghis Khan (empereur mongol)" goodanswer="Coureur de marathon épuisé"/>
 		    </question>
 		    <question id="m2s2q7">
 		        <img id="1" src="drawable/module02_serie02_question07_image01" />
 		        <img id="2" src="drawable/module02_serie02_question07_image02" />
-		        <rep list="Policier en colère, Contrôleur, Musicien lors d'une procession (Nouvelle Orléans), Chauffeur de bus" goodanswer="Musicien lors d'une procession (Nouvelle Orléans)"/>
+		        <rep list="Policier en colère,Contrôleur,Musicien lors d'une procession (Nouvelle Orléans),Chauffeur de bus" goodanswer="Musicien lors d'une procession (Nouvelle Orléans)"/>
 		    </question>
 		    <question id="m2s2q8">
 		        <img id="1" src="drawable/module02_serie02_question08_image01" />
 		        <img id="2" src="drawable/module02_serie02_question08_image02" />
-		        <rep list="Homme qui se plaint au sujet d'un ticket de parking, Dirigeant qui présente son orchestre, Acteur recevant des applaudissements, Répétition de ballet en habits de ville" goodanswer="Homme qui se plaint au sujet d'un ticket de parking"/>
+		        <rep list="Homme qui se plaint au sujet d'un ticket de parking,Dirigeant qui présente son orchestre,Acteur recevant des applaudissements,Répétition de ballet en habits de ville" goodanswer="Homme qui se plaint au sujet d'un ticket de parking"/>
 		    </question>
 		    <question id="m2s2q9">
 		        <img id="1" src="drawable/module02_serie02_question09_image01" />
 		        <img id="2" src="drawable/module02_serie02_question09_image02" />
-		        <rep list="Femme qui rit, Femme qui vient d'apprendre que l'avion de son mari est porté disparu, Femme qui se réjouit du malheur de quelqu'un d'autre, Femme qui a échoué à un examen" goodanswer="Femme qui rit"/>
+		        <rep list="Femme qui rit,Femme qui vient d'apprendre que l'avion de son mari est porté disparu,Femme qui se réjouit du malheur de quelqu'un d'autre,Femme qui a échoué à un examen" goodanswer="Femme qui rit"/>
 		    </question>
 		    <question id="m2s2q10">
 		        <img id="1" src="drawable/module02_serie02_question10_image01" />
 		        <img id="2" src="drawable/module02_serie02_question10_image02" />
-		        <rep list="Joueur n'arrivant pas à croire à son magnifique but, Colère à cause d'une décision d’arbitre, Agacement à cause d'un but manqué, Remplaçant qui s'ennuie" goodanswer="Colère à cause d'une décision d’arbitre"/>
+		        <rep list="Joueur n'arrivant pas à croire à son magnifique but,Colère à cause d'une décision d’arbitre,Agacement à cause d'un but manqué,Remplaçant qui s'ennuie" goodanswer="Colère à cause d'une décision d’arbitre"/>
 		    </question>
 		</serie>
 	<!-- 	<serie id="m1s3" name="Serie 3"></serie>  -->
@@ -287,35 +287,35 @@
 		        <img id="2" src="drawable/module03_serie01_question01_image02"/>
 		        <img id="3" src="drawable/module03_serie01_question01_image03"/>
 		        <img id="4" src="drawable/module03_serie01_question01_image04"/>
-		        <rep list="Proposer à l’autre garçon de jouer au ballon avec eux, Lui faire une farce, Obtenir un autographe du champion de football américain" goodanswer="Lui faire une farce"/>
+		        <rep list="Proposer à l’autre garçon de jouer au ballon avec eux,Lui faire une farce,Obtenir un autographe du champion de football américain" goodanswer="Lui faire une farce"/>
 		    </question>
 		    <question id="m3s1q2" >
 		        <img id="1" src="drawable/module03_serie01_question02_image01"/>
 		        <img id="2" src="drawable/module03_serie01_question02_image02"/>
 		        <img id="3" src="drawable/module03_serie01_question02_image03"/>
 		        <img id="4" src="drawable/module03_serie01_question02_image04"/>
-		        <rep list="Ces hommes font une danse lunaire, Ces hommes essaient de s’enfuir, Ces hommes s’entraînent" goodanswer="Ces hommes essaient de s’enfuir"/>
+		        <rep list="Ces hommes font une danse lunaire,Ces hommes essaient de s’enfuir,Ces hommes s’entraînent" goodanswer="Ces hommes essaient de s’enfuir"/>
 		    </question>
 		    <question id="m3s1q3" >
 		        <img id="1" src="drawable/module03_serie01_question03_image01"/>
 		        <img id="2" src="drawable/module03_serie01_question03_image02"/>
 		        <img id="3" src="drawable/module03_serie01_question03_image03"/>
 		        <img id="4" src="drawable/module03_serie01_question03_image04"/>
-		        <rep list="Apprécier son cadeau d’anniversaire, Emballer un cadeau, Essayer de faire peur à sa soeur" goodanswer="Essayer de faire peur à sa soeur"/>
+		        <rep list="Apprécier son cadeau d’anniversaire,Emballer un cadeau,Essayer de faire peur à sa soeur" goodanswer="Essayer de faire peur à sa soeur"/>
 		    </question>
 		    <question id="m3s1q4" >
 		        <img id="1" src="drawable/module03_serie01_question04_image01"/>
 		        <img id="2" src="drawable/module03_serie01_question04_image02"/>
 		        <img id="3" src="drawable/module03_serie01_question04_image03"/>
 		        <img id="4" src="drawable/module03_serie01_question04_image04"/>
-		        <rep list="Ignorer son ami, Aider son ami, Apprendre comment faire pousser un arbre" goodanswer="Aider son ami"/>
+		        <rep list="Ignorer son ami,Aider son ami,Apprendre comment faire pousser un arbre" goodanswer="Aider son ami"/>
 		    </question>
 		    <question id="m3s1q5" >
 		        <img id="1" src="drawable/module03_serie01_question05_image01"/>
 		        <img id="2" src="drawable/module03_serie01_question05_image02"/>
 		        <img id="3" src="drawable/module03_serie01_question05_image03"/>
 		        <img id="4" src="drawable/module03_serie01_question05_image04"/>
-		        <rep list="Cueillir des fleurs pour sa petite amie, Capturer une abeille pour faire du miel, Faire une blague à son amie" goodanswer="Faire une blague à son amie"/>
+		        <rep list="Cueillir des fleurs pour sa petite amie,Capturer une abeille pour faire du miel,Faire une blague à son amie" goodanswer="Faire une blague à son amie"/>
 		    </question>
 		    <question id="m3s1q6" >
 		        <img id="1" src="drawable/module03_serie01_question06_image01"/>

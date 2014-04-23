@@ -369,7 +369,7 @@
 		        <img id="6" src="drawable/module04_serie01_question04_image06"/>
 		        <img id="7" src="drawable/module04_serie01_question04_image07"/>
 		        <img id="8" src="drawable/module04_serie01_question04_image08"/>
-		        <rep list="Phoque,Homme en habits d'hiver,Fleur,Paysage près d'une rivière,Sirène (femme poisson),Pieuvre,Harpe,Coquillage,Poisson" goodanswer="Sirène" />		        
+		        <rep list="Phoque,Homme en habits d'hiver,Fleur,Paysage près d'une rivière,Sirène (femme poisson),Pieuvre,Harpe,Coquillage,Poisson" goodanswer="Sirène (femme poisson)" />		        
 		    </question>
 		</serie>
 		<serie id="m4s2" name="Serie 2">

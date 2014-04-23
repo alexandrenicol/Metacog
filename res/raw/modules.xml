@@ -101,12 +101,12 @@
 		        <img id="R3" src="drawable/module01_serie02_question02_image06" />
 		    </question>
 		    <question id="m1s2q3" reponse="A">
-		        <img id="Q1" src="drawable/module1_serie02_question03_image01" />
-		        <img id="Q2" src="drawable/module1_serie02_question03_image02" />
-		        <img id="Q3" src="drawable/module1_serie02_question03_image03" />
-		        <img id="R1" src="drawable/module1_serie02_question03_image04" />
-		        <img id="R2" src="drawable/module1_serie02_question03_image05" />
-		        <img id="R3" src="drawable/module1_serie02_question03_image06" />
+		        <img id="Q1" src="drawable/module01_serie02_question03_image01" />
+		        <img id="Q2" src="drawable/module01_serie02_question03_image02" />
+		        <img id="Q3" src="drawable/module01_serie02_question03_image03" />
+		        <img id="R1" src="drawable/module01_serie02_question03_image04" />
+		        <img id="R2" src="drawable/module01_serie02_question03_image05" />
+		        <img id="R3" src="drawable/module01_serie02_question03_image06" />
 		    </question>
 		    <question id="m1s2q4" reponse="B">
 		        <img id="Q1" src="drawable/module01_serie02_question04_image01" />
@@ -223,7 +223,7 @@
 		    <question id="m2s1q11">
 		        <img id="1" src="drawable/module02_serie01_question11_image01" />
 		        <img id="2" src="drawable/module02_serie01_question11_image02" />
-		        <rep list="Homme qui lit une lettre d'amour (rougit sur l’image suivante),Homme qui lit un article intéressant (il prend des notes sur l'image suivante),Homme qui lit une lettre de refus (colère sur l'image suivante),Homme qui lit des gags (il rit sur l'image suivante)" goodanswer="Homme qui lit une lettre de refus (colère sur l'image suivante)"/>
+		        <rep list="Homme qui lit une lettre d'amour (rougit sur l’image suivante), Homme qui lit un article intéressant (il prend des notes sur l'image suivante),Homme qui lit une lettre de refus (colère sur l'image suivante),Homme qui lit des gags (il rit sur l'image suivante)" goodanswer="Homme qui lit une lettre de refus (colère sur l'image suivante)"/>
 		    </question>
 		</serie>
 		<serie id="m2s2" name="Serie 2">
@@ -347,8 +347,7 @@
 		        <img id="5" src="drawable/module04_serie01_question02_image05"/>
 		        <img id="6" src="drawable/module04_serie01_question02_image06"/>
 		        <img id="7" src="drawable/module04_serie01_question02_image07"/>
-		        <img id="8" src="drawable/module04_serie01_question02_image08"/>
-		        <rep list="Pont,Radeau,Voies ferées,Mat,Tas de bois,Pinceau" />
+		        <rep list="Scie,Vieux pont,Hérisson,Touffe d'herbe,Dragon,Clôture,Paysage de montagne,Porc-épic,Oreille" goodanswer="Dragon" />
 		    </question>
 		    <question id="m4s1q3">
 		        <img id="1" src="drawable/module04_serie01_question03_image01"/>
@@ -359,7 +358,7 @@
 		        <img id="6" src="drawable/module04_serie01_question03_image06"/>
 		        <img id="7" src="drawable/module04_serie01_question03_image07"/>
 		        <img id="8" src="drawable/module04_serie01_question03_image08"/>
-		        <rep list="Poire,Femme,Guitare,Etui à violon,Trou de serrure,Hibou,Langue,Ampoule éléctrique,Trace de pas" />		        
+		        <rep list="Corde,Ancre,Collier avec pendentif,Serpent,Perroquet,Spaghetti,Pousse de haricot,Fleur,Autoroute" goodanswer="Fleur" />		        
 		    </question>
 		    <question id="m4s1q4">
 		        <img id="1" src="drawable/module04_serie01_question04_image01"/>
@@ -370,22 +369,10 @@
 		        <img id="6" src="drawable/module04_serie01_question04_image06"/>
 		        <img id="7" src="drawable/module04_serie01_question04_image07"/>
 		        <img id="8" src="drawable/module04_serie01_question04_image08"/>
-		        <img id="9" src="drawable/module04_serie01_question04_image09"/>
-		        <rep list="Chemise,Rocher,Cave,Jeune fille,Vieille tente,Fontaine" />		        
-		    </question>
-		    <question id="m4s1q5">
-		        <img id="1" src="drawable/module04_serie01_question05_image01"/>
-		        <img id="2" src="drawable/module04_serie01_question05_image02"/>
-		        <img id="3" src="drawable/module04_serie01_question05_image03"/>
-		        <img id="4" src="drawable/module04_serie01_question05_image04"/>
-		        <img id="5" src="drawable/module04_serie01_question05_image05"/>
-		        <img id="6" src="drawable/module04_serie01_question05_image06"/>
-		        <img id="7" src="drawable/module04_serie01_question05_image07"/>
-		        <img id="8" src="drawable/module04_serie01_question05_image08"/>
-		        <rep list="Coupe,Femme avec décolleté plongeant,Lampe à huile,Tente,Carosse,Armoiries,Lampe magique,Théière,Bêche" />		        
+		        <rep list="Phoque,Homme en habits d'hiver,Fleur,Paysage près d'une rivière,Sirène (femme poisson),Pieuvre,Harpe,Coquillage,Poisson" goodanswer="Sirène" />		        
 		    </question>
 		</serie>
-		<serie id="m2s2" name="Serie 2">
+		<serie id="m4s2" name="Serie 2">
 		    <question id="m4s2q1">
 		        <img id="1" src="drawable/module04_serie02_question01_image01"/>
 		        <img id="2" src="drawable/module04_serie02_question01_image02"/>
@@ -395,7 +382,7 @@
 		        <img id="6" src="drawable/module04_serie02_question01_image06"/>
 		        <img id="7" src="drawable/module04_serie02_question01_image07"/>
 		        <img id="8" src="drawable/module04_serie02_question01_image08"/>
-		        <rep list="Corde,Ancre,Collier avec pendentif,Serpent,Perroquet,Spaghetti,Pousse de haricot,Fleur,Autoroute" />		        
+		        <rep list="Pont,Radeau,Voies ferrées,Mat,Tas de bois,Pinceau" goodanswer="Radeau" />		        
 		    </question>
 		    <question id="m4s2q2">
 		        <img id="1" src="drawable/module04_serie02_question02_image01"/>
@@ -406,7 +393,7 @@
 		        <img id="6" src="drawable/module04_serie02_question02_image06"/>
 		        <img id="7" src="drawable/module04_serie02_question02_image07"/>
 		        <img id="8" src="drawable/module04_serie02_question02_image08"/>
-		        <rep list="Pomme de terre,Soleil,Poisson,Cafard,Antenne parabolique,Homme obèse,OVNI,Araignée,Arbre" />			        
+		        <rep list="Poire,Femme,Guitare,Étui à violon,Trou de serrure,Hibou,Langue,Ampoule électrique,Traces de pas" goodanswer="Guitare" />			        
 		    </question>
 		    <question id="m4s2q3">
 		        <img id="1" src="drawable/module04_serie02_question03_image01"/>
@@ -417,7 +404,8 @@
 		        <img id="6" src="drawable/module04_serie02_question03_image06"/>
 		        <img id="7" src="drawable/module04_serie02_question03_image07"/>
 		        <img id="8" src="drawable/module04_serie02_question03_image08"/>
-		        <rep list="Phoque,Homme en habits d'hiver,Fleur,Paysage prés d'une rivière,Sirène,Pieuvre,Harpe,Coquillage,Poisson" />			        
+		        <img id="9" src="drawable/module04_serie02_question03_image09"/>
+		        <rep list="Chemise,Rocher,Cave,Jeune fille,Vieille tente,Fontaine" goodanswer="Jeune fille" />			        
 		    </question>
 		    <question id="m4s2q4">
 		        <img id="1" src="drawable/module04_serie02_question04_image01"/>
@@ -428,7 +416,18 @@
 		        <img id="6" src="drawable/module04_serie02_question04_image06"/>
 		        <img id="7" src="drawable/module04_serie02_question04_image07"/>
 		        <img id="8" src="drawable/module04_serie02_question04_image08"/>
-		        <rep list="Scie,Vieux pont,Herison,Touffe d'herbe,Dragon,Clôture,Paysage de montagne,Porc-épic,Oreille" />				        
+		        <rep list="Coupe,Femme avec décolleté plongeant,Lampe à huile,Tente,Carrosse,Armoiries,Lampe magique,Théière,Bêche" goodanswer="Carrosse" />				        
+		    </question>
+		    <question id="m4s2q5">
+		        <img id="1" src="drawable/module04_serie02_question05_image01"/>
+		        <img id="2" src="drawable/module04_serie02_question05_image02"/>
+		        <img id="3" src="drawable/module04_serie02_question05_image03"/>
+		        <img id="4" src="drawable/module04_serie02_question05_image04"/>
+		        <img id="5" src="drawable/module04_serie02_question05_image05"/>
+		        <img id="6" src="drawable/module04_serie02_question05_image06"/>
+		        <img id="7" src="drawable/module04_serie02_question05_image07"/>
+		        <img id="8" src="drawable/module04_serie02_question05_image08"/>
+		        <rep list="Pomme de terre,Soleil,Poisson,Cafard,Antenne parabolique,Homme obèse,OVNI,Araignée,Arbre" goodanswer="Poisson" />				        
 		    </question>
 	<!--	<question id="m2s2q5">
 		        

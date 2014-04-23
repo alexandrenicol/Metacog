@@ -169,16 +169,16 @@
 	</module>
 		<module id="m2" name="Etre empathique II" consigne="Sur les diapositives suivantes, vous verrez une image (ou un extrait d'une image).Essayez, s'il vous plaît, de trouver ce que la personne est en train de faire ou de penser." >
 		<serie id="m2s1" name="Serie 1">
-		    <question id="m2s1q1" reponse="C">
+		    <question id="m2s1q1">
 		        <img id="1" src="drawable/module02_serie01_question01_image01" />
 		        <img id="2" src="drawable/module02_serie01_question01_image02" />
-		        <rep list="Homme qui franchit la ligne d'arrivée lors d'un marathon,Homme en colère,Homme qui crie au secours car son t-shirt lui a été volé, Homme qui vénère le soleil" goodanswer="Homme en colère"/>
+		        <rep list="Homme qui franchit la ligne d'arrivée lors d'un marathon,Homme en colère,Homme qui crie au secours car son t-shirt lui a été volé,Homme qui vénère le soleil" goodanswer="Homme en colère"/>
 		        
 		    </question>
 		    <question id="m2s1q2">
 		        <img id="1" src="drawable/module02_serie01_question02_image01" />
 		        <img id="2" src="drawable/module02_serie01_question02_image02" />
-		        <rep list=" Plaidoirie finale devant la cour, Leader des travailleurs qui parle à ses confrères (au 20ème siècle), Bagarre sur la place du marché, Musicien qui chante une chanson d’amour" goodanswer="Musicien qui chante une chanson d’amour"/>
+		        <rep list="Plaidoirie finale devant la cour,Leader des travailleurs qui parle à ses confrères (au 20ème siècle),Bagarre sur la place du marché,Musicien qui chante une chanson d’amour" goodanswer="Musicien qui chante une chanson d’amour"/>
 		    </question>
 		    <question id="m2s1q3" >
 		        <img id="1" src="drawable/module02_serie01_question03_image01" />

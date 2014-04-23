@@ -234,7 +234,6 @@ public class EtreEmpathiqueII_Activity extends Activity {
     	Uri uri1 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get(id_question_state));
         image = (ImageView) findViewById(R.id.imageEtreEmpathique2);
         image.setImageURI(uri1);
-        
     }
 
 	@Override
@@ -244,8 +243,7 @@ public class EtreEmpathiqueII_Activity extends Activity {
 		return true;
 	}
 	
-	
-	 public void initFileTimer(){
+	public void initFileTimer(){
 	    	File f =  new File(filePath);
 	    	Document xml = null;
 	    	if (!f.exists()){
@@ -339,7 +337,8 @@ public class EtreEmpathiqueII_Activity extends Activity {
 	    		    };
 	    	customHandler.postDelayed(updateTimerThread, 0);
 	    }
-	 public void createquestion(){
+
+	public void createquestion(){
 		 	NodeList NodeResult = null;
 	    	Document xml = null;
 
@@ -380,7 +379,8 @@ public class EtreEmpathiqueII_Activity extends Activity {
 					e.printStackTrace();		
 				}
 	 }
-	 public void majResultat(){
+
+	public void majResultat(){
 	    	NodeList NodeResult = null;
 	    	NodeList NodeQuestion = null;
 	    	Document xml = null;

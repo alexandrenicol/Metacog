@@ -109,6 +109,7 @@ public class EtreEmpathiqueII_Activity extends Activity {
 					loadElements();
 					ShowGoodAnswer();
 				}else if(id_question < nbQuestions){
+					encouragement.setText("");
 					id_question++;
 					id_question_state = 1;
 					setImageList();

@@ -266,6 +266,13 @@ public class EtreEmpathiqueI_Activity extends Activity {
         image5.setAdjustViewBounds(true);
         image6.setAdjustViewBounds(true);
         
+        image1.setMinimumHeight(240);
+        image2.setMinimumHeight(240);
+        image3.setMinimumHeight(240);
+        image4.setMinimumHeight(240);
+        image5.setMinimumHeight(240);
+        image6.setMinimumHeight(240);
+        
         image1.setMaxHeight(248);
         image2.setMaxHeight(248);
         image3.setMaxHeight(248);
@@ -274,7 +281,6 @@ public class EtreEmpathiqueI_Activity extends Activity {
         image6.setMaxHeight(248);
         
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

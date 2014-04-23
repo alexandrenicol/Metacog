@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -23,13 +24,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.app.Activity;
-import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -42,6 +44,7 @@ public class SauterConclu_Activity extends Activity {
 	
 	private TextView moduleName;
 	private TextView questionNumber;
+	private TextView encouragement;
 	
 	private Button next;
 	
@@ -58,8 +61,12 @@ public class SauterConclu_Activity extends Activity {
 	private Integer nbQuestionStates = 0;
 	private Dictionary<Integer, String> imagesList = new Hashtable<Integer, String>();
 	
+	private String externalStorage;
+	private String structureFilename;
+	
 	private String [] answersList;
 	private String goodAnswer;
+	private int id_radio_goodanswer;
 	
 	private Handler customHandler = new Handler();
 	private long timeInMilliseconds = 0L;
@@ -84,39 +91,49 @@ public class SauterConclu_Activity extends Activity {
         id_serie = extra.getInt("id_serie");
         playerName = extra.getString("name");
         
+        externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath();
+        structureFilename = externalStorage+"/structure_modules.xml";
+        
         moduleName = (TextView) findViewById(R.id.moduleName);
         moduleName.setText(module);
+        
+        encouragement = (TextView) findViewById(R.id.encouragement);
+        encouragement.setText("");
         
         next=(Button) findViewById(R.id.suivant);
         next.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
-				if(id_question_state < nbQuestionStates){
+				if(id_question_state < nbQuestionStates-1){
 					id_question_state++;
 					radioGroup.clearCheck();
 					loadElements();
 					majResultat();
+				}else if(id_question_state == nbQuestionStates-1){
+					id_question_state++;
+					loadElements();
+					ShowGoodAnswer();
+				}else if(id_question < nbQuestions){
+					encouragement.setText("");
+					id_question++;
+					id_question_state = 1;
+					setImageList();
+					createAnswers();
+					createquestion();
+					loadElements();
 				}else{
-					if(id_question < nbQuestions){
-						id_question++;
-						id_question_state = 1;
-						setImageList();
-						createAnswers();
-						createquestion();
-						loadElements();
-					}else{
-						Intent t=new Intent (SauterConclu_Activity.this,EndExerciceActivity.class);
-						t.putExtra("moduleId",id_module);
-				    	t.putExtra("module",module);
-						startActivity(t);
-						finish();
-					}
+					Intent t=new Intent (SauterConclu_Activity.this,EndExerciceActivity.class);
+					t.putExtra("moduleId",id_module);
+			    	t.putExtra("module",module);
+			    	t.putExtra("name",playerName);
+					startActivity(t);
+					finish();
 				}
 			}
 		});
         
-        
+        nbQuestions = 0;
     	nbQuestions = countQuestions();
     	
     	Date = new Date(); 
@@ -131,8 +148,11 @@ public class SauterConclu_Activity extends Activity {
 	
     protected int countQuestions(){
     	try {
-	    	InputStream is = getResources().openRawResource(R.raw.modules);
-			Document xml = Utils.readXml(is);
+//	    	InputStream is = getResources().openRawResource(R.raw.modules);
+//			Document xml = Utils.readXml(is);
+    		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+    		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+    	    Document xml = docBuilder.parse(new File(structureFilename));
 			Element nodeSerie = xml.getElementById("m"+id_module.toString()+"s"+id_serie.toString());
 			NodeList nodeQuestionsList = nodeSerie.getChildNodes();
 			for (int i = 0; i < nodeQuestionsList.getLength(); ++i)
@@ -158,8 +178,11 @@ public class SauterConclu_Activity extends Activity {
     protected void setImageList(){
     	imagesList = new Hashtable<Integer, String>();
     	try {
-        	InputStream is = getResources().openRawResource(R.raw.modules);
-			Document xml = Utils.readXml(is);
+//        	InputStream is = getResources().openRawResource(R.raw.modules);
+//			Document xml = Utils.readXml(is);
+    		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+    		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+    	    Document xml = docBuilder.parse(new File(structureFilename));
 									
 			Element nodeQuestion = xml.getElementById("m"+id_module.toString()+"s"+id_serie.toString()+"q"+id_question.toString());
 			NodeList nodePictsQuestList = nodeQuestion.getElementsByTagName("img");
@@ -200,8 +223,11 @@ public class SauterConclu_Activity extends Activity {
     
     public void createAnswers(){
     	try {
-        	InputStream is = getResources().openRawResource(R.raw.modules);
-			Document xml = Utils.readXml(is);
+//        	InputStream is = getResources().openRawResource(R.raw.modules);
+//			Document xml = Utils.readXml(is);
+    		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+    		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+    	    Document xml = docBuilder.parse(new File(structureFilename));
 									
 			Element nodeQuestion = xml.getElementById("m"+id_module.toString()+"s"+id_serie.toString()+"q"+id_question.toString());
 			NodeList nodePictsQuestList = nodeQuestion.getElementsByTagName("rep");
@@ -226,6 +252,9 @@ public class SauterConclu_Activity extends Activity {
     		RadioButton rb = new RadioButton(this);
             rb.setText(answersList[i]);
             radioGroup.addView(rb);
+            if(rb.getText().equals(goodAnswer)){
+            	id_radio_goodanswer = rb.getId();
+            };
     	}
     }
     
@@ -339,114 +368,157 @@ public class SauterConclu_Activity extends Activity {
 	    	customHandler.postDelayed(updateTimerThread, 0);
 	    }
 	 public void createquestion(){
-		 	NodeList NodeResult = null;
-	    	Document xml = null;
+	 	NodeList NodeResult = null;
+    	Document xml = null;
 
-		    	try {		
-					DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-					DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
-					xml = docBuilder.parse(new File(filePath));
-					NodeResult = xml.getElementsByTagName("result");
-					Element element = (Element) NodeResult.item(NodeResult.getLength()-1);
-					Element quest = xml.createElement("question");
-					quest.setAttribute("question", ""+id_question+"");
-					element.appendChild(quest);
-					
-				} catch (SAXException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ParserConfigurationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				TransformerFactory transformerFactory = TransformerFactory.newInstance();
-				Transformer transformer = null;
-				try {
-					transformer = transformerFactory.newTransformer();
-				} catch (TransformerConfigurationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				DOMSource source = new DOMSource(xml);
-				StreamResult result = new StreamResult(filePath);
-				try {
-					transformer.transform(source, result);
-				} catch (TransformerException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();		
-				}
+    	try {		
+			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+			xml = docBuilder.parse(new File(filePath));
+			NodeResult = xml.getElementsByTagName("result");
+			Element element = (Element) NodeResult.item(NodeResult.getLength()-1);
+			Element quest = xml.createElement("question");
+			quest.setAttribute("question", ""+id_question+"");
+			element.appendChild(quest);
+			
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = null;
+		try {
+			transformer = transformerFactory.newTransformer();
+		} catch (TransformerConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		DOMSource source = new DOMSource(xml);
+		StreamResult result = new StreamResult(filePath);
+		try {
+			transformer.transform(source, result);
+		} catch (TransformerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();		
+		}
 	 }
 	 public void majResultat(){
-	    	NodeList NodeResult = null;
-	    	NodeList NodeQuestion = null;
-	    	Document xml = null;
-	    	int checkedRadioButton = -1;
-	    	checkedRadioButton = radioGroup.getCheckedRadioButtonId();
-	    	RadioButton radio = (RadioButton) findViewById(checkedRadioButton);
-	    	String playerAnswer = "";
-	    	if (checkedRadioButton != -1){
-	    		playerAnswer = radio.getText().toString();
-	    	}
+    	NodeList NodeResult = null;
+    	NodeList NodeQuestion = null;
+    	Document xml = null;
+    	int checkedRadioButton = -1;
+    	checkedRadioButton = radioGroup.getCheckedRadioButtonId();
+    	RadioButton radio = (RadioButton) findViewById(checkedRadioButton);
+    	String playerAnswer = "";
+    	if (checkedRadioButton != -1){
+    		playerAnswer = radio.getText().toString();
+    	}
 
-		    	try {		
-					DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-					DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
-					xml = docBuilder.parse(new File(filePath));
-					NodeResult = xml.getElementsByTagName("results");
-					Node node = NodeResult.item(0);
-					NodeQuestion = node.getChildNodes();
-					node=NodeQuestion.item(NodeQuestion.getLength()-1);
-					
-					Element Node = xml.createElement("reponse");
-					String time = min + ":"
-		                    + String.format("%02d", sec);
-					Node.setAttribute("time", time);
-					Node.setAttribute("choice", playerAnswer);
-					String Rep;
-					if(playerAnswer != null){
-						boolean reponse = playerAnswer.equals(goodAnswer);
-						Rep ="Wrong";
-						if(reponse){
-							Rep ="Good";
-						}
-					}else {
-						Rep ="Unknow";
-					}
-					Node.setAttribute("correct", Rep);
-					Element tmp = (Element) node.getLastChild();
-					tmp.appendChild(Node);
-				} catch (SAXException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ParserConfigurationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+	    try {		
+			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+			xml = docBuilder.parse(new File(filePath));
+			NodeResult = xml.getElementsByTagName("results");
+			Node node = NodeResult.item(0);
+			NodeQuestion = node.getChildNodes();
+			node=NodeQuestion.item(NodeQuestion.getLength()-1);
+			
+			Element Node = xml.createElement("reponse");
+			String time = min + ":"
+                    + String.format("%02d", sec);
+			Node.setAttribute("time", time);
+			Node.setAttribute("choice", playerAnswer);
+			String Rep;
+			if(playerAnswer != null){
+				boolean reponse = playerAnswer.equals(goodAnswer);
+				Rep ="Wrong";
+				if(reponse){
+					Rep ="Good";
 				}
-				TransformerFactory transformerFactory = TransformerFactory.newInstance();
-				Transformer transformer = null;
-				try {
-					transformer = transformerFactory.newTransformer();
-				} catch (TransformerConfigurationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				DOMSource source = new DOMSource(xml);
-				StreamResult result = new StreamResult(filePath);
-				try {
-					transformer.transform(source, result);
-				} catch (TransformerException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();		
-				}
-				startTime = SystemClock.uptimeMillis();
-				//moduleName.setText(radio.getCheckedRadioButtonId());
-	    	
-	    
-	    }
+			}else {
+				Rep ="Unknow";
+			}
+			Node.setAttribute("correct", Rep);
+			Element tmp = (Element) node.getLastChild();
+			tmp.appendChild(Node);
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = null;
+		try {
+			transformer = transformerFactory.newTransformer();
+		} catch (TransformerConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		DOMSource source = new DOMSource(xml);
+		StreamResult result = new StreamResult(filePath);
+		try {
+			transformer.transform(source, result);
+		} catch (TransformerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();		
+		}
+		startTime = SystemClock.uptimeMillis();
+		//moduleName.setText(radio.getCheckedRadioButtonId());
+	 }
+	 
+	 public void ShowGoodAnswer(){
+		 String encouragementTxt = "";
+		 try {
+			 InputStream is = getResources().openRawResource(R.raw.encouragement);
+			 Document xml = Utils.readXml(is);
+			 Element nodeText= xml.getElementById("encouragements");
+			 NodeList nodeEncouragementList = nodeText.getElementsByTagName("encouragement");
+			 int nbElements = nodeEncouragementList.getLength();
+			 Random randomno = new Random();
+			 int idEncouragement = randomno.nextInt(nbElements);
+			 encouragementTxt = nodeEncouragementList.item(idEncouragement).getTextContent();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 int checkedRadioButton = -1;
+		 checkedRadioButton = radioGroup.getCheckedRadioButtonId();
+		 RadioButton radio = (RadioButton) findViewById(checkedRadioButton);
+		 RadioButton radioGood = (RadioButton) findViewById(id_radio_goodanswer);
+		 String playerAnswer = "";
+		 if (checkedRadioButton != -1){
+			 playerAnswer = radio.getText().toString();
+			 if(playerAnswer != null){
+				 boolean reponse = playerAnswer.equals(goodAnswer);
+				 if(reponse){
+					 radio.setTextColor(Color.GREEN);
+					 encouragement.setText(encouragementTxt);
+				 }else{
+					 radio.setTextColor(Color.RED);
+					 radioGood.setTextColor(Color.GREEN);
+				 }
+			 }
+		 }else{
+			 radioGood.setTextColor(Color.GREEN);
+		 }
+		 id_question_state++;
+	 }
+	 
 }

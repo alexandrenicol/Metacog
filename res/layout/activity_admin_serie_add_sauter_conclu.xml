@@ -63,7 +63,70 @@
             android:id="@+id/add_image1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Choisissez votre première image" />
+            android:text="Choisissez votre image 1" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/add_proposition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/new_proposition"
+        android:layout_marginLeft="38dp"
+        android:layout_toRightOf="@+id/new_proposition"
+        android:text="Ajouter la proposition" />
+
+    <TextView
+        android:id="@+id/text_proposition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_toRightOf="@+id/new_proposition" />
+
+    <EditText
+        android:id="@+id/new_proposition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/valid_button"
+        android:layout_alignLeft="@+id/linearLayoutTextView"
+        android:layout_marginBottom="44dp"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/valid_button"
+        android:layout_alignLeft="@+id/new_proposition"
+        android:text="Proposition de réponse :" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/new_proposition"
+        android:layout_alignLeft="@+id/new_proposition"
+        android:text="Ajouter des propositions de réponse"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/text_petite_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/valid_button"
+        android:layout_alignLeft="@+id/textView2"
+        android:text="Taper la bonne réponse" />
+
+    <EditText
+        android:id="@+id/answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/text_petite_image"
+        android:layout_alignBottom="@+id/text_petite_image"
+        android:layout_toRightOf="@+id/add_image_field"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>

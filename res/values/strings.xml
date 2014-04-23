@@ -12,6 +12,7 @@
     <string name="title_activity_modules">ModulesActivity</string>
     <string name="title_activity_end_exercice">EndExerciceActivity</string>
     <string name="title_activity_sauter_conclu">SauterConcluActivity</string>
+    <string name="title_activity_etre_empathique_2">EtreEmpathiqueII_Activity</string>
     <string name="daidalos_hello">Hello World!</string>
     <string name="daidalos_app_name">aFileDialog</string>
 
@@ -41,5 +42,6 @@
     <string name="title_activity_admin_del_node">AdminDelNodeActivity</string>
     <string name="title_activity_admin_serie_add">AdminSerieAddM1Activity</string>
     <string name="title_activity_admin_serie_add_sauter_conclu">AdminSerieAddSauterConcluActivity</string>
+    <string name="title_activity_admin_serie_add_etre_empa_ii">AdminSerieAddEtreEmpaIIActivity</string>
 
 </resources>

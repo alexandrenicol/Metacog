@@ -9,7 +9,7 @@
     tools:context=".AdminActivity" >
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/text_proposition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -21,7 +21,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignLeft="@+id/text_proposition"
         android:layout_alignParentTop="true"
         android:layout_marginTop="22dp"
         android:text="Metacog - Administration"
@@ -31,7 +31,7 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignBottom="@+id/text_proposition"
         android:layout_alignParentRight="true"
         android:layout_marginRight="54dp"
         android:text="Retour" />

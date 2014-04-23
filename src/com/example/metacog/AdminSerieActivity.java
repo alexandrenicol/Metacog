@@ -51,7 +51,11 @@ public class AdminSerieActivity extends Activity {
 				if (selectedModuleId==1) {
 					t = new Intent(AdminSerieActivity.this, AdminSerieAddM1Activity.class);
 				}else if (selectedModuleId==2){
-					t = new Intent(AdminSerieActivity.this, AdminSerieAddSauterConcluActivity.class);
+					t = new Intent(AdminSerieActivity.this, AdminSerieAddEtreEmpaIIActivity.class);
+				}else if (selectedModuleId==3){
+					t = new Intent(AdminSerieActivity.this, AdminSerieAddM1Activity.class);
+				}else if (selectedModuleId==4){
+					t = new Intent(AdminSerieActivity.this, AdminSerieAddSauterConcluActivity.class);	
 				}else{
 					t = new Intent(AdminSerieActivity.this, AdminSerieAddM1Activity.class);
 			    }

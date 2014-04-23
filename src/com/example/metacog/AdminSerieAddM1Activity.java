@@ -129,7 +129,7 @@ public class AdminSerieAddM1Activity extends Activity {
 						String question_id = "m"+selectedModuleId+"s"+selectedSerieId+"q"+num_question;
 						nodeQuestion.setAttribute("id", question_id);
 						
-						EditText answer = (EditText) findViewById(R.id.editText1);
+						EditText answer = (EditText) findViewById(R.id.new_proposition);
 						answer.getText();
 						
 						nodeQuestion.setAttribute("reponse", answer.getText().toString());

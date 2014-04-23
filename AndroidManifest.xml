@@ -100,7 +100,11 @@
         </activity>
         <activity
             android:name="com.example.metacog.EtreEmpathiqueII_Activity"
-            android:label="@string/title_activity_etre_empathique_ii_" >
+            android:label="@string/title_activity_etre_empathique_2" >
+        </activity>
+        <activity
+            android:name="com.example.metacog.AdminSerieAddEtreEmpaIIActivity"
+            android:label="@string/title_activity_admin_serie_add_etre_empa_ii" >
         </activity>
     </application>
 

@@ -287,42 +287,42 @@
 		        <img id="2" src="drawable/module03_serie01_question01_image02"/>
 		        <img id="3" src="drawable/module03_serie01_question01_image03"/>
 		        <img id="4" src="drawable/module03_serie01_question01_image04"/>
-		        <rep list="Proposer à l’autre garçon de jouer au ballon avec eux. Lui faire une farce. Obtenir un autographe du champion de football américain." goodanswer="Lui faire une farce."/>
+		        <rep list="Proposer à l’autre garçon de jouer au ballon avec eux, Lui faire une farce, Obtenir un autographe du champion de football américain" goodanswer="Lui faire une farce"/>
 		    </question>
 		    <question id="m3s1q2" >
 		        <img id="1" src="drawable/module03_serie01_question02_image01"/>
 		        <img id="2" src="drawable/module03_serie01_question02_image02"/>
 		        <img id="3" src="drawable/module03_serie01_question02_image03"/>
 		        <img id="4" src="drawable/module03_serie01_question02_image04"/>
-		        <rep list="Ces hommes font une danse lunaire. Ces hommes essaient de s’enfuir. Ces hommes s’entraînent." goodanswer="Ces hommes essaient de s’enfuir."/>
+		        <rep list="Ces hommes font une danse lunaire, Ces hommes essaient de s’enfuir, Ces hommes s’entraînent" goodanswer="Ces hommes essaient de s’enfuir"/>
 		    </question>
 		    <question id="m3s1q3" >
 		        <img id="1" src="drawable/module03_serie01_question03_image01"/>
 		        <img id="2" src="drawable/module03_serie01_question03_image02"/>
 		        <img id="3" src="drawable/module03_serie01_question03_image03"/>
 		        <img id="4" src="drawable/module03_serie01_question03_image04"/>
-		        <rep list="Apprécier son cadeau d’anniversaire. Emballer un cadeau. Essayer de faire peur à sa soeur." goodanswer="Essayer de faire peur à sa soeur."/>
+		        <rep list="Apprécier son cadeau d’anniversaire, Emballer un cadeau, Essayer de faire peur à sa soeur" goodanswer="Essayer de faire peur à sa soeur"/>
 		    </question>
 		    <question id="m3s1q4" >
 		        <img id="1" src="drawable/module03_serie01_question04_image01"/>
 		        <img id="2" src="drawable/module03_serie01_question04_image02"/>
 		        <img id="3" src="drawable/module03_serie01_question04_image03"/>
 		        <img id="4" src="drawable/module03_serie01_question04_image04"/>
-		        <rep list="Ignorer son ami. Aider son ami. Apprendre comment faire pousser un arbre." goodanswer="Aider son ami."/>
+		        <rep list="Ignorer son ami, Aider son ami, Apprendre comment faire pousser un arbre" goodanswer="Aider son ami"/>
 		    </question>
 		    <question id="m3s1q5" >
 		        <img id="1" src="drawable/module03_serie01_question05_image01"/>
 		        <img id="2" src="drawable/module03_serie01_question05_image02"/>
 		        <img id="3" src="drawable/module03_serie01_question05_image03"/>
 		        <img id="4" src="drawable/module03_serie01_question05_image04"/>
-		        <rep list="Cueillir des fleurs pour sa petite amie. Capturer une abeille pour faire du miel. Faire une blague à son amie." goodanswer="Faire une blague à son amie."/>
+		        <rep list="Cueillir des fleurs pour sa petite amie, Capturer une abeille pour faire du miel Faire une blague à son amie" goodanswer="Faire une blague à son amie"/>
 		    </question>
 		    <question id="m3s1q6" >
 		        <img id="1" src="drawable/module03_serie01_question06_image01"/>
 		        <img id="2" src="drawable/module03_serie01_question06_image02"/>
 		        <img id="3" src="drawable/module03_serie01_question06_image03"/>
 		        <img id="4" src="drawable/module03_serie01_question06_image04"/>
-		        <rep list="D’inviter une fille pour une soirée.D’acheter des bonbons.De braquer un magasin." goodanswer="De braquer un magasin."/>
+		        <rep list="D’inviter une fille pour une soirée,D’acheter des bonbons,De braquer un magasin" goodanswer="De braquer un magasin"/>
 		    </question>
 		</serie>
 	</module>

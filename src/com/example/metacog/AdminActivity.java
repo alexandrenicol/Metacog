@@ -1,11 +1,9 @@
 package com.example.metacog;
 
 import java.io.File;
-import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStreamWriter;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,14 +24,16 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -46,10 +46,64 @@ public class AdminActivity extends Activity {
 	private String[] list2;
 	private String externalStorage;
 	private String structureFilename;
+	
+	private Button synchro;
+	private boolean sender;
+	private BroadcastService broadcastService = null;
+	
+	private final Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+
+            switch (msg.what) {
+            
+	            case BroadcastService.MESSAGE_WRITE: 	
+	                byte[] writeBuf = (byte[]) msg.obj;
+	                // construct a string from the buffer	              
+	                break;
+	            case BroadcastService.MESSAGE_READ:
+	                String readBuf = (String) msg.obj;
+	                if (readBuf.contains("IP")){
+	                	broadcastService.writeIP();
+	                } else if (sender == true){
+	                	File file = new File(Environment.getExternalStorageDirectory(), "ip.txt");
+	                	FileWriter filewriter;
+	                	if(!file.exists()){
+	                		try {
+								file.createNewFile();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+	                	}
+	                	try {
+							filewriter = new FileWriter(file,false);
+							filewriter.write(readBuf);
+							filewriter.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	                }
+	                break;               
+            }
+        }
+	};
+        	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+        
+        broadcastService = new BroadcastService(this, handler);
+        synchro = (Button) findViewById(R.id.synchro);
+        synchro.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				String out="IP";
+		        broadcastService.write(out.getBytes());
+			}
+		});
         
         externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath();
         structureFilename = externalStorage+"/structure_modules.xml";

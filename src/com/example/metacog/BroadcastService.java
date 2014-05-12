@@ -64,6 +64,10 @@ public class BroadcastService {
         mConnectedThread.write(out);
     }
     
+    public void writeIP() {
+    	if (D) Log.d(TAG, "Write IP");
+        mConnectedThread.write(getIPAddress().getBytes());
+    }
     private class ComThread extends Thread {
         
     	private static final int BCAST_PORT = 8000;

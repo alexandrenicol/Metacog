@@ -102,6 +102,7 @@ public class AdminActivity extends Activity {
 			public void onClick(View arg0) {
 				String out="IP";
 		        broadcastService.write(out.getBytes());
+		        sender = true;
 			}
 		});
         

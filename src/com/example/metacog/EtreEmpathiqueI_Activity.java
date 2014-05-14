@@ -61,7 +61,7 @@ public class EtreEmpathiqueI_Activity extends Activity {
 	private Integer nbQuestion = 0;
 	private Dictionary<String, String> imagesList = new Hashtable<String, String>();
 	
-	private boolean showAnswer = false;
+	private boolean showAnswer = true;
 	
 	private RadioGroup radioGroup;
 	private Integer id_question_state = 1;
@@ -119,34 +119,41 @@ public class EtreEmpathiqueI_Activity extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-			//	if(!showAnswer){
-					if(id_question < nbQuestion){ //TODO change the condition
-						if(majResultat()){
-							id_question = id_question + 1;
-							//ShowGoodAnswer();
-							radio.clearCheck();
-							encouragement.setText("");
-							loadPictures();
-							showAnswer = true;
-						}else{
-							Toast toast = Toast.makeText(EtreEmpathiqueI_Activity.this,R.string.select_answer, Toast.LENGTH_LONG);
-							toast.show();
-						}
+				if(showAnswer){ 
+					if(majResultat()){
+						showAnswer = false;
+						//loadPictures();
+						ShowGoodAnswer();
+						id_question++;
+						//id_question++;
+						//radio.clearCheck();
+						//encouragement.setText("");
 					}else{
-						majResultat();
-						Intent t=new Intent (EtreEmpathiqueI_Activity.this,EndExerciceActivity.class);
-						id_question = 1;
-						t.putExtra("moduleId",id_module);
-				    	t.putExtra("module",module);
-				    	t.putExtra("name",name);
-						startActivity(t);
-						finish();
+						Toast toast = Toast.makeText(EtreEmpathiqueI_Activity.this,R.string.select_answer, Toast.LENGTH_LONG);
+						toast.show();
 					}
-				/*}else{
-					id_question = id_question + 1;
-					ShowGoodAnswer();
-					showAnswer = false;
-				}*/
+				}else if(id_question < nbQuestion){
+					encouragement.setText("");
+					RadioButton radioButton = (RadioButton) findViewById(R.id.radio0);
+					radioButton.setTextColor(Color.BLACK);
+					radioButton = (RadioButton) findViewById(R.id.radio1);
+					radioButton.setTextColor(Color.BLACK);
+					radioButton = (RadioButton) findViewById(R.id.radio2);
+					radioButton.setTextColor(Color.BLACK);
+					loadPictures();
+					radio.clearCheck();
+					
+					showAnswer = true;
+				}else{
+					majResultat();
+					Intent t=new Intent (EtreEmpathiqueI_Activity.this,EndExerciceActivity.class);
+					id_question = 1;
+					t.putExtra("moduleId",id_module);
+			    	t.putExtra("module",module);
+			    	t.putExtra("name",name);
+					startActivity(t);
+					finish();
+				}
 			}
 		});
     }

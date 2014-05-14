@@ -1,11 +1,11 @@
 package com.example.metacog;
 
-import android.os.Bundle;
-
+import java.io.File;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.view.Menu;
+import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 
@@ -19,6 +19,18 @@ public class MainActivity extends Activity
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		File theDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog");  // Defining Directory/Folder Name  
+		try{   
+		    if (!theDir.exists()){  // Checks that Directory/Folder Doesn't Exists!  
+		    	boolean result = theDir.mkdir();    
+		    	if(result){  
+		    	//JOptionPane.showMessageDialog(null, "New Folder created!");
+		    	}
+		    }
+		}catch(Exception e){  
+		    //JOptionPane.showMessageDialog(null, e);  
+		}
 		
 		utilisateur=(Button) findViewById(R.id.activity_main_utilisateur);
         utilisateur.setOnClickListener(new View.OnClickListener() {

@@ -39,6 +39,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class EtreEmpathiqueII_Activity extends Activity {
 
@@ -58,7 +59,7 @@ public class EtreEmpathiqueII_Activity extends Activity {
 	private Integer id_question = 1;
 	private Integer id_question_state = 1;
 	private Integer nbQuestions = 0;
-	private Integer nbQuestionStates = 0;
+	private Integer nbQuestionStates = 2;
 	private Dictionary<Integer, String> imagesList = new Hashtable<Integer, String>();
 	
 	private String [] answersList;
@@ -76,11 +77,15 @@ public class EtreEmpathiqueII_Activity extends Activity {
 	private int sec;
 	private String playerName;
 	private Date Date;
+	private String structureFilename;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_etre_empathique_2);
+		
+		String externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath();
+        structureFilename = externalStorage+"/structure_modules.xml";
 		
 		Bundle extra = getIntent().getExtras();
         module = extra.getString("module");
@@ -99,19 +104,33 @@ public class EtreEmpathiqueII_Activity extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-				if(id_question_state < nbQuestionStates-1){
-					id_question_state++;
-					radioGroup.clearCheck();
-					loadElements();
-					majResultat();
-				}else if(id_question_state == nbQuestionStates-1){
-					id_question_state++;
-					loadElements();
-					ShowGoodAnswer();
+				/*if(id_question_state < nbQuestionStates-1){
+					if(majResultat()){
+						id_question_state++;
+						radioGroup.clearCheck();
+						loadElements();
+						
+					}else{
+						Toast toast = Toast.makeText(EtreEmpathiqueII_Activity.this,"Veuillez selectionner une reponse.", Toast.LENGTH_LONG);
+						toast.show();
+					}
+						
+					
+					
+				}else*/ if(id_question_state == nbQuestionStates-1){
+					if(majResultat()){
+						id_question_state++;
+						loadElements();
+						ShowGoodAnswer();
+					}else{
+						Toast toast = Toast.makeText(EtreEmpathiqueII_Activity.this,"Veuillez selectionner une reponse.", Toast.LENGTH_LONG);
+						toast.show();
+					}
 				}else if(id_question < nbQuestions){
 					encouragement.setText("");
 					id_question++;
 					id_question_state = 1;
+					radioGroup.clearCheck();
 					setImageList();
 					createAnswers();
 					createquestion();
@@ -142,8 +161,11 @@ public class EtreEmpathiqueII_Activity extends Activity {
 	
     protected int countQuestions(){
     	try {
-	    	InputStream is = getResources().openRawResource(R.raw.modules);
-			Document xml = Utils.readXml(is);
+	    	//InputStream is = getResources().openRawResource(R.raw.modules);
+			//Document xml = Utils.readXml(is);
+    		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+    		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+    	    Document xml = docBuilder.parse(new File(structureFilename));
 			Element nodeSerie = xml.getElementById("m"+id_module.toString()+"s"+id_serie.toString());
 			NodeList nodeQuestionsList = nodeSerie.getChildNodes();
 			for (int i = 0; i < nodeQuestionsList.getLength(); ++i)
@@ -169,12 +191,15 @@ public class EtreEmpathiqueII_Activity extends Activity {
     protected void setImageList(){
     	imagesList = new Hashtable<Integer, String>();
     	try {
-        	InputStream is = getResources().openRawResource(R.raw.modules);
-			Document xml = Utils.readXml(is);
+        	//InputStream is = getResources().openRawResource(R.raw.modules);
+			//Document xml = Utils.readXml(is);
+    		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+    		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+    	    Document xml = docBuilder.parse(new File(structureFilename));
 									
 			Element nodeQuestion = xml.getElementById("m"+id_module.toString()+"s"+id_serie.toString()+"q"+id_question.toString());
 			NodeList nodePictsQuestList = nodeQuestion.getElementsByTagName("img");
-			nbQuestionStates = nodePictsQuestList.getLength();
+			nbQuestionStates = 2;//nodePictsQuestList.getLength();
 			
 			questionNumber = (TextView) findViewById(R.id.questionNumber);
 			questionNumber.setText("Question "+ id_question);
@@ -211,8 +236,11 @@ public class EtreEmpathiqueII_Activity extends Activity {
     
     public void createAnswers(){
     	try {
-        	InputStream is = getResources().openRawResource(R.raw.modules);
-			Document xml = Utils.readXml(is);
+        	//InputStream is = getResources().openRawResource(R.raw.modules);
+			//Document xml = Utils.readXml(is);
+    		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+    		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+    	    Document xml = docBuilder.parse(new File(structureFilename));
 									
 			Element nodeQuestion = xml.getElementById("m"+id_module.toString()+"s"+id_serie.toString()+"q"+id_question.toString());
 			NodeList nodePictsQuestList = nodeQuestion.getElementsByTagName("rep");
@@ -393,7 +421,7 @@ public class EtreEmpathiqueII_Activity extends Activity {
 				}
 	 }
 
-	public void majResultat(){
+	public boolean majResultat(){
 	    	NodeList NodeResult = null;
 	    	NodeList NodeQuestion = null;
 	    	Document xml = null;
@@ -403,9 +431,7 @@ public class EtreEmpathiqueII_Activity extends Activity {
 	    	String playerAnswer = "";
 	    	if (checkedRadioButton != -1){
 	    		playerAnswer = radio.getText().toString();
-	    	}
-
-		    	try {		
+	    		try {		
 					DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 					DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
 					xml = docBuilder.parse(new File(filePath));
@@ -432,34 +458,40 @@ public class EtreEmpathiqueII_Activity extends Activity {
 					Node.setAttribute("correct", Rep);
 					Element tmp = (Element) node.getLastChild();
 					tmp.appendChild(Node);
-				} catch (SAXException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ParserConfigurationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				TransformerFactory transformerFactory = TransformerFactory.newInstance();
-				Transformer transformer = null;
-				try {
-					transformer = transformerFactory.newTransformer();
-				} catch (TransformerConfigurationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				DOMSource source = new DOMSource(xml);
-				StreamResult result = new StreamResult(filePath);
-				try {
-					transformer.transform(source, result);
-				} catch (TransformerException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();		
-				}
-				startTime = SystemClock.uptimeMillis();
-				//moduleName.setText(radio.getCheckedRadioButtonId());
+					} catch (SAXException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ParserConfigurationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					TransformerFactory transformerFactory = TransformerFactory.newInstance();
+					Transformer transformer = null;
+					try {
+						transformer = transformerFactory.newTransformer();
+					} catch (TransformerConfigurationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					DOMSource source = new DOMSource(xml);
+					StreamResult result = new StreamResult(filePath);
+					try {
+						transformer.transform(source, result);
+					} catch (TransformerException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();		
+					}
+					startTime = SystemClock.uptimeMillis();
+					//moduleName.setText(radio.getCheckedRadioButtonId());
+					
+						return true;
+					
+	    	}else{
+					return false;
+			}
 	    	
 	    
 	    }

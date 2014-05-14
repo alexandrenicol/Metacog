@@ -58,9 +58,10 @@ setContentView(R.layout.activity_log);
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		finish();
+		
 		Intent t=new Intent (LogActivity.this,MainActivity.class);
 		startActivity(t);
+		finish();
 	}
 	});
 		

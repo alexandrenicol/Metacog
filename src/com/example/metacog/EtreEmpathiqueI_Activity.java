@@ -129,7 +129,7 @@ public class EtreEmpathiqueI_Activity extends Activity {
 							loadPictures();
 							showAnswer = true;
 						}else{
-							Toast toast = Toast.makeText(EtreEmpathiqueI_Activity.this,"Veuillez selectionner une reponse.", Toast.LENGTH_LONG);
+							Toast toast = Toast.makeText(EtreEmpathiqueI_Activity.this,R.string.select_answer, Toast.LENGTH_LONG);
 							toast.show();
 						}
 					}else{

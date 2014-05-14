@@ -205,7 +205,7 @@ public class AdminModuleActivity extends Activity {
 						e.printStackTrace();
 					}
 					
-					Toast toast = Toast.makeText(AdminModuleActivity.this,"Votre série a été ajoutée", Toast.LENGTH_LONG);
+					Toast toast = Toast.makeText(AdminModuleActivity.this,R.string.add_serie, Toast.LENGTH_LONG);
 					toast.show();
 					finish();
 					startActivity(getIntent());

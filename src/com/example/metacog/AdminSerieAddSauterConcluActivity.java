@@ -38,6 +38,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v4.app.NavUtils;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.res.Resources;
 import android.os.Build;
@@ -192,7 +193,7 @@ public class AdminSerieAddSauterConcluActivity extends Activity {
 				for (Entry<Integer, String> e : dictionaryImage.entrySet()) {
 						if (e.getValue().equals("")){
 							toBeValid = false;
-							Toast toast = Toast.makeText(AdminSerieAddSauterConcluActivity.this,"Merci de charger toutes les images", Toast.LENGTH_LONG);
+							Toast toast = Toast.makeText(AdminSerieAddSauterConcluActivity.this,R.string.must_choose_sauterConclu, Toast.LENGTH_LONG);
 							toast.show();
 						}
 					}
@@ -277,7 +278,7 @@ public class AdminSerieAddSauterConcluActivity extends Activity {
 							e.printStackTrace();
 						}
 						
-						Toast toast = Toast.makeText(AdminSerieAddSauterConcluActivity.this,"Votre question a été ajoutée", Toast.LENGTH_LONG);
+						Toast toast = Toast.makeText(AdminSerieAddSauterConcluActivity.this,R.string.add_question, Toast.LENGTH_LONG);
 						toast.show();
 						finish();
 						

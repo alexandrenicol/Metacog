@@ -38,12 +38,11 @@ public class LogActivity extends Activity
 { 
 	private Button quit;
 	private Button valid;
-	private EditText name;
-	private EditText firstname;
+	private EditText pseudo;
 	private NodeList nodeUser = null;
 	private String[] list;
 	private ListView userView;
-	private String filepath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/users.xml";
+	private String filepath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog"+"/users.xml";
 /** Called when the activity is first created. */ 
 @Override 
 public void onCreate(Bundle savedInstanceState) 
@@ -52,7 +51,7 @@ super.onCreate(savedInstanceState);
 setContentView(R.layout.activity_log);
 	
 	userView = (ListView) findViewById(R.id.activity_log_listView1);
-	name = (EditText) findViewById(R.id.activity_log_textPersonName);
+	pseudo = (EditText) findViewById(R.id.activity_log_textPersonName);
 	quit = (Button) findViewById(R.id.activity_log_Quit);
 	quit.setOnClickListener(new View.OnClickListener() {
 	@Override
@@ -81,8 +80,7 @@ setContentView(R.layout.activity_log);
 	tabs.addTab(spec); 
 	tabs.setCurrentTab(0); 
 
-	name = (EditText) findViewById(R.id.activity_log_textPersonName);
-	firstname = (EditText) findViewById(R.id.activity_log_textPersonName2);
+	pseudo = (EditText) findViewById(R.id.activity_log_textPersonName);
 	File f =  new File(filepath);
 	if (!f.exists()){
 		try {
@@ -115,7 +113,6 @@ setContentView(R.layout.activity_log);
 		  }
 	}
 	
-	InputStream is = getResources().openRawResource(R.raw.users);
 	try {
 		//Document xml = Utils.readXml(is);
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -171,7 +168,7 @@ setContentView(R.layout.activity_log);
 				xml = docBuilder.parse(new File(filepath));
 				NodeUsers = xml.getElementsByTagName("users");
 				Element Node = xml.createElement("user");
-				userName = firstname.getText().toString()+" "+name.getText().toString();
+				userName = pseudo.getText().toString();
 				Node.setAttribute("id", userName);
 				Element tmp = (Element) NodeUsers.item(0);
 				tmp.appendChild(Node);

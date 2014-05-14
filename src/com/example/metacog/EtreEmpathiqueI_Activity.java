@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -25,6 +26,7 @@ import org.xml.sax.SAXException;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -58,6 +60,13 @@ public class EtreEmpathiqueI_Activity extends Activity {
 	private Integer id_question = 1;
 	private Integer nbQuestion = 0;
 	private Dictionary<String, String> imagesList = new Hashtable<String, String>();
+	
+	private boolean showAnswer = false;
+	
+	private RadioGroup radioGroup;
+	private Integer id_question_state = 1;
+	private Integer id_radio_goodanswer = -1;
+	private TextView encouragement;
 	
 	private Handler customHandler = new Handler();
 	private long timeInMilliseconds = 0L;
@@ -93,6 +102,9 @@ public class EtreEmpathiqueI_Activity extends Activity {
         moduleName = (TextView) findViewById(R.id.moduleName);
         moduleName.setText(module);
         
+        encouragement = (TextView) findViewById(R.id.encouragement);
+        encouragement.setText("");
+        
         radio = (RadioGroup)findViewById(R.id.radioGroup1);
         Date = new Date(); 
         filePath=Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+name.replace(" ", "_")+"_results.xml";
@@ -107,25 +119,34 @@ public class EtreEmpathiqueI_Activity extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-				if(id_question < nbQuestion){ //TODO change the condition
-					if(majResultat()){
-						id_question = id_question + 1;
-						radio.clearCheck();
-						loadPictures();
+			//	if(!showAnswer){
+					if(id_question < nbQuestion){ //TODO change the condition
+						if(majResultat()){
+							id_question = id_question + 1;
+							//ShowGoodAnswer();
+							radio.clearCheck();
+							encouragement.setText("");
+							loadPictures();
+							showAnswer = true;
+						}else{
+							Toast toast = Toast.makeText(EtreEmpathiqueI_Activity.this,"Veuillez selectionner une reponse.", Toast.LENGTH_LONG);
+							toast.show();
+						}
 					}else{
-						Toast toast = Toast.makeText(EtreEmpathiqueI_Activity.this,"Veuillez selectionner une r�ponse.", Toast.LENGTH_LONG);
-						toast.show();
+						majResultat();
+						Intent t=new Intent (EtreEmpathiqueI_Activity.this,EndExerciceActivity.class);
+						id_question = 1;
+						t.putExtra("moduleId",id_module);
+				    	t.putExtra("module",module);
+				    	t.putExtra("name",name);
+						startActivity(t);
+						finish();
 					}
-				}else{
-					majResultat();
-					Intent t=new Intent (EtreEmpathiqueI_Activity.this,EndExerciceActivity.class);
-					id_question = 1;
-					t.putExtra("moduleId",id_module);
-			    	t.putExtra("module",module);
-			    	t.putExtra("name",name);
-					startActivity(t);
-					finish();
-				}
+				/*}else{
+					id_question = id_question + 1;
+					ShowGoodAnswer();
+					showAnswer = false;
+				}*/
 			}
 		});
     }
@@ -458,5 +479,55 @@ public class EtreEmpathiqueI_Activity extends Activity {
     	
     	return isChecked;
     }
+    public void ShowGoodAnswer(){
+		 String encouragementTxt = "";
+		 try {
+			 InputStream is = getResources().openRawResource(R.raw.encouragement);
+			 Document xml = Utils.readXml(is);
+			 Element nodeText= xml.getElementById("encouragements");
+			 NodeList nodeEncouragementList = nodeText.getElementsByTagName("encouragement");
+			 int nbElements = nodeEncouragementList.getLength();
+			 Random randomno = new Random();
+			 int idEncouragement = randomno.nextInt(nbElements);
+			 encouragementTxt = nodeEncouragementList.item(idEncouragement).getTextContent();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 if (rep.equals("A")) {
+	   		  id_radio_goodanswer = R.id.radio0;
+		 }else if(rep.equals("B")){ 
+	   		id_radio_goodanswer = R.id.radio1;
+		 }else if(rep.equals("C")){
+	   		id_radio_goodanswer = R.id.radio2;	   	 
+	   	}
+		 int checkedRadioButton = radio.getCheckedRadioButtonId();
+		 //checkedRadioButton = radioGroup.getCheckedRadioButtonId();
+		 RadioButton radio = (RadioButton) findViewById(checkedRadioButton);
+		 RadioButton radioGood = (RadioButton) findViewById(id_radio_goodanswer);
+		 String playerAnswer = "";
+		 if (checkedRadioButton != -1){
+			 playerAnswer = radio.getText().toString();
+			 if(playerAnswer != null){
+				 boolean reponse = playerAnswer.equals(rep);
+				 if(reponse){
+					 radio.setTextColor(Color.GREEN);
+					 encouragement.setText(encouragementTxt);
+				 }else{
+					 radio.setTextColor(Color.RED);
+					 radioGood.setTextColor(Color.GREEN);
+				 }
+			 }
+		 }else{
+			 radioGood.setTextColor(Color.GREEN);
+		 }
+		 id_question_state++;
+	 }
     
 }

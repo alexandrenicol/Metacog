@@ -107,7 +107,7 @@ public class EtreEmpathiqueI_Activity extends Activity {
         
         radio = (RadioGroup)findViewById(R.id.radioGroup1);
         Date = new Date(); 
-        filePath=Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+name.replace(" ", "_")+"_results.xml";
+        filePath=Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog"+"/"+name.replace(" ", "_")+"_results.xml";
         //+"m"+id_module.toString()+"_"+"s"+id_serie.toString()+"_"+maDate.getHours()+"_"+maDate.getMinutes()+"_"+maDate.getDay()+"_"+maDate.getMonth()+"_"+maDate.getYear()+".xml";
         initFileTimer();
         

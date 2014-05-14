@@ -184,7 +184,7 @@ public class AdminSerieAddM1Activity extends Activity {
 							e.printStackTrace();
 						}
 						
-						Toast toast = Toast.makeText(AdminSerieAddM1Activity.this,"Votre question a été ajoutée", Toast.LENGTH_LONG);
+						Toast toast = Toast.makeText(AdminSerieAddM1Activity.this,R.string.add_question, Toast.LENGTH_LONG);
 						toast.show();
 						finish();
 						
@@ -200,7 +200,7 @@ public class AdminSerieAddM1Activity extends Activity {
 					}		
 		    	    
 				}else{
-					Toast toast = Toast.makeText(AdminSerieAddM1Activity.this,"Merci de choisir 6 images", Toast.LENGTH_LONG);
+					Toast toast = Toast.makeText(AdminSerieAddM1Activity.this,R.string.must_choose_eI, Toast.LENGTH_LONG);
 					toast.show();
 				}
 				

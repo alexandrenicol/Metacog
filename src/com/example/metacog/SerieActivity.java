@@ -49,7 +49,7 @@ public class SerieActivity extends Activity{
         serieView = (ListView) findViewById(R.id.SerieActivity_listView);
         consigneView = (TextView) findViewById(R.id.SerieActivity_consigne);
         
-        String externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath();
+        String externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog";
         structureFilename = externalStorage+"/structure_modules.xml";
         
         quit = (Button) findViewById(R.id.retourSerie);

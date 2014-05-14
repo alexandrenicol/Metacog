@@ -132,7 +132,7 @@ public class AdminDelNodeActivity extends Activity {
 							e.printStackTrace();
 						}
 						
-						Toast toast = Toast.makeText(AdminDelNodeActivity.this,"Votre serie a été effacée", Toast.LENGTH_LONG);
+						Toast toast = Toast.makeText(AdminDelNodeActivity.this,R.string.del_serie, Toast.LENGTH_LONG);
 						toast.show();
 						finish();
 		        	}    
@@ -213,7 +213,7 @@ public class AdminDelNodeActivity extends Activity {
 							e.printStackTrace();
 						}
 						
-						Toast toast = Toast.makeText(AdminDelNodeActivity.this,"Votre question a été effacée", Toast.LENGTH_LONG);
+						Toast toast = Toast.makeText(AdminDelNodeActivity.this,R.string.del_question, Toast.LENGTH_LONG);
 						toast.show();
 						finish();
 		        	}    

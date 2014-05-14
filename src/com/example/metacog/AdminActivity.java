@@ -49,8 +49,11 @@ public class AdminActivity extends Activity {
 	private String structureFilename;
 	
 	private Button synchro;
+	private Button retour;
 	private boolean sender;
 	private BroadcastService broadcastService = null;
+	
+	
 	
 	private final Handler handler = new Handler() {
         @Override
@@ -119,6 +122,19 @@ public class AdminActivity extends Activity {
 		t.setText("");
         broadcastService = new BroadcastService(this, handler);
         synchro = (Button) findViewById(R.id.synchro);
+        retour = (Button) findViewById(R.id.activity_admin_retour);
+        
+        retour.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent t=new Intent (AdminActivity.this,MainActivity.class);
+				startActivity(t);
+				finish();
+				
+			}
+		});
         synchro.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {				

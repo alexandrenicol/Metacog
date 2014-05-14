@@ -51,6 +51,7 @@ public class AdminModuleActivity extends Activity {
 	private String structureFilename;
 	private Button add;
 	private Button del;
+	private Button retour;
 
 	
 	/** Called when the activity is first created. */
@@ -79,6 +80,17 @@ public class AdminModuleActivity extends Activity {
         //InputStream is = getResources().openRawResource(R.raw.modules);
         
         List<String> serieList = new ArrayList<String>();
+        
+        retour = (Button) findViewById(R.id.activity_admin_module_retour);
+        retour.setOnClickListener(new View.OnClickListener() {
+    		@Override
+    		public void onClick(View v) {
+    			// TODO Auto-generated method stub
+    			Intent t=new Intent (AdminModuleActivity.this,AdminActivity.class);
+				startActivity(t);
+				finish();
+    		}
+    		});
 
 	    
 		try {

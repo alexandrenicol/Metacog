@@ -87,7 +87,7 @@ public class EtreEmpathiqueIII_Activity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_etre_empathique_3);
 		
-		String externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath();
+		String externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog";
         structureFilename = externalStorage+"/structure_modules.xml";
 		
 		Bundle extra = getIntent().getExtras();

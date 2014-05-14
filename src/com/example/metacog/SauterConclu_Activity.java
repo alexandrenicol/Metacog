@@ -91,7 +91,7 @@ public class SauterConclu_Activity extends Activity {
         id_serie = extra.getInt("id_serie");
         playerName = extra.getString("name");
         
-        externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath();
+        externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog";
         structureFilename = externalStorage+"/structure_modules.xml";
         
         moduleName = (TextView) findViewById(R.id.moduleName);

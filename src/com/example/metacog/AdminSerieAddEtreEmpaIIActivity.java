@@ -182,7 +182,7 @@ public class AdminSerieAddEtreEmpaIIActivity extends Activity {
 							e.printStackTrace();
 						}
 						
-						Toast toast = Toast.makeText(AdminSerieAddEtreEmpaIIActivity.this,"Votre question a été ajoutée", Toast.LENGTH_LONG);
+						Toast toast = Toast.makeText(AdminSerieAddEtreEmpaIIActivity.this,R.string.add_question, Toast.LENGTH_LONG);
 						toast.show();
 						finish();
 						
@@ -198,7 +198,7 @@ public class AdminSerieAddEtreEmpaIIActivity extends Activity {
 					}		
 		    	    
 				}else{
-					Toast toast = Toast.makeText(AdminSerieAddEtreEmpaIIActivity.this,"Merci de choisir une images et de remplir les champs de proposition et de réponse", Toast.LENGTH_LONG);
+					Toast toast = Toast.makeText(AdminSerieAddEtreEmpaIIActivity.this,R.string.must_choose_eII, Toast.LENGTH_LONG);
 					toast.show();
 				}
 			}

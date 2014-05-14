@@ -129,7 +129,7 @@ public class AdminActivity extends Activity {
 			}
 		});
         
-        externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath();
+        externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog";
         structureFilename = externalStorage+"/structure_modules.xml";
         
         list = (ListView)findViewById(R.id.listView1);

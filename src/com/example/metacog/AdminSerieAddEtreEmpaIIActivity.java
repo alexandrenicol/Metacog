@@ -66,7 +66,7 @@ public class AdminSerieAddEtreEmpaIIActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_admin_serie_add_etre_empa_ii);
 		
-		externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath();
+		externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog";
         structureFilename = externalStorage+"/structure_modules.xml";
 		
 		Bundle extras = getIntent().getExtras();

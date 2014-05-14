@@ -57,7 +57,7 @@ public class AdminDelNodeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_admin_del_node);
 		
-		externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath();
+		externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog";
         structureFilename = externalStorage+"/structure_modules.xml";
         
         myListView = (ListView)findViewById(R.id.listView1);

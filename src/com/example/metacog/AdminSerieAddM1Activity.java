@@ -70,7 +70,7 @@ public class AdminSerieAddM1Activity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
-		externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath();
+		externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog";
         structureFilename = externalStorage+"/structure_modules.xml";
 		
 		Bundle extras = getIntent().getExtras();

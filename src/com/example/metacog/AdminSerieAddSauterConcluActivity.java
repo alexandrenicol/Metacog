@@ -81,7 +81,7 @@ public class AdminSerieAddSauterConcluActivity extends Activity {
 		
 		text_proposition = (TextView) findViewById(R.id.text_proposition);
 		
-		externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath();
+		externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog";
         structureFilename = externalStorage+"/structure_modules.xml";
 		
 		Bundle extras = getIntent().getExtras();

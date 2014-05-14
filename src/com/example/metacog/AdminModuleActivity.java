@@ -60,7 +60,7 @@ public class AdminModuleActivity extends Activity {
 	    setContentView(R.layout.activity_admin_module);
 	    
 	    
-	    externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath();
+	    externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog";
         structureFilename = externalStorage+"/structure_modules.xml";
 	    
 	    text1 = (TextView) findViewById(R.id.textView1);

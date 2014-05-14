@@ -110,7 +110,7 @@ public class EtreEmpathiqueII_Activity extends Activity {
 						loadElements();
 						ShowGoodAnswer();
 					}else{
-						Toast toast = Toast.makeText(EtreEmpathiqueII_Activity.this,"Veuillez selectionner une reponse.", Toast.LENGTH_LONG);
+						Toast toast = Toast.makeText(EtreEmpathiqueII_Activity.this,R.string.select_answer, Toast.LENGTH_LONG);
 						toast.show();
 					}
 				}else if(id_question < nbQuestions){

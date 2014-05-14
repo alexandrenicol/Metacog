@@ -289,7 +289,7 @@ public class BroadcastService {
 				 *   if you have never downloaded anything on your iPhone
 				 */
 				
-				FileOutputStream fos = new FileOutputStream(Environment.getExternalStorageDirectory().getAbsolutePath()+"/structure_modules2.xml");
+				FileOutputStream fos = new FileOutputStream(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog"+"/structure_modules2.xml");
 				BufferedOutputStream bos = new BufferedOutputStream(fos);
 				bytesRead = is.read(mybytearray,0,mybytearray.length);
 				current = bytesRead;
@@ -324,7 +324,7 @@ public class BroadcastService {
 					// sendfile
 
 					// TODO: put the source of the file
-					File myFile = new File (Environment.getExternalStorageDirectory().getAbsolutePath()+"/structure_modules.xml");
+					File myFile = new File (Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog"+"/structure_modules.xml");
 					byte [] mybytearray  = new byte [(int)myFile.length()];
 					Log.i("####### file length = ", String.valueOf(myFile.length()) );
 					FileInputStream fis = new FileInputStream(myFile);

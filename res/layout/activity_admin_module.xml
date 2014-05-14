@@ -28,8 +28,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
+        android:id="@+id/activity_admin_module_retour"
+        android:layout_width="155dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/text_proposition"
         android:layout_alignParentRight="true"
@@ -66,29 +66,29 @@
 
     <Button
         android:id="@+id/add_serie"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/linearLayoutButton"
-        android:layout_toLeftOf="@+id/button3"
+        android:layout_toLeftOf="@+id/activity_admin_module_retour"
         android:text="Ajouter une série" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/add_image_field"
-        android:layout_below="@+id/add_image_field"
-        android:layout_marginTop="50dp"
-        android:text="Cliquez sur une série pour la modifier"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
         android:id="@+id/del_serie"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/add_serie"
         android:layout_below="@+id/add_serie"
         android:layout_marginTop="62dp"
         android:text="Supprimer une série" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="23dp"
+        android:text="Cliquez sur une série pour la modifier"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

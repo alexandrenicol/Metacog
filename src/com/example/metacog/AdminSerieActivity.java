@@ -20,6 +20,7 @@ public class AdminSerieActivity extends Activity {
 	private Button add;
 	private Button update;
 	private Button delete;
+	private Button retour;
 	
 	private Integer selectedModuleId;
 	private String selectedModuleName;
@@ -43,6 +44,8 @@ public class AdminSerieActivity extends Activity {
 	    text1.setText(selectedModuleName+" - "+selectedSerieName);
 	    
 	    add=(Button) findViewById(R.id.activity_admin_serie_add);
+	    retour=(Button) findViewById(R.id.activity_admin_serie_retour);
+	    
 	    add.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -65,6 +68,20 @@ public class AdminSerieActivity extends Activity {
         		t.putExtra("selectedSerieName", selectedSerieName);
 				startActivity(t);
 			}
+		});
+	    
+	 retour.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Intent t=new Intent (AdminSerieActivity.this,AdminModuleActivity.class);
+					t.putExtra("id_module", selectedModuleId);
+					t.putExtra("name_module", selectedModuleName);
+					startActivity(t);
+					finish();
+					
+				}
 		});
         
         update=(Button) findViewById(R.id.activity_admin_serie_update);

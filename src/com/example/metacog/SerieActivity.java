@@ -57,6 +57,8 @@ public class SerieActivity extends Activity{
             @Override
             public void onClick(View v) {
               finish();
+              Intent t=new Intent (SerieActivity.this,ModulesActivity.class);
+			  startActivity(t);
             }
           });
         

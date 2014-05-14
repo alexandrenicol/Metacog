@@ -95,22 +95,26 @@
         </activity>
         <activity
             android:name="com.example.metacog.AdminSerieAddSauterConcluActivity"
-            android:label="@string/title_activity_admin_serie_add_sauter_conclu" >
+            android:label="@string/title_activity_admin_serie_add_sauter_conclu"
+            android:screenOrientation="landscape" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.metacog.AdminSerieActivity" />
         </activity>
         <activity
             android:name="com.example.metacog.EtreEmpathiqueII_Activity"
-            android:label="@string/title_activity_etre_empathique_2" >
+            android:label="@string/title_activity_etre_empathique_2"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.example.metacog.AdminSerieAddEtreEmpaIIActivity"
-            android:label="@string/title_activity_admin_serie_add_etre_empa_ii" >
+            android:label="@string/title_activity_admin_serie_add_etre_empa_ii"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.example.metacog.EtreEmpathiqueIII_Activity"
-            android:label="@string/title_activity_etre_empathique_iii_" >
+            android:label="@string/title_activity_etre_empathique_iii_"
+            android:screenOrientation="landscape" >
         </activity>
     </application>
 

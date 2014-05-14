@@ -175,6 +175,16 @@
                 android:text="Suivant"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true" />
+            <TextView
+                android:id="@+id/encouragement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_alignParentBottom="true"
+                android:text="Encouragement"
+                android:textSize="25px"
+                android:textColor="#34C924"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 

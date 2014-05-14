@@ -29,6 +29,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -61,12 +62,19 @@ public class AdminActivity extends Activity {
 	                byte[] writeBuf = (byte[]) msg.obj;
 	                // construct a string from the buffer	              
 	                break;
-	            case BroadcastService.MESSAGE_READ:
+	           /* case BroadcastService.MESSAGE_READ:
 	                String readBuf = (String) msg.obj;
-	                if (readBuf.contains("IP")){
+	                if (readBuf.contains("IP") && !sender){
 	                	broadcastService.writeIP();
-	                } else if (sender == true){
-	                	File file = new File(Environment.getExternalStorageDirectory(), "ip.txt");
+	                	
+	                } else if (sender && !readBuf.contains("IP")){
+	                	broadcastService.Ips.add(readBuf);
+	                	TextView t = (TextView)findViewById(R.id.textView4);
+	                	t.setText("");
+	                	for (int i = 0; i<broadcastService.Ips.size();i++){
+	                		t.setText(t.getText()+" "+broadcastService.Ips.get(i));
+	                	}
+	                	/*File file = new File(Environment.getExternalStorageDirectory(), "ip.txt");
 	                	FileWriter filewriter;
 	                	if(!file.exists()){
 	                		try {
@@ -85,7 +93,19 @@ public class AdminActivity extends Activity {
 							e.printStackTrace();
 						}
 	                }
-	                break;               
+	                break;*/  
+	            case BroadcastService.MESSAGE_READ:
+	                String readBuf = (String) msg.obj;
+	               // broadcastService.mConnectedTCPThread.start();
+	                if (!sender){	        
+	                	broadcastService.ipServer=readBuf;
+	                	TextView t = (TextView)findViewById(R.id.textView4);
+	                	t.setText(broadcastService.ipServer);
+	                	broadcastService.mConnectedTCPThread.start();
+	                }
+	                //broadcastService.mConnectedTCPThread.start();
+	                
+	                break;   
             }
         }
 	};
@@ -95,14 +115,17 @@ public class AdminActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
         
+        TextView t = (TextView)findViewById(R.id.textView4);
+		t.setText("");
         broadcastService = new BroadcastService(this, handler);
         synchro = (Button) findViewById(R.id.synchro);
         synchro.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onClick(View arg0) {
-				String out="IP";
-		        broadcastService.write(out.getBytes());
+			public void onClick(View arg0) {				
+				broadcastService.writeIP();
 		        sender = true;
+		       // broadcastService.mConnectedTCPThread.start();
+		        broadcastService.writeTCPIP();
 			}
 		});
         
@@ -163,8 +186,8 @@ public class AdminActivity extends Activity {
     		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
     	    Document xml = docBuilder.parse(new File(structureFilename));
 			
-			TextView t = (TextView)findViewById(R.id.textView4);
-			t.setText(externalStorage);
+			/*TextView t = (TextView)findViewById(R.id.textView4);
+			t.setText(externalStorage);*/
 			
 //			OutputStreamWriter out = new OutputStreamWriter(openFileOutput("myFileName2.txt",0));
 //			out.write("toto");
@@ -229,7 +252,10 @@ public class AdminActivity extends Activity {
         return true;
     }
     
-    
+    public void onStop() {
+        super.onStop();
+        if (broadcastService != null) broadcastService.stop();
+    }
     
     
 }

@@ -1,9 +1,13 @@
 package com.example.metacog;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
@@ -15,6 +19,7 @@ import org.xml.sax.SAXException;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,12 +40,18 @@ public class SerieActivity extends Activity{
 	private String consigne;
 	private TextView consigneView;
 	private String name;
+	private String structureFilename;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_serie);
         serieView = (ListView) findViewById(R.id.SerieActivity_listView);
         consigneView = (TextView) findViewById(R.id.SerieActivity_consigne);
+        
+        String externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath();
+        structureFilename = externalStorage+"/structure_modules.xml";
+        
         quit = (Button) findViewById(R.id.retourSerie);
         quit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,9 +65,13 @@ public class SerieActivity extends Activity{
         moduleId = extra.getInt("moduleId");
         name=extra.getString("name");
 
-        InputStream is = getResources().openRawResource(R.raw.modules);
+        //InputStream is = getResources().openRawResource(R.raw.modules);
         try {
-			Document xml = Utils.readXml(is);
+			//Document xml = Utils.readXml(is);
+        	DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+    		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+    	    Document xml = docBuilder.parse(new File(structureFilename));
+    	    
 			elModule = xml.getElementById("m"+moduleId.toString());
 			nodeSerie = elModule.getChildNodes();
 			consigne = elModule.getAttribute("consigne");

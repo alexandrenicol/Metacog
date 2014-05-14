@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -30,6 +31,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -42,6 +44,7 @@ public class EtreEmpathiqueIII_Activity extends Activity {
 
 	private TextView moduleName;
 	private TextView questionNumber;
+	private TextView encouragement;
 	
 	private Button next;
 	
@@ -58,11 +61,12 @@ public class EtreEmpathiqueIII_Activity extends Activity {
 	private Integer id_question = 1;
 	private Integer id_question_state = 1;
 	private Integer nbQuestions = 0;
-	private Integer nbQuestionStates = 0;
+	private Integer nbQuestionStates = 5;
 	private Dictionary<Integer, String> imagesList = new Hashtable<Integer, String>();
 	
 	private String [] answersList;
 	private String goodAnswer;
+	private int id_radio_goodanswer;
 	
 	private Handler customHandler = new Handler();
 	private long timeInMilliseconds = 0L;
@@ -75,12 +79,16 @@ public class EtreEmpathiqueIII_Activity extends Activity {
 	private int sec;
 	private String playerName;
 	private Date Date;
+	private String structureFilename;
 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_etre_empathique_3);
+		
+		String externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath();
+        structureFilename = externalStorage+"/structure_modules.xml";
 		
 		Bundle extra = getIntent().getExtras();
         module = extra.getString("module");
@@ -91,32 +99,41 @@ public class EtreEmpathiqueIII_Activity extends Activity {
         moduleName = (TextView) findViewById(R.id.moduleName);
         moduleName.setText(module);
         
+        encouragement = (TextView) findViewById(R.id.encouragement);
+        encouragement.setText("");
+        
         next=(Button) findViewById(R.id.suivant);
         next.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
-				if(id_question_state < nbQuestionStates){
+				if(id_question_state < nbQuestionStates-1){
 					id_question_state++;
+					majResultat();
 					radioGroup.clearCheck();
 					loadElements();
+					
+				}else if(id_question_state == nbQuestionStates-1){
+					id_question_state++;
+					loadElements();
 					majResultat();
+					ShowGoodAnswer();
+				}else if(id_question < nbQuestions){
+					encouragement.setText("");
+					id_question++;
+					id_question_state = 1;
+					setImageList();
+					createAnswers();
+					createquestion();
+					loadElements();
 				}else{
-					if(id_question < nbQuestions){
-						id_question++;
-						id_question_state = 1;
-						setImageList();
-						createAnswers();
-						createquestion();
-						loadElements();
-					}else{
-						Intent t=new Intent (EtreEmpathiqueIII_Activity.this,EndExerciceActivity.class);
-						t.putExtra("moduleId",id_module);
-				    	t.putExtra("module",module);
-				    	t.putExtra("name", playerName);
-						startActivity(t);
-						finish();
-					}
+					Intent t=new Intent (EtreEmpathiqueIII_Activity.this,EndExerciceActivity.class);
+					t.putExtra("moduleId",id_module);
+			    	t.putExtra("module",module);
+			    	t.putExtra("name", playerName);
+					startActivity(t);
+					finish();
+					
 				}
 			}
 		});
@@ -136,8 +153,10 @@ public class EtreEmpathiqueIII_Activity extends Activity {
 	
     protected int countQuestions(){
     	try {
-	    	InputStream is = getResources().openRawResource(R.raw.modules);
-			Document xml = Utils.readXml(is);
+    		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+    		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+    	    Document xml = docBuilder.parse(new File(structureFilename));
+    	    
 			Element nodeSerie = xml.getElementById("m"+id_module.toString()+"s"+id_serie.toString());
 			NodeList nodeQuestionsList = nodeSerie.getChildNodes();
 			for (int i = 0; i < nodeQuestionsList.getLength(); ++i)
@@ -163,8 +182,9 @@ public class EtreEmpathiqueIII_Activity extends Activity {
     protected void setImageList(){
     	imagesList = new Hashtable<Integer, String>();
     	try {
-        	InputStream is = getResources().openRawResource(R.raw.modules);
-			Document xml = Utils.readXml(is);
+    		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+    		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+    	    Document xml = docBuilder.parse(new File(structureFilename));
 									
 			Element nodeQuestion = xml.getElementById("m"+id_module.toString()+"s"+id_serie.toString()+"q"+id_question.toString());
 			NodeList nodePictsQuestList = nodeQuestion.getElementsByTagName("img");
@@ -205,8 +225,9 @@ public class EtreEmpathiqueIII_Activity extends Activity {
     
     public void createAnswers(){
     	try {
-        	InputStream is = getResources().openRawResource(R.raw.modules);
-			Document xml = Utils.readXml(is);
+    		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+    		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+    	    Document xml = docBuilder.parse(new File(structureFilename));
 									
 			Element nodeQuestion = xml.getElementById("m"+id_module.toString()+"s"+id_serie.toString()+"q"+id_question.toString());
 			NodeList nodePictsQuestList = nodeQuestion.getElementsByTagName("rep");
@@ -231,7 +252,11 @@ public class EtreEmpathiqueIII_Activity extends Activity {
     		RadioButton rb = new RadioButton(this);
             rb.setText(answersList[i]);
             radioGroup.addView(rb);
+            if(rb.getText().equals(goodAnswer)){
+            	id_radio_goodanswer = rb.getId();
+            };
     	}
+    	radioGroup.clearCheck();
     }
     
     
@@ -455,7 +480,7 @@ public class EtreEmpathiqueIII_Activity extends Activity {
 					Node.setAttribute("time", time);
 					Node.setAttribute("choice", playerAnswer);
 					String Rep;
-					if(playerAnswer != null){
+					if(!playerAnswer.equals("")){
 						boolean reponse = playerAnswer.equals(goodAnswer);
 						Rep ="Wrong";
 						if(reponse){
@@ -500,4 +525,49 @@ public class EtreEmpathiqueIII_Activity extends Activity {
 	    }
 
 
+	 public void ShowGoodAnswer(){
+		 String encouragementTxt = "";
+		 try {
+			 InputStream is = getResources().openRawResource(R.raw.encouragement);
+			 Document xml = Utils.readXml(is);
+			 Element nodeText= xml.getElementById("encouragements");
+			 NodeList nodeEncouragementList = nodeText.getElementsByTagName("encouragement");
+			 int nbElements = nodeEncouragementList.getLength();
+			 Random randomno = new Random();
+			 int idEncouragement = randomno.nextInt(nbElements);
+			 encouragementTxt = nodeEncouragementList.item(idEncouragement).getTextContent();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 int checkedRadioButton = -1;
+		 checkedRadioButton = radioGroup.getCheckedRadioButtonId();
+		 RadioButton radio = (RadioButton) findViewById(checkedRadioButton);
+		 RadioButton radioGood = (RadioButton) findViewById(id_radio_goodanswer);
+		 String playerAnswer = "";
+		 if (checkedRadioButton != -1){
+			 playerAnswer = radio.getText().toString();
+			 if(playerAnswer != null){
+				 boolean reponse = playerAnswer.equals(goodAnswer);
+				 if(reponse){
+					 radio.setTextColor(Color.GREEN);
+					 encouragement.setText(encouragementTxt);
+				 }else{
+					 radio.setTextColor(Color.RED);
+					 radioGood.setTextColor(Color.GREEN);
+				 }
+			 }
+		 }else{
+			 radioGood.setTextColor(Color.GREEN);
+		 }
+		 id_question_state++;
+	 }
+	 
 }
+

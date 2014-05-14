@@ -107,9 +107,10 @@ public class SauterConclu_Activity extends Activity {
 			public void onClick(View arg0) {
 				if(id_question_state < nbQuestionStates-1){
 					id_question_state++;
+					majResultat();
 					radioGroup.clearCheck();
 					loadElements();
-					majResultat();
+					
 				}else if(id_question_state == nbQuestionStates-1){
 					id_question_state++;
 					loadElements();
@@ -256,6 +257,7 @@ public class SauterConclu_Activity extends Activity {
             	id_radio_goodanswer = rb.getId();
             };
     	}
+    	radioGroup.clearCheck();
     }
     
     public void loadElements(){
@@ -413,8 +415,8 @@ public class SauterConclu_Activity extends Activity {
     	NodeList NodeQuestion = null;
     	Document xml = null;
     	int checkedRadioButton = -1;
-    	checkedRadioButton = radioGroup.getCheckedRadioButtonId();
-    	RadioButton radio = (RadioButton) findViewById(checkedRadioButton);
+		 checkedRadioButton = radioGroup.getCheckedRadioButtonId();
+		 RadioButton radio = (RadioButton) findViewById(checkedRadioButton);
     	String playerAnswer = "";
     	if (checkedRadioButton != -1){
     		playerAnswer = radio.getText().toString();
@@ -435,7 +437,7 @@ public class SauterConclu_Activity extends Activity {
 			Node.setAttribute("time", time);
 			Node.setAttribute("choice", playerAnswer);
 			String Rep;
-			if(playerAnswer != null){
+			if(!playerAnswer.equals("")){
 				boolean reponse = playerAnswer.equals(goodAnswer);
 				Rep ="Wrong";
 				if(reponse){

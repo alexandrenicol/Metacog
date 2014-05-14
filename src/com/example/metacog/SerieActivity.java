@@ -56,9 +56,11 @@ public class SerieActivity extends Activity{
         quit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              finish();
+              
               Intent t=new Intent (SerieActivity.this,ModulesActivity.class);
+              t.putExtra("name", name);
 			  startActivity(t);
+			  finish();
             }
           });
         

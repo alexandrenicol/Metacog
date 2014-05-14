@@ -104,20 +104,7 @@ public class EtreEmpathiqueII_Activity extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-				/*if(id_question_state < nbQuestionStates-1){
-					if(majResultat()){
-						id_question_state++;
-						radioGroup.clearCheck();
-						loadElements();
-						
-					}else{
-						Toast toast = Toast.makeText(EtreEmpathiqueII_Activity.this,"Veuillez selectionner une reponse.", Toast.LENGTH_LONG);
-						toast.show();
-					}
-						
-					
-					
-				}else*/ if(id_question_state == nbQuestionStates-1){
+				if(id_question_state == nbQuestionStates-1){
 					if(majResultat()){
 						id_question_state++;
 						loadElements();

@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/add_answer"
         android:layout_marginBottom="29dp"
-        android:text="Tapez la bonne  réponse ci-dessous" />
+        android:text="Tapez la bonne réponse ci-dessous" />
 
     <Button
         android:id="@+id/add_answer"
@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/valid_button"
         android:layout_toRightOf="@+id/textView4"
-        android:text="Vous n&apos;avez pas encore donné la bonne réponse" />
+        android:text="Vous n'avez pas encore donné la bonne réponse" />
 
     <Button
         android:id="@+id/add_proposition"
@@ -125,7 +125,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/edit_proposition"
         android:layout_toRightOf="@+id/textView4"
-        android:text="Vous n&apos;avez pas eencore donné de proposition" />
+        android:text="Vous n'avez pas encore donné de proposition" />
 
     <TextView
         android:id="@+id/textView3"

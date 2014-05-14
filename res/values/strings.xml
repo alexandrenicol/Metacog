@@ -13,6 +13,16 @@
     <string name="title_activity_end_exercice">EndExerciceActivity</string>
     <string name="title_activity_sauter_conclu">SauterConcluActivity</string>
     <string name="title_activity_etre_empathique_2">EtreEmpathiqueII_Activity</string>
+	
+	<string name="del_serie">Votre série a été effacée</string>
+	<string name="del_question">Votre question a été effacée</string>
+	<string name="add_serie">Votre série a été ajoutée</string>
+	<string name="add_question">Votre question a été ajoutée</string>
+	<string name="must_choose_eII">Merci de choisir une images et de remplir les champs de proposition et de réponse</string>
+	<string name="must_choose_eI">Merci de choisir 6 images</string>
+	<string name="must_choose_sauterConclu">Merci de charger toutes les images</string>
+	<string name="select_answer">Veuillez selectionner une réponse.</string>
+	
     <string name="daidalos_hello">Hello World!</string>
     <string name="daidalos_app_name">aFileDialog</string>
 

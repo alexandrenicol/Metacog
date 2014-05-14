@@ -150,11 +150,11 @@ public class AdminActivity extends Activity {
         
         list = (ListView)findViewById(R.id.listView1);
         
-        InputStream is = getResources().openRawResource(R.raw.modules);
+    //    InputStream is = getResources().openRawResource(R.raw.modules);
         
         List<String> moduleList = new ArrayList<String>();
         
-        File f =  new File(structureFilename);
+      /*  File f =  new File(structureFilename);
     	if (!f.exists()){
     		try {
     			//lecture du fichier xml 
@@ -193,8 +193,7 @@ public class AdminActivity extends Activity {
 				e.printStackTrace();
 			}
     		
-    		
-    	}
+    	}*/
         
     	
         try {

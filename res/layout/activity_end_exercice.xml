@@ -9,30 +9,42 @@
     tools:context=".EndExerciceActivity" >
 
     <Button
-        android:id="@+id/end_exercice_next_serie"
+        android:id="@+id/save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/end_exercice_menu"
-        android:layout_alignBottom="@+id/end_exercice_menu"
+		android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="Serie Suivante" />
+        android:text="Sauvegarder" />
 
     <Button
-        android:id="@+id/end_exercice_menu"
+        android:id="@+id/dontSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="68dp"
-        android:layout_marginLeft="99dp"
-        android:text="Menu" />
+        android:text="Ne pas sauvegarder" />
 
     <TextView
         android:id="@+id/end_exercice_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:text="Vous avez fini l&apos;exercice, pour passer aux questions suivantes tapez sur Serie Suivante, sinon tapez sur Menu."
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="191dp"
+        android:text="Vous avez fini l&apos;exercice."
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/end_exercice_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/end_exercice_next_serie"
+        android:layout_below="@+id/end_exercice_text"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="Cliquez sur le bouton Sauvegarder si vous souhaitez que vos résultats soient sauvegardé sur la tablette. Sinon, cliquez sur Ne pas sauvegarder.\n\n Vous pourrez ensuite commencer une nouvelle série."
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="25sp" />
 
 </RelativeLayout>

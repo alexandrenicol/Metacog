@@ -354,8 +354,7 @@ public class EtreEmpathiqueI_Activity extends Activity {
     		  } catch (TransformerException tfe) {
     			tfe.printStackTrace();
     		  }
-    	}
-    	else{
+    	}else{
     		try {		
 				DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		

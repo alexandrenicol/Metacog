@@ -32,16 +32,6 @@
         android:layout_marginTop="27dp"
         android:text="Choississez la grand image" />
 
-    <Button
-        android:id="@+id/valid_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="72dp"
-        android:layout_marginRight="233dp"
-        android:text="Valider" />
-
     <EditText
         android:id="@+id/edit_answer"
         android:layout_width="wrap_content"
@@ -49,22 +39,6 @@
         android:layout_alignBottom="@+id/add_answer"
         android:layout_alignRight="@+id/TextView01"
         android:ems="10" />
-
-    <TextView
-        android:id="@+id/TextView01"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/add_answer"
-        android:layout_marginBottom="29dp"
-        android:text="Tapez la bonne réponse ci-dessous" />
-
-    <Button
-        android:id="@+id/add_answer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/text_answer"
-        android:layout_toRightOf="@+id/edit_answer"
-        android:text="Ajoutez la bonne réponse" />
 
     <TextView
         android:id="@+id/textView6"
@@ -81,14 +55,6 @@
         android:layout_alignLeft="@+id/TextView01"
         android:layout_below="@+id/add_answer"
         android:text="Bonne réponse" />
-
-    <TextView
-        android:id="@+id/text_answer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/valid_button"
-        android:layout_toRightOf="@+id/textView4"
-        android:text="Vous n'avez pas encore donné la bonne réponse" />
 
     <Button
         android:id="@+id/add_proposition"
@@ -159,5 +125,50 @@
         android:layout_alignBottom="@+id/add_image1"
         android:layout_toRightOf="@+id/add_proposition"
         android:text="Choisissez la petite image" />
+
+    <Button
+        android:id="@+id/valid_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/activity_admin_serie_add_etre_empa_ii_retour"
+        android:layout_alignBottom="@+id/activity_admin_serie_add_etre_empa_ii_retour"
+        android:layout_toRightOf="@+id/text_petite_image"
+        android:text="Valider" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/edit_proposition"
+        android:layout_below="@+id/textView4"
+        android:layout_marginTop="62dp"
+        android:text="Tapez la bonne réponse ci-dessous" />
+
+    <TextView
+        android:id="@+id/text_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TextView02"
+        android:layout_alignBottom="@+id/TextView02"
+        android:layout_alignLeft="@+id/text_proposition"
+        android:text="Vous n&apos;avez pas encore donné la bonne réponse" />
+
+    <Button
+        android:id="@+id/activity_admin_serie_add_etre_empa_ii_retour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="61dp"
+        android:text="retour" />
+
+    <Button
+        android:id="@+id/add_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TextView01"
+        android:layout_marginTop="52dp"
+        android:layout_toRightOf="@+id/edit_proposition"
+        android:text="Ajoutez la bonne réponse" />
     
 </RelativeLayout>

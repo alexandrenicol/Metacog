@@ -29,6 +29,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,10 +53,27 @@ public class AdminDelNodeActivity extends Activity {
 	private Element nodeModule;
 	private Element nodeSerie;
 	
+	private Button retour;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_admin_del_node);
+		
+		retour = (Button) findViewById(R.id.activity_admin_del_node_retour);
+        retour.setOnClickListener(new View.OnClickListener() {
+    		@Override
+    		public void onClick(View v) {
+    			// TODO Auto-generated method stub
+    			Intent t=new Intent (AdminDelNodeActivity.this,AdminSerieActivity.class);
+    			t.putExtra("selectedModuleId", selectedModuleId);
+        		t.putExtra("selectedModuleName", selectedModuleName);
+        		t.putExtra("selectedSerieId", selectedSerieId);
+        		t.putExtra("selectedSerieName", selectedSerieName);
+				startActivity(t);
+				finish();
+    		}
+    		});
 		
 		externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog";
         structureFilename = externalStorage+"/structure_modules.xml";

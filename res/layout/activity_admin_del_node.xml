@@ -28,10 +28,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="155dp"
+        android:id="@+id/activity_admin_del_node_retour"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/text_proposition"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="54dp"
         android:text="Retour" />

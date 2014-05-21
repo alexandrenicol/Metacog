@@ -40,6 +40,7 @@ import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Build;
 import ar.com.daidalos.afiledialog.FileChooserDialog;
@@ -50,6 +51,7 @@ public class AdminSerieAddSauterConcluActivity extends Activity {
 	private Button add_image_field;
 	private Button valid;
 	private Button add_proposition;
+	private Button retour;
 	private TextView text_proposition;
 	
 	private String externalStorage;
@@ -91,6 +93,22 @@ public class AdminSerieAddSauterConcluActivity extends Activity {
 	    selectedSerieId = extras.getInt("selectedSerieId");
 	    selectedSerieName = extras.getString("selectedSerieName");
 	    
+	    retour=(Button) findViewById(R.id.activity_admin_serie_add_sauter_conclu_retour);
+	    retour.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent t=new Intent (AdminSerieAddSauterConcluActivity.this,AdminSerieActivity.class);
+				t.putExtra("selectedModuleId", selectedModuleId);
+        		t.putExtra("selectedModuleName", selectedModuleName);
+        		t.putExtra("selectedSerieId", selectedSerieId);
+        		t.putExtra("selectedSerieName", selectedSerieName);
+				startActivity(t);
+				finish();
+				
+			}
+	});
 		
 		add_image1=(Button) findViewById(R.id.add_image1);
 		add_image1.setOnClickListener(new View.OnClickListener() {
@@ -152,13 +170,14 @@ public class AdminSerieAddSauterConcluActivity extends Activity {
 			    });
 			    
 			    //adding a text field to linearLayoutTextView
-			    LinearLayout linearLayoutTextView = (LinearLayout)findViewById(R.id.linearLayoutTextView);
+			    //LinearLayout linearLayoutTextView = (LinearLayout)findViewById(R.id.linearLayoutTextView);
 				
 								
-				TextView tv1 = new TextView(AdminSerieAddSauterConcluActivity.this);
+				//TextView tv1 = new TextView(AdminSerieAddSauterConcluActivity.this);
+			    TextView tv1=(TextView) findViewById(R.id.textView3);
 				tv1.setText("image "+cursor+" :");
 				tv1.setId(9990+id_);
-				linearLayoutTextView.addView(tv1, lp);
+				//linearLayoutTextView.addView(tv1, lp);
 			    
 			    
 			    

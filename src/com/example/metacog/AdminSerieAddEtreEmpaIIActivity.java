@@ -24,6 +24,7 @@ import org.xml.sax.SAXException;
 import android.support.v4.app.Fragment;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -52,6 +53,7 @@ public class AdminSerieAddEtreEmpaIIActivity extends Activity {
 	public Button add_little_image;
 		
 	public Button valid;
+	public Button retour;
 	
 	private String proposition = "";
 	private String answer = "";
@@ -75,6 +77,24 @@ public class AdminSerieAddEtreEmpaIIActivity extends Activity {
 	    selectedSerieId = extras.getInt("selectedSerieId");
 	    selectedSerieName = extras.getString("selectedSerieName");
 	    
+	    retour=(Button) findViewById(R.id.activity_admin_serie_add_etre_empa_ii_retour);
+	    retour.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent t=new Intent (AdminSerieAddEtreEmpaIIActivity.this,AdminSerieActivity.class);
+				t.putExtra("selectedModuleId", selectedModuleId);
+        		t.putExtra("selectedModuleName", selectedModuleName);
+        		t.putExtra("selectedSerieId", selectedSerieId);
+        		t.putExtra("selectedSerieName", selectedSerieName);
+				startActivity(t);
+				finish();
+				
+			}
+	});
+	    
+	   
 	    add=(Button) findViewById(R.id.add_image1);
 	    add.setOnClickListener(new View.OnClickListener() {
 			

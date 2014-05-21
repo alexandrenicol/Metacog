@@ -37,6 +37,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class AdminActivity extends Activity {
@@ -65,50 +66,27 @@ public class AdminActivity extends Activity {
 	                byte[] writeBuf = (byte[]) msg.obj;
 	                // construct a string from the buffer	              
 	                break;
-	           /* case BroadcastService.MESSAGE_READ:
-	                String readBuf = (String) msg.obj;
-	                if (readBuf.contains("IP") && !sender){
-	                	broadcastService.writeIP();
-	                	
-	                } else if (sender && !readBuf.contains("IP")){
-	                	broadcastService.Ips.add(readBuf);
-	                	TextView t = (TextView)findViewById(R.id.textView4);
-	                	t.setText("");
-	                	for (int i = 0; i<broadcastService.Ips.size();i++){
-	                		t.setText(t.getText()+" "+broadcastService.Ips.get(i));
-	                	}
-	                	/*File file = new File(Environment.getExternalStorageDirectory(), "ip.txt");
-	                	FileWriter filewriter;
-	                	if(!file.exists()){
-	                		try {
-								file.createNewFile();
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-	                	}
-	                	try {
-							filewriter = new FileWriter(file,false);
-							filewriter.write(readBuf);
-							filewriter.close();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-	                }
-	                break;*/  
+	   
 	            case BroadcastService.MESSAGE_READ:
 	                String readBuf = (String) msg.obj;
-	               // broadcastService.mConnectedTCPThread.start();
 	                if (!sender){	        
 	                	broadcastService.ipServer=readBuf;
 	                	TextView t = (TextView)findViewById(R.id.textView4);
 	                	t.setText(broadcastService.ipServer);
 	                	broadcastService.mConnectedTCPThread.start();
+	                	Toast toast = Toast.makeText(AdminActivity.this,R.string.receive, Toast.LENGTH_SHORT);
+	            		toast.show();
+	                }
+	                break;
+	                
+	            case BroadcastService.MESSAGE_READ_TCPIP:
+	            	if(!sender){
+	                	Toast toast = Toast.makeText(AdminActivity.this,R.string.receive, Toast.LENGTH_SHORT);
+	            		toast.show();
 	                }
 	                //broadcastService.mConnectedTCPThread.start();
 	                
-	                break;   
+	                break;
             }
         }
 	};
@@ -252,6 +230,7 @@ public class AdminActivity extends Activity {
         		second.putExtra("id_module", position+1);
         		second.putExtra("name_module", modulechoisi);
         		startActivity(second);
+        		finish();
         		
         	}    
         });

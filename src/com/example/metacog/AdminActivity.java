@@ -115,11 +115,13 @@ public class AdminActivity extends Activity {
 		});
         synchro.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onClick(View arg0) {				
-				broadcastService.writeIP();
-		        sender = true;
-		       // broadcastService.mConnectedTCPThread.start();
-		        broadcastService.writeTCPIP();
+			public void onClick(View arg0) {
+				if (!sender){
+					broadcastService.writeIP();
+			        sender = true;
+			       // broadcastService.mConnectedTCPThread.start();
+			        broadcastService.writeTCPIP();
+				}
 			}
 		});
         

@@ -20,6 +20,8 @@ package com.example.metacog;
  */
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
@@ -27,14 +29,17 @@ import java.io.StringReader;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.stream.StreamSource;
 
 import org.w3c.dom.Document;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Environment;
 
 
 public class Utils {
@@ -59,6 +64,81 @@ public class Utils {
       // db.setErrorHandler( new MyErrorHandler());
 
       return db.parse(is);
+  }
+  
+  public static String SaveRenamePic(String source, String picName){
+	  /** 
+	   * Copy the file from source in the Metacog folder and rename it with the name picName
+	   */
+	  String[] sourceSplit = source.split("\\.");
+
+	  String extension = "."+sourceSplit[sourceSplit.length-1];
+	  
+	  File theDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog/Img");  // Defining Directory/Folder Name  
+		try{   
+		    if (!theDir.exists()){  // Checks that Directory/Folder Doesn't Exists!  
+		    	boolean result = theDir.mkdir();    
+		    	if(result){  
+		    	//JOptionPane.showMessageDialog(null, "New Folder created!");
+		    	}
+		    }
+		}catch(Exception e){  
+		    //JOptionPane.showMessageDialog(null, e);  
+		}
+	  
+	  String picPath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog/Img/"+picName+extension;
+	  
+	  
+	  File imgSrcFile = new File(source);
+	  File imgNewFile = new File(picPath);
+	  
+	//  imgSrcFile.renameTo(imgNewFile);
+	  
+	  if (imgSrcFile.exists()) {
+			Bitmap myBitmap = BitmapFactory.decodeFile(imgSrcFile.getAbsolutePath());
+			
+			int maxSize = 300;
+			
+			int outWidth;
+			int outHeight;
+			int inWidth = myBitmap.getWidth();
+			int inHeight = myBitmap.getHeight();
+			 
+			if (inWidth > inHeight){
+			
+			outWidth = maxSize;
+			outHeight = (inHeight * maxSize ) / inWidth;
+			
+			}else{
+			
+			outHeight = maxSize;
+			outWidth = (inWidth * maxSize ) / inHeight;
+			
+			}
+			
+			Bitmap resizedBitmap = Bitmap.createScaledBitmap(myBitmap, outWidth, outHeight, false );
+			
+			try {
+				imgNewFile.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			FileOutputStream ostream;
+			try {
+				ostream = new FileOutputStream(imgNewFile);
+				resizedBitmap.compress(CompressFormat.PNG, 1, ostream);
+				ostream.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	  }
+	  return picPath;
   }
   
   public static Uri formatImageSource (String originalSource){

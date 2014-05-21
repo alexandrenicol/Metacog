@@ -84,7 +84,7 @@ public class MainActivity extends Activity
 */
 	
 	protected void createMetacogFolder(){
-		File theDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog");  // Defining Directory/Folder Name  
+		File theDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog/");  // Defining Directory/Folder Name  
 		try{   
 		    if (!theDir.exists()){  // Checks that Directory/Folder Doesn't Exists!  
 		    	boolean result = theDir.mkdir();    

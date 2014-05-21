@@ -143,6 +143,8 @@ public class AdminSerieAddEtreEmpaIIActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				if ((image_path!="")&&(answer!="")&&(proposition!="")){
+					
+					
 					DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		    		DocumentBuilder docBuilder;
 					try {
@@ -166,6 +168,11 @@ public class AdminSerieAddEtreEmpaIIActivity extends Activity {
 						String question_id = "m"+selectedModuleId+"s"+selectedSerieId+"q"+num_question;
 						nodeQuestion.setAttribute("id", question_id);
 						
+						String selectedModuleStr = String.format("%02d", selectedModuleId);
+						String selectedSerieStr = String.format("%02d", selectedSerieId);
+						String num_question_Str = String.format("%02d", num_question);
+						image_path = Utils.SaveRenamePic(image_path, "module"+selectedModuleStr+"serie"+selectedSerieStr+"question"+num_question_Str+"image01");
+						little_image_path = Utils.SaveRenamePic(little_image_path, "module"+selectedModuleStr+"serie"+selectedSerieStr+"question"+num_question_Str+"image02");
 						
 						Element nodeImg1 = xml.createElement("img");
 						nodeImg1.setAttribute("id", "1");

@@ -67,7 +67,7 @@ public class AdminSerieActivity extends Activity {
         		t.putExtra("selectedSerieId", selectedSerieId);
         		t.putExtra("selectedSerieName", selectedSerieName);
 				startActivity(t);
-				finish();
+				//finish();
 			}
 		});
 	    

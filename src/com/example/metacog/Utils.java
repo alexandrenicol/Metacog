@@ -19,6 +19,7 @@ package com.example.metacog;
  * under the License.
  */
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
@@ -32,6 +33,8 @@ import org.w3c.dom.Document;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+
+import android.net.Uri;
 
 
 public class Utils {
@@ -56,6 +59,31 @@ public class Utils {
       // db.setErrorHandler( new MyErrorHandler());
 
       return db.parse(is);
+  }
+  
+  public static Uri formatImageSource (String originalSource){
+	  /**
+	   * This function determinates if the originalSource is from the resources of the app
+	   * or from the sd card
+	   * 
+	   * Parameters :
+	   * 	originalSource : a String which is the original source path for an image
+	   * 
+	   * Return : 
+	   * 	outputUri : a Uri which is the uri to the image
+	   * 
+	   * Example of use :
+	   * 	Uri myUri = Utils.formatImageSource(source);
+	   */
+	  Uri outputUri ;
+	  if (originalSource.startsWith("drawable")){
+		  outputUri = Uri.parse("android.resource://com.example.metacog/"+originalSource);
+      }else{
+      	File file1 = new File (originalSource);
+      	outputUri = Uri.fromFile(file1);
+      }
+	  
+	  return outputUri;
   }
 }
 

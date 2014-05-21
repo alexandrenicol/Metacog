@@ -263,7 +263,9 @@ public class EtreEmpathiqueIII_Activity extends Activity {
     public void loadElements(){
     		 Uri uri1;
     		 if (id_question_state==1){
-	 	    	uri1 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get(id_question_state));
+	 	    	//uri1 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get(id_question_state));
+	 	    	uri1 = Utils.formatImageSource(imagesList.get(id_question_state));
+	 	    	
 	 	        image1 = (ImageView) findViewById(R.id.imageEtreEmpathique3_1);
 	 	        image1.setImageURI(uri1);
 	 	        
@@ -278,7 +280,7 @@ public class EtreEmpathiqueIII_Activity extends Activity {
 	 	        image4.setImageDrawable(null);
  	        
     		 }else if(id_question_state==2){
-			    	uri1 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get(id_question_state));
+    			    uri1 = Utils.formatImageSource(imagesList.get(id_question_state));
 
 			        image2 = (ImageView) findViewById(R.id.imageEtreEmpathique3_2);
 			        image2.setImageURI(uri1);
@@ -286,7 +288,7 @@ public class EtreEmpathiqueIII_Activity extends Activity {
     			 }
     			 
     		 else if(id_question_state==3){
-			    	uri1 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get(id_question_state));
+    			    uri1 = Utils.formatImageSource(imagesList.get(id_question_state));
 
 			        image3 = (ImageView) findViewById(R.id.imageEtreEmpathique3_3);
 			        image3.setImageURI(uri1);
@@ -294,7 +296,7 @@ public class EtreEmpathiqueIII_Activity extends Activity {
 			       
     			 }
     		 else if(id_question_state==4){
- 			    	uri1 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get(id_question_state)); 			      
+    			    uri1 = Utils.formatImageSource(imagesList.get(id_question_state));		      
  			    			      
  			        image4 = (ImageView) findViewById(R.id.imageEtreEmpathique3_4);
  			        image4.setImageURI(uri1);

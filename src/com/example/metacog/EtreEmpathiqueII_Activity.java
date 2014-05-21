@@ -259,8 +259,7 @@ public class EtreEmpathiqueII_Activity extends Activity {
     }
     
     public void loadElements(){
-    	Uri uri1 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get(id_question_state));
-        image = (ImageView) findViewById(R.id.imageEtreEmpathique2);
+    	Uri uri1 = Utils.formatImageSource(imagesList.get(id_question_state));image = (ImageView) findViewById(R.id.imageEtreEmpathique2);
         image.setImageURI(uri1);
     }
 

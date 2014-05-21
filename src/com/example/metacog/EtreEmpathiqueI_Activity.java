@@ -230,48 +230,12 @@ public class EtreEmpathiqueI_Activity extends Activity {
         Uri uri5;
         Uri uri6;
         
-        if (imagesList.get("Q1").startsWith("drawable")){
-        	uri1 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("Q1"));
-        }else{
-        	File file1 = new File (imagesList.get("Q1"));
-        	uri1 = Uri.fromFile(file1);
-        }
-        if (imagesList.get("Q2").startsWith("drawable")){
-        	uri2 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("Q2"));
-        }else{
-        	File file2 = new File (imagesList.get("Q2"));
-        	uri2 = Uri.fromFile(file2);
-        }
-        if (imagesList.get("Q3").startsWith("drawable")){
-        	uri3 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("Q3"));
-        }else{
-        	File file3 = new File (imagesList.get("Q3"));
-        	uri3 = Uri.fromFile(file3);
-        }
-        if (imagesList.get("R1").startsWith("drawable")){
-        	uri4 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("R1"));
-        }else{
-        	File file4 = new File (imagesList.get("R1"));
-        	uri4 = Uri.fromFile(file4);
-        }
-        if (imagesList.get("R2").startsWith("drawable")){
-        	uri5 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("R2"));
-        }else{
-        	File file5 = new File (imagesList.get("R2"));
-        	uri5 = Uri.fromFile(file5);
-        }
-        if (imagesList.get("R3").startsWith("drawable")){
-        	uri6 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("R3"));
-        }else{
-        	File file6 = new File (imagesList.get("R3"));
-        	uri6 = Uri.fromFile(file6);
-        }
-        /*Uri uri1 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("Q1"));
-        Uri uri2 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("Q2"));
-        Uri uri3 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("Q3"));
-        Uri uri4 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("R1"));
-        Uri uri5 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("R2"));
-        Uri uri6 = Uri.parse("android.resource://com.example.metacog/"+imagesList.get("R3"));*/
+        uri1 = Utils.formatImageSource(imagesList.get("Q1"));
+        uri2 = Utils.formatImageSource(imagesList.get("Q2"));
+        uri3 = Utils.formatImageSource(imagesList.get("Q3"));
+        uri4 = Utils.formatImageSource(imagesList.get("R1"));
+        uri5 = Utils.formatImageSource(imagesList.get("R2"));
+        uri6 = Utils.formatImageSource(imagesList.get("R3"));
         
         image1 = (ImageView) findViewById(R.id.imageQuestion1);
         image2 = (ImageView) findViewById(R.id.imageQuestion2);

@@ -150,6 +150,7 @@ setContentView(R.layout.activity_log);
 			Intent t = new Intent(LogActivity.this,ModulesActivity.class); // A decommenter
 	    	t.putExtra("name",userchoisi);
 			startActivity(t);
+			finish();
 	    }
 		});
 	
@@ -202,6 +203,7 @@ setContentView(R.layout.activity_log);
 			Intent t = new Intent(LogActivity.this,ModulesActivity.class); // A decommenter
 			t.putExtra("name",userName);
 			startActivity(t);
+			finish();
 		}
 		});
 	}

@@ -114,6 +114,7 @@ public class ModulesActivity extends Activity {
 	    	t.putExtra("module",modulechoisi);
 	    	t.putExtra("name", name);
 			startActivity(t);
+			finish();
 	    }
 	});
 	}

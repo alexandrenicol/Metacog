@@ -82,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/proposition3"
-        android:layout_below="@+id/proposition3"
+        android:layout_alignParentBottom="true"
         android:layout_marginTop="58dp"
         android:text="Valider" />
 
@@ -103,5 +103,14 @@
         android:layout_marginLeft="256dp"
         android:layout_toRightOf="@+id/add_image1"
         android:ems="10" />
+
+    <Button
+        android:id="@+id/activity_admin_serie_add_m1_retour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="90dp"
+        android:text="Retour" />
 
 </RelativeLayout>

@@ -171,8 +171,8 @@ public class AdminSerieAddEtreEmpaIIActivity extends Activity {
 						String selectedModuleStr = String.format("%02d", selectedModuleId);
 						String selectedSerieStr = String.format("%02d", selectedSerieId);
 						String num_question_Str = String.format("%02d", num_question);
-						image_path = Utils.SaveRenamePic(image_path, "module"+selectedModuleStr+"serie"+selectedSerieStr+"question"+num_question_Str+"image01");
-						little_image_path = Utils.SaveRenamePic(little_image_path, "module"+selectedModuleStr+"serie"+selectedSerieStr+"question"+num_question_Str+"image02");
+						image_path = Utils.SaveRenamePic(image_path, "module"+selectedModuleStr+"_serie"+selectedSerieStr+"_question"+num_question_Str+"_image01");
+						little_image_path = Utils.SaveRenamePic(little_image_path, "module"+selectedModuleStr+"_serie"+selectedSerieStr+"_question"+num_question_Str+"_image02");
 						
 						Element nodeImg1 = xml.createElement("img");
 						nodeImg1.setAttribute("id", "1");

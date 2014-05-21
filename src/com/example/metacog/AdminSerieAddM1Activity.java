@@ -147,6 +147,18 @@ public class AdminSerieAddM1Activity extends Activity {
 						String question_id = "m"+selectedModuleId+"s"+selectedSerieId+"q"+num_question;
 						nodeQuestion.setAttribute("id", question_id);
 						
+						String selectedModuleStr = String.format("%02d", selectedModuleId);
+						String selectedSerieStr = String.format("%02d", selectedSerieId);
+						String num_question_Str = String.format("%02d", num_question);
+						
+						image1 = Utils.SaveRenamePic(image1, "module"+selectedModuleStr+"_serie"+selectedSerieStr+"_question"+num_question_Str+"_image01");
+						image2 = Utils.SaveRenamePic(image2, "module"+selectedModuleStr+"_serie"+selectedSerieStr+"_question"+num_question_Str+"_image02");
+						image3 = Utils.SaveRenamePic(image3, "module"+selectedModuleStr+"_serie"+selectedSerieStr+"_question"+num_question_Str+"_image03");
+						proposition1 = Utils.SaveRenamePic(proposition1, "module"+selectedModuleStr+"_serie"+selectedSerieStr+"_question"+num_question_Str+"_image04");
+						proposition2 = Utils.SaveRenamePic(proposition2, "module"+selectedModuleStr+"_serie"+selectedSerieStr+"_question"+num_question_Str+"_image05");
+						proposition3 = Utils.SaveRenamePic(proposition3, "module"+selectedModuleStr+"_serie"+selectedSerieStr+"_question"+num_question_Str+"_image06");
+						
+						
 						EditText answer = (EditText) findViewById(R.id.new_proposition);
 						answer.getText();
 						

@@ -24,6 +24,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.ActionBar.LayoutParams;
@@ -258,10 +259,22 @@ public class AdminSerieAddSauterConcluActivity extends Activity {
 						
 						List<Node> listOfImage = new ArrayList<Node>() ;
 						
+						String selectedModuleStr = String.format("%02d", selectedModuleId);
+						String selectedSerieStr = String.format("%02d", selectedSerieId);
+						String num_question_Str = String.format("%02d", num_question);
+						
+						
+						
 						for (Entry<Integer, String> e : dictionaryImage.entrySet()) {
+							
+							
+							
+							String new_path = Utils.SaveRenamePic(e.getValue(), "module"+selectedModuleStr+"_serie"+selectedSerieStr+"_question"+num_question_Str+"_image01");
+							
+							
 							Element nodeImg = xml.createElement("img");
 							nodeImg.setAttribute("id", e.getKey().toString());
-							nodeImg.setAttribute("src", e.getValue());
+							nodeImg.setAttribute("src", new_path);
 							listOfImage.add(nodeImg);
 						}
 						

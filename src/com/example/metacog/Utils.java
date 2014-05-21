@@ -97,7 +97,7 @@ public class Utils {
 	  if (imgSrcFile.exists()) {
 			Bitmap myBitmap = BitmapFactory.decodeFile(imgSrcFile.getAbsolutePath());
 			
-			int maxSize = 300;
+			int maxSize = 600;
 			
 			int outWidth;
 			int outHeight;
@@ -116,7 +116,7 @@ public class Utils {
 			
 			}
 			
-			Bitmap resizedBitmap = Bitmap.createScaledBitmap(myBitmap, outWidth, outHeight, false );
+			Bitmap resizedBitmap = Bitmap.createScaledBitmap(myBitmap, outWidth, outHeight, true );
 			
 			try {
 				imgNewFile.createNewFile();
@@ -128,7 +128,7 @@ public class Utils {
 			FileOutputStream ostream;
 			try {
 				ostream = new FileOutputStream(imgNewFile);
-				resizedBitmap.compress(CompressFormat.PNG, 1, ostream);
+				resizedBitmap.compress(CompressFormat.JPEG, 100, ostream);
 				ostream.close();
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block

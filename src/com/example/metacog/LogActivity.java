@@ -33,6 +33,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.Toast;
 
 public class LogActivity extends Activity 
 { 
@@ -43,6 +44,7 @@ public class LogActivity extends Activity
 	private String[] list;
 	private ListView userView;
 	private String filepath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog"+"/users.xml";
+	private List<String> listUser = new ArrayList<String>();
 /** Called when the activity is first created. */ 
 @Override 
 public void onCreate(Bundle savedInstanceState) 
@@ -66,7 +68,7 @@ setContentView(R.layout.activity_log);
 		
 	TabHost tabs=(TabHost)findViewById(R.id.tabhost); 
 	tabs.setup();
-
+	
 	TabHost.TabSpec spec=tabs.newTabSpec("tag1"); 
 	spec.setContent(R.id.activity_log_userName);
 	spec.setIndicator("New User");
@@ -130,17 +132,16 @@ setContentView(R.layout.activity_log);
 		e.printStackTrace();
 	}
 	
-	List<String> tmp = new ArrayList<String>();
 	for (int i = 0; i< nodeUser.getLength();i++){
 		Element Node = (Element) nodeUser.item(i);
 		//String nodeValue = nodeModule.getTextContent();
 		String nodeValue = Node.getAttribute("id");
 		//tmp.add(nodeUser.item(i).getTextContent());
-		tmp.add(nodeValue);
+		listUser.add(nodeValue);
 	}
 	
-	list = new String[tmp.size()];
-	tmp.toArray(list);
+	list = new String[listUser.size()];
+	listUser.toArray(list);
 	userView.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list));
 	userView.setOnItemClickListener(new OnItemClickListener() {
 	    @Override
@@ -161,51 +162,63 @@ setContentView(R.layout.activity_log);
 		// TODO Auto-generated method stub
 			NodeList NodeUsers = null;
 			Document xml = null;
-			String userName = null;
-			try {
-				
-				DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-				DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
-				xml = docBuilder.parse(new File(filepath));
-				NodeUsers = xml.getElementsByTagName("users");
-				Element Node = xml.createElement("user");
-				userName = pseudo.getText().toString();
-				Node.setAttribute("id", userName);
-				Element tmp = (Element) NodeUsers.item(0);
-				tmp.appendChild(Node);
-			} catch (SAXException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ParserConfigurationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			String userName = pseudo.getText().toString();
+			if(userExist(userName)){
+				Toast toast = Toast.makeText(LogActivity.this,R.string.user_exist, Toast.LENGTH_SHORT);
+        		toast.show();
+			}else{
+				try {
+					
+					DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+					DocumentBuilder docBuilder = docFactory.newDocumentBuilder();		
+					xml = docBuilder.parse(new File(filepath));
+					NodeUsers = xml.getElementsByTagName("users");
+					Element Node = xml.createElement("user");
+					Node.setAttribute("id", userName);
+					Element tmp = (Element) NodeUsers.item(0);
+					tmp.appendChild(Node);
+				} catch (SAXException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ParserConfigurationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				TransformerFactory transformerFactory = TransformerFactory.newInstance();
+				Transformer transformer = null;
+				try {
+					transformer = transformerFactory.newTransformer();
+				} catch (TransformerConfigurationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				DOMSource source = new DOMSource(xml);
+				StreamResult result = new StreamResult(filepath);
+				try {
+					transformer.transform(source, result);
+				} catch (TransformerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				//Intent t = new Intent(LogActivity.this,MainActivity.class); // a commenter
+				Intent t = new Intent(LogActivity.this,ModulesActivity.class); // A decommenter
+				t.putExtra("name",userName);
+				startActivity(t);
+				finish();
 			}
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer = null;
-			try {
-				transformer = transformerFactory.newTransformer();
-			} catch (TransformerConfigurationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			DOMSource source = new DOMSource(xml);
-			StreamResult result = new StreamResult(filepath);
-			try {
-				transformer.transform(source, result);
-			} catch (TransformerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			//Intent t = new Intent(LogActivity.this,MainActivity.class); // a commenter
-			Intent t = new Intent(LogActivity.this,ModulesActivity.class); // A decommenter
-			t.putExtra("name",userName);
-			startActivity(t);
-			finish();
 		}
 		});
+	}
+
+	public boolean userExist(String newUser){
+		if(listUser.contains(newUser) || newUser.equals("")){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 }

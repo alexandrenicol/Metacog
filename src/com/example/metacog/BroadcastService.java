@@ -9,7 +9,9 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -87,11 +89,11 @@ public class BroadcastService {
 		toast.show();
     }
     
-    public void writeTCPIP() {
+    public void writeTCPIP(){
     	if (D) Log.d(TAG, "Write TCP/IP");
-    	Toast toast = Toast.makeText(mContext,R.string.envoi_data, Toast.LENGTH_SHORT);
-		toast.show();
-        mConnectedTCPThread.writeTcpIp();
+       /* mConnectedTCPThread.writeTcpIp("headerTCP,/structure_modules.xml",false);
+        mConnectedTCPThread.writeTcpIp("/structure_modules.xml",true);*/       
+        mConnectedTCPThread.writeTcpIp("/dessin.jpg");
     }
     
     private class ComThread extends Thread {
@@ -235,10 +237,13 @@ public class BroadcastService {
     
  class ComTCPThread extends Thread {
         
-    	private static final int TCP_PORT = 5050;
+    	private static final int TCP_PORT = 8060;
     	String myLocalIP ;
     	Socket sock;
     	ServerSocket servsock;
+    	boolean xml;
+    	boolean image;
+    	String nameFile;
     	
         public ComTCPThread() {
         		   
@@ -281,35 +286,51 @@ public class BroadcastService {
 				// receive file
 				byte [] mybytearray  = new byte [filesize];
 				InputStream is = sock.getInputStream();
+				/*BufferedReader in = new BufferedReader (new InputStreamReader(is));
+				String result = in.readLine();
+				if(result.contains("headerTCP")){
+					String [] tmp =result.split(",");
+					nameFile = tmp[tmp.length-1];
+				}else{*/
 				// TODO: Put where you want to save the file
 				/* N.B.:
 				 * * To view if the file transfer was successful:
 				 *       * use `./adb shell` 
 				 *       * use the app: File Manager
 				 * 
-				 * * If you downloaded to '/mnt/sdcard/download', 
+				 * * If you downloaded to '/mnt/sdcard/download',
 				 *   your download might not show up in 'Downloads'
 				 *   
 				 * * You might not have '/mnt/sdcard/download' directory
 				 *   if you have never downloaded anything on your iPhone
 				 */
 				
-				FileOutputStream fos = new FileOutputStream(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog"+"/image.jpg");
-				BufferedOutputStream bos = new BufferedOutputStream(fos);
-				bytesRead = is.read(mybytearray,0,mybytearray.length);
-				current = bytesRead;
-				do {
-					bytesRead = is.read(mybytearray, current, (mybytearray.length-current));
-					if(bytesRead >= 0) current += bytesRead;
-				} while(bytesRead > -1);
-
-				bos.write(mybytearray, 0 , current);
-				bos.flush();
-				long end = System.currentTimeMillis();
-				
-				bos.close();
-				sock.close();
-				
+					
+					bytesRead = is.read(mybytearray,0,mybytearray.length);
+					current = bytesRead;
+					do {
+						bytesRead = is.read(mybytearray, current, (mybytearray.length-current));
+						if(bytesRead >= 0) current += bytesRead;
+					} while(bytesRead > -1);
+					BufferedReader in = new BufferedReader (new InputStreamReader(is));
+					String result = mybytearray.toString();
+					
+					FileOutputStream fos = new FileOutputStream(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog"+result);
+					BufferedOutputStream bos = new BufferedOutputStream(fos);
+					bytesRead = is.read(mybytearray,15,mybytearray.length-15);
+					current = bytesRead;
+					/*do {
+						bytesRead = is.read(mybytearray, current, (mybytearray.length-current-15));
+						if(bytesRead >= 0) current += bytesRead;
+					} while(bytesRead > -1);*/
+					
+					bos.write(mybytearray, 15 , mybytearray.length-15);
+					bos.flush();
+					long end = System.currentTimeMillis();
+					
+					bos.close();
+					sock.close();
+				//}	
 				mHandler.obtainMessage(BroadcastService.MESSAGE_READ_TCPIP,-1,-1).sendToTarget(); 
 			} catch ( UnknownHostException e ) {
 				Log.i("******* :( ", "UnknownHostException");
@@ -318,21 +339,24 @@ public class BroadcastService {
 			}
         }
         
-        public void writeTcpIp(){
+        public void writeTcpIp(String path){
         	try {
 				// create socket
 				// TODO: the port should match the one in Client
 				servsock = new ServerSocket(TCP_PORT);
+				Toast toast = Toast.makeText(mContext,R.string.envoi_data, Toast.LENGTH_SHORT);
+				toast.show();
 				while (true) {
 					Log.i("************", "Waiting...");
 
 					Socket sock = servsock.accept(); // blocks until connection opened
 					Log.i("************", "Accepted connection : " + sock);
-
+					
+					
 					// sendfile
 
 					// TODO: put the source of the file
-					File myFile = new File (Environment.getExternalStorageDirectory().getAbsolutePath()+"/bananeDanseAvecCarotte.jpg");
+					File myFile = new File (Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog"+path);
 					byte [] mybytearray  = new byte [(int)myFile.length()];
 					Log.i("####### file length = ", String.valueOf(myFile.length()));
 					FileInputStream fis = new FileInputStream(myFile);
@@ -340,16 +364,23 @@ public class BroadcastService {
 					bis.read(mybytearray,0,mybytearray.length);
 					OutputStream os = sock.getOutputStream();
 					Log.i("************", "Sending...");
-					os.write(mybytearray,0,mybytearray.length);
+					os.write(path.getBytes(), 0, path.getBytes().length);
+					os.write(mybytearray,15,mybytearray.length-15);
 					os.flush();
+					
+					// sendMsg
+					/*PrintWriter out = new PrintWriter(sock.getOutputStream());
+			        out.println(path);
+			        out.flush();		*/				
 					sock.close();
-					//this.cancel();
 					break;
 				}   
 			} catch (IOException e) {
 				Log.i("Io execption ", "e: " + e);
 			}
         }
+        
+       
 
 
 
@@ -363,7 +394,7 @@ public class BroadcastService {
   		  if(D)Log.d(TAG,"\n\nWiFi Status: " + info.toString());
   		
     	  // DhcpInfo  is a simple object for retrieving the results of a DHCP request
-          DhcpInfo dhcp = mWifi.getDhcpInfo(); 
+          DhcpInfo dhcp = mWifi.getDhcpInfo();
           if (dhcp == null) { 
             Log.d(TAG, "Could not get dhcp info"); 
             return null; 

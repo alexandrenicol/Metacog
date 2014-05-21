@@ -5,9 +5,10 @@
     android:versionName="1.0" >
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-  	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-  	<uses-permission android:name="android.permission.INTERNET"/> 
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-sdk
         android:minSdkVersion="9"
         android:targetSdkVersion="9" />
@@ -115,6 +116,14 @@
             android:name="com.example.metacog.EtreEmpathiqueIII_Activity"
             android:label="@string/title_activity_etre_empathique_iii_"
             android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.example.metacog.AdminSerieAddEtreEmpaIIIActivity"
+            android:label="@string/title_activity_admin_serie_add_etre_empa_iii"
+            android:screenOrientation="landscape" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.metacog.AdminSerieActivity" />
         </activity>
     </application>
 

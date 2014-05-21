@@ -22,6 +22,10 @@
 	<string name="must_choose_eI">Merci de choisir 6 images</string>
 	<string name="must_choose_sauterConclu">Merci de charger toutes les images</string>
 	<string name="select_answer">Veuillez selectionner une réponse.</string>
+	<string name="envoi_ip">Connection en cours ...</string>
+	<string name="envoi_data">Envoie de données en cours ...</string>
+	<string name="receive">Réception de données en cours ...</string>
+	<string name="user_exist">Le nom d\'utilisateur est nul ou déjà existant</string>
 	
     <string name="daidalos_hello">Hello World!</string>
     <string name="daidalos_app_name">aFileDialog</string>

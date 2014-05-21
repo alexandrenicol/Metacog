@@ -67,7 +67,6 @@ public class AdminSerieActivity extends Activity {
         		t.putExtra("selectedSerieId", selectedSerieId);
         		t.putExtra("selectedSerieName", selectedSerieName);
 				startActivity(t);
-				//finish();
 			}
 		});
 	    
@@ -106,7 +105,6 @@ public class AdminSerieActivity extends Activity {
         		t.putExtra("selectedSerieName", selectedSerieName);
         		t.putExtra("type", "Question");
 				startActivity(t);
-				finish();
 			}
 		});
 	    

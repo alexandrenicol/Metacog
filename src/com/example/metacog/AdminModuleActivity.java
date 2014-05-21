@@ -152,7 +152,6 @@ public class AdminModuleActivity extends Activity {
         		third.putExtra("selectedSerieId", position+1);
         		third.putExtra("selectedSerieName", serieChoisi);
         		startActivity(third);
-        		finish();
         	}    
         });
         

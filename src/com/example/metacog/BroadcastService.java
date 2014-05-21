@@ -29,6 +29,7 @@ import android.net.wifi.WifiManager;
 import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 
 public class BroadcastService {
 	
@@ -37,7 +38,8 @@ public class BroadcastService {
     
     public static final int MESSAGE_READ 	= 1;
     public static final int MESSAGE_WRITE 	= 2;
-    public static final int MESSAGE_TOAST 	= 3;
+    public static final int MESSAGE_READ_TCPIP	= 3;
+    
     
 	private final Handler mHandler;
     private ComThread mConnectedThread;
@@ -81,10 +83,14 @@ public class BroadcastService {
     public void writeIP() {
     	if (D) Log.d(TAG, "Write IP");
         mConnectedThread.write(getIPAddress().getBytes());
+        Toast toast = Toast.makeText(mContext,R.string.envoi_ip, Toast.LENGTH_SHORT);
+		toast.show();
     }
     
     public void writeTCPIP() {
     	if (D) Log.d(TAG, "Write TCP/IP");
+    	Toast toast = Toast.makeText(mContext,R.string.envoi_data, Toast.LENGTH_SHORT);
+		toast.show();
         mConnectedTCPThread.writeTcpIp();
     }
     
@@ -137,10 +143,9 @@ public class BroadcastService {
 	    			InetAddress remoteIP = packet.getAddress();
 	    			if(remoteIP.equals(myLocalIP))
 	    				continue;
-	
+	    			
 	    			String s = new String(packet.getData(), 0, packet.getLength()); 
 	    			if(D)Log.d(TAG, "Received response " + s); 
-	
 	    			// Send the obtained bytes to the UI Activity
 	    			mHandler.obtainMessage(BroadcastService.MESSAGE_READ,-1,-1, s)
 	    			.sendToTarget(); 
@@ -187,7 +192,7 @@ public class BroadcastService {
           } 
        
           
-          int broadcast = (dhcp.ipAddress & dhcp.netmask) | ~dhcp.netmask; 
+          int broadcast = (dhcp.ipAddress & dhcp.netmask) | ~dhcp.netmask;
           byte[] quads = new byte[4]; 
           for (int k = 0; k < 4; k++) 
             quads[k] = (byte) ((broadcast >> k * 8) & 0xFF);
@@ -289,7 +294,7 @@ public class BroadcastService {
 				 *   if you have never downloaded anything on your iPhone
 				 */
 				
-				FileOutputStream fos = new FileOutputStream(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog"+"/structure_modules2.xml");
+				FileOutputStream fos = new FileOutputStream(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog"+"/image.jpg");
 				BufferedOutputStream bos = new BufferedOutputStream(fos);
 				bytesRead = is.read(mybytearray,0,mybytearray.length);
 				current = bytesRead;
@@ -301,8 +306,11 @@ public class BroadcastService {
 				bos.write(mybytearray, 0 , current);
 				bos.flush();
 				long end = System.currentTimeMillis();
+				
 				bos.close();
 				sock.close();
+				
+				mHandler.obtainMessage(BroadcastService.MESSAGE_READ_TCPIP,-1,-1).sendToTarget(); 
 			} catch ( UnknownHostException e ) {
 				Log.i("******* :( ", "UnknownHostException");
 			} catch (IOException e){
@@ -324,9 +332,9 @@ public class BroadcastService {
 					// sendfile
 
 					// TODO: put the source of the file
-					File myFile = new File (Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog"+"/structure_modules.xml");
+					File myFile = new File (Environment.getExternalStorageDirectory().getAbsolutePath()+"/bananeDanseAvecCarotte.jpg");
 					byte [] mybytearray  = new byte [(int)myFile.length()];
-					Log.i("####### file length = ", String.valueOf(myFile.length()) );
+					Log.i("####### file length = ", String.valueOf(myFile.length()));
 					FileInputStream fis = new FileInputStream(myFile);
 					BufferedInputStream bis = new BufferedInputStream(fis);
 					bis.read(mybytearray,0,mybytearray.length);

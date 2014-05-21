@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metacog>
-	<module id="m1" name="Etre Empathique I" consigne="Dans ce qui suit, vous aller voir six images. Les trois premières 'racontent' une histoire. Choissisez comment se poursuit l'histoire en choississant une des trois images du bas de la page. " >
+	<module id="m1" name="Etre Empathique I" consigne="Dans ce qui suit, vous allez voir six images. Les trois premières 'racontent' une histoire. Choissisez comment se poursuit l'histoire en choississant une des trois images du bas de la page. " >
 		<serie id="m1s1" name="Serie 1">
 		    <question id="m1s1q1" reponse="C">
 		        <img id="Q1" src="drawable/module01_serie01_question01_image01" />
@@ -167,7 +167,7 @@
 		</serie>
 	<!-- 	<serie id="m1s3" name="Serie 3"></serie>  -->
 	</module>
-		<module id="m2" name="Etre empathique II" consigne="Sur les diapositives suivantes, vous verrez une image (ou un extrait d'une image).Essayez, s'il vous plaît, de trouver ce que la personne est en train de faire ou de penser." >
+		<module id="m2" name="Etre empathique II" consigne="Sur les diapositives suivantes, vous verrez une image (ou l'extrait d'une image).Essayez, de trouver ce que la personne est en train de faire ou de penser." >
 		<serie id="m2s1" name="Serie 1">
 		    <question id="m2s1q1">
 		        <img id="1" src="drawable/module02_serie01_question01_image01" />

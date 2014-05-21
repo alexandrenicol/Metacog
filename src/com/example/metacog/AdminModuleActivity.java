@@ -152,7 +152,7 @@ public class AdminModuleActivity extends Activity {
         		third.putExtra("selectedSerieId", position+1);
         		third.putExtra("selectedSerieName", serieChoisi);
         		startActivity(third);
-        		
+        		finish();
         	}    
         });
         
@@ -207,8 +207,9 @@ public class AdminModuleActivity extends Activity {
 					
 					Toast toast = Toast.makeText(AdminModuleActivity.this,R.string.add_serie, Toast.LENGTH_LONG);
 					toast.show();
-					finish();
 					startActivity(getIntent());
+					finish();
+
 	
 				} catch (ParserConfigurationException e) {
 					// TODO Auto-generated catch block
@@ -235,6 +236,7 @@ public class AdminModuleActivity extends Activity {
         		third.putExtra("selectedSerieName", "None");
         		third.putExtra("type", "Serie");
         		startActivity(third);
+        		finish();
 	    	}
 	    });
         

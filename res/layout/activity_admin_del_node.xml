@@ -36,17 +36,6 @@
         android:layout_marginRight="54dp"
         android:text="Retour" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_marginRight="179dp"
-        android:layout_toLeftOf="@+id/button3"
-        android:text="Choississez le module à effacer"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,5 +51,15 @@
             android:choiceMode="singleChoice" >
         </ListView>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_marginLeft="29dp"
+        android:layout_toRightOf="@+id/textView2"
+        android:text="Choississez le module à effacer"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

@@ -14,33 +14,6 @@
         android:layout_height="wrap_content"
         android:text="Metacog" />
 
-    <Button
-        android:id="@+id/add_image1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="65dp"
-        android:text="Choississez vos images" />
-
-    <TextView
-        android:id="@+id/image1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/add_image1"
-        android:layout_below="@+id/add_image1"
-        android:layout_marginTop="45dp"
-        android:text="Image 1 :" />
-
-    <TextView
-        android:id="@+id/image2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/image1"
-        android:layout_below="@+id/image1"
-        android:layout_marginTop="42dp"
-        android:text="Image 2" />
-
     <TextView
         android:id="@+id/image3"
         android:layout_width="wrap_content"
@@ -86,24 +59,6 @@
         android:layout_marginTop="58dp"
         android:text="Valider" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_marginLeft="375dp"
-        android:layout_toRightOf="@+id/add_image1"
-        android:text="TextView" />
-
-    <EditText
-        android:id="@+id/new_proposition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/image2"
-        android:layout_marginLeft="256dp"
-        android:layout_toRightOf="@+id/add_image1"
-        android:ems="10" />
-
     <Button
         android:id="@+id/activity_admin_serie_add_m1_retour"
         android:layout_width="wrap_content"
@@ -112,5 +67,121 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="90dp"
         android:text="Retour" />
+
+    <EditText
+        android:id="@+id/new_proposition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/activity_admin_serie_add_m1_retour"
+        android:layout_below="@+id/image2"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/add_image1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="116dp"
+        android:text="Choisissez l&apos;image 1" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/image2"
+        android:layout_alignBottom="@+id/image2"
+        android:layout_alignLeft="@+id/add_image1"
+        android:text="Choisissez l&apos;image 2" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/image3"
+        android:layout_alignBottom="@+id/image3"
+        android:layout_alignLeft="@+id/button1"
+        android:text="Choisissez l&apos;image 3" />
+
+    <TextView
+        android:id="@+id/image1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/add_image1"
+        android:layout_alignBottom="@+id/add_image1"
+        android:layout_marginLeft="29dp"
+        android:layout_toRightOf="@+id/add_image1"
+        android:text="Image 1 :" />
+
+    <TextView
+        android:id="@+id/image2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/image1"
+        android:layout_below="@+id/add_image1"
+        android:layout_marginTop="27dp"
+        android:text="Image 2" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/proposition1"
+        android:layout_alignBottom="@+id/proposition1"
+        android:layout_alignLeft="@+id/button2"
+        android:text="Choisissez l&apos;image 4" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/proposition2"
+        android:layout_alignBottom="@+id/proposition2"
+        android:layout_alignLeft="@+id/button3"
+        android:text="Choisissez l&apos;image 5" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/proposition3"
+        android:layout_alignBottom="@+id/proposition3"
+        android:layout_alignLeft="@+id/button4"
+        android:text="Choisissez l&apos;image 6" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/image1"
+        android:layout_alignLeft="@+id/new_proposition"
+        android:text="Tapez la bonne réponse (A, B ou C)" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:text="A : Proposition 1" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_below="@+id/textView3"
+        android:text="B : Proposition 2" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_below="@+id/textView4"
+        android:text="C : Proposition 3" />
 
 </RelativeLayout>

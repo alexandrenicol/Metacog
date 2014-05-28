@@ -61,6 +61,12 @@ public class AdminSerieAddM1Activity extends Activity {
 	private String[] listOfImages = {"image1","image2","image3","proposition1","proposition2","proposition3"};
 	
 	public Button add;
+	public Button add2;
+	public Button add3;
+	public Button add4;
+	public Button add5;
+	public Button add6;
+	
 	public Button valid;
 	public Button retour;
 	
@@ -82,6 +88,11 @@ public class AdminSerieAddM1Activity extends Activity {
 		
 	    retour=(Button) findViewById(R.id.activity_admin_serie_add_m1_retour);
 	    add=(Button) findViewById(R.id.add_image1);
+	    add2=(Button) findViewById(R.id.button1);
+	    add3=(Button) findViewById(R.id.button2);
+	    add4=(Button) findViewById(R.id.button3);
+	    add5=(Button) findViewById(R.id.button4);
+	    add6=(Button) findViewById(R.id.button5);
 	    
 	    retour.setOnClickListener(new View.OnClickListener() {
 			
@@ -97,12 +108,107 @@ public class AdminSerieAddM1Activity extends Activity {
 				finish();
 				
 			}
-	});
+	    });
 	    add.setOnClickListener(new View.OnClickListener() {
+	    	
+			@Override
+			public void onClick(View arg0) {
+				cursorPos = 0;
+				FileChooserDialog dialog = new FileChooserDialog(AdminSerieAddM1Activity.this);
+			    dialog.loadFolder(Environment.getExternalStorageDirectory().getAbsolutePath());
+			     
+			    // Assign listener for the select event.
+			    dialog.addListener(AdminSerieAddM1Activity.this.onFileSelectedListener);
+		    		
+		    	// Define the filter for select images.
+		    	dialog.setFilter(".*jpg|.*png|.*gif|.*JPG|.*PNG|.*GIF");
+		    	dialog.setShowOnlySelectable(false);
+			     
+			    dialog.show();
+			}
+		});
+	    
+	    add2.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
-				
+				cursorPos = 1;
+				FileChooserDialog dialog = new FileChooserDialog(AdminSerieAddM1Activity.this);
+			    dialog.loadFolder(Environment.getExternalStorageDirectory().getAbsolutePath());
+			     
+			    // Assign listener for the select event.
+			    dialog.addListener(AdminSerieAddM1Activity.this.onFileSelectedListener);
+		    		
+		    	// Define the filter for select images.
+		    	dialog.setFilter(".*jpg|.*png|.*gif|.*JPG|.*PNG|.*GIF");
+		    	dialog.setShowOnlySelectable(false);
+			     
+			    dialog.show();
+			}
+		});
+	    
+	    add3.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				cursorPos = 2;
+				FileChooserDialog dialog = new FileChooserDialog(AdminSerieAddM1Activity.this);
+			    dialog.loadFolder(Environment.getExternalStorageDirectory().getAbsolutePath());
+			     
+			    // Assign listener for the select event.
+			    dialog.addListener(AdminSerieAddM1Activity.this.onFileSelectedListener);
+		    		
+		    	// Define the filter for select images.
+		    	dialog.setFilter(".*jpg|.*png|.*gif|.*JPG|.*PNG|.*GIF");
+		    	dialog.setShowOnlySelectable(false);
+			     
+			    dialog.show();
+			}
+		});
+
+		add4.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				cursorPos = 3;
+				FileChooserDialog dialog = new FileChooserDialog(AdminSerieAddM1Activity.this);
+			    dialog.loadFolder(Environment.getExternalStorageDirectory().getAbsolutePath());
+			     
+			    // Assign listener for the select event.
+			    dialog.addListener(AdminSerieAddM1Activity.this.onFileSelectedListener);
+		    		
+		    	// Define the filter for select images.
+		    	dialog.setFilter(".*jpg|.*png|.*gif|.*JPG|.*PNG|.*GIF");
+		    	dialog.setShowOnlySelectable(false);
+			     
+			    dialog.show();
+			}
+		});
+
+		add5.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				cursorPos = 4;
+				FileChooserDialog dialog = new FileChooserDialog(AdminSerieAddM1Activity.this);
+			    dialog.loadFolder(Environment.getExternalStorageDirectory().getAbsolutePath());
+			     
+			    // Assign listener for the select event.
+			    dialog.addListener(AdminSerieAddM1Activity.this.onFileSelectedListener);
+		    		
+		    	// Define the filter for select images.
+		    	dialog.setFilter(".*jpg|.*png|.*gif|.*JPG|.*PNG|.*GIF");
+		    	dialog.setShowOnlySelectable(false);
+			     
+			    dialog.show();
+			}
+		});
+		
+		add6.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				cursorPos = 5;
 				FileChooserDialog dialog = new FileChooserDialog(AdminSerieAddM1Activity.this);
 			    dialog.loadFolder(Environment.getExternalStorageDirectory().getAbsolutePath());
 			     
@@ -253,35 +359,41 @@ public class AdminSerieAddM1Activity extends Activity {
 				case 0 :
 					t = (TextView) findViewById(R.id.image1);
 					image1 = file.getAbsolutePath();
+					t.setText("Image 1 : "+file.getAbsolutePath());
 					break;
 				case 1 :
 					t = (TextView) findViewById(R.id.image2);
 					image2 = file.getAbsolutePath();
+					t.setText("Image 2 : "+file.getAbsolutePath());
 					break;
 				case 2 :
 					t = (TextView) findViewById(R.id.image3);
 					image3 = file.getAbsolutePath();
+					t.setText("Image 3 : "+file.getAbsolutePath());
 					break;
 				case 3 :
 					t = (TextView) findViewById(R.id.proposition1);
 					proposition1 = file.getAbsolutePath();
+					t.setText("Proposition 1 : "+file.getAbsolutePath());
 					break;
 				case 4 :
 					t = (TextView) findViewById(R.id.proposition2);
 					proposition2 = file.getAbsolutePath();
+					t.setText("Proposition 2 : "+file.getAbsolutePath());
 					break;
 				case 5 :
 					t = (TextView) findViewById(R.id.proposition3);
 					proposition3 = file.getAbsolutePath();
+					t.setText("Proposition 3 : "+file.getAbsolutePath());
 					break;
 			
 			}
 			
-			t.setText(t.getText() +" "+file.getAbsolutePath());
-			if (cursorPos < 5){
+			
+			/*if (cursorPos < 5){
 				cursorPos = cursorPos + 1;
 				cursor = listOfImages[cursorPos];
-			}
+			}*/
 			
 		}
 		public void onFileSelected(Dialog source, File folder, String name) {

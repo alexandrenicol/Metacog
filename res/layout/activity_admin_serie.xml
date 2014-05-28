@@ -56,22 +56,13 @@
         android:layout_marginLeft="33dp"
         android:layout_marginTop="40dp"
         android:text="Ajouter une question" />
-
-    <Button
-        android:id="@+id/activity_admin_serie_update"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/activity_admin_serie_add"
-        android:layout_below="@+id/activity_admin_serie_add"
-        android:layout_marginTop="40dp"
-        android:text="Modifier une question" />
     
     <Button
         android:id="@+id/activity_admin_serie_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/activity_admin_serie_update"
-        android:layout_below="@+id/activity_admin_serie_update"
+        android:layout_alignLeft="@+id/activity_admin_serie_add"
+        android:layout_below="@+id/activity_admin_serie_add"
         android:layout_marginTop="40dp"
         android:text="Supprimer une question" />
 

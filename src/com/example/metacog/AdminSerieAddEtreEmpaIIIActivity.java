@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import ar.com.daidalos.afiledialog.FileChooserDialog;
 
@@ -60,6 +61,7 @@ public class AdminSerieAddEtreEmpaIIIActivity extends Activity {
 	private String eeiii_good_answer = "";
 	
 	private Button eeiii_valid;
+	private Button eeiii_return;
 	
 	
 	@Override
@@ -195,6 +197,21 @@ public class AdminSerieAddEtreEmpaIIIActivity extends Activity {
 				edit_answer.setText("");
 			}
 	    });
+	    
+	    eeiii_return= (Button) findViewById(R.id.eeiii_return);
+	    eeiii_return.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Intent t=new Intent (AdminSerieAddEtreEmpaIIIActivity.this,AdminSerieActivity.class);
+				t.putExtra("selectedModuleId", selectedModuleId);
+        		t.putExtra("selectedModuleName", selectedModuleName);
+        		t.putExtra("selectedSerieId", selectedSerieId);
+        		t.putExtra("selectedSerieName", selectedSerieName);
+				startActivity(t);
+				finish();
+			}
+		});
 		
 	    eeiii_valid= (Button) findViewById(R.id.eeiii_valid);
 	    eeiii_valid.setOnClickListener(new View.OnClickListener() {

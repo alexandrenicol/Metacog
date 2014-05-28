@@ -53,7 +53,12 @@ public class AdminSerieAddSauterConcluActivity extends Activity {
 	private Button valid;
 	private Button add_proposition;
 	private Button retour;
+	
 	private TextView text_proposition;
+	private TextView text_answer;
+	
+	private String propositions = "";
+	private String answer = "";
 	
 	private String externalStorage;
 	private String structureFilename;
@@ -83,7 +88,8 @@ public class AdminSerieAddSauterConcluActivity extends Activity {
 		t.setId(9990+buttonClicked);
 		dictionaryImage.put(buttonClicked, "");
 		
-		text_proposition = (TextView) findViewById(R.id.text_proposition);
+		text_proposition = (TextView) findViewById(R.id.sc_text_prop);
+		text_answer = (TextView) findViewById(R.id.sc_text_answer);
 		
 		externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog";
         structureFilename = externalStorage+"/structure_modules.xml";
@@ -94,7 +100,7 @@ public class AdminSerieAddSauterConcluActivity extends Activity {
 	    selectedSerieId = extras.getInt("selectedSerieId");
 	    selectedSerieName = extras.getString("selectedSerieName");
 	    
-	    retour=(Button) findViewById(R.id.activity_admin_serie_add_sauter_conclu_retour);
+	    retour=(Button) findViewById(R.id.sauter_conclu_retour);
 	    retour.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -109,7 +115,7 @@ public class AdminSerieAddSauterConcluActivity extends Activity {
 				finish();
 				
 			}
-	});
+	    });
 		
 		add_image1=(Button) findViewById(R.id.add_image1);
 		add_image1.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +134,7 @@ public class AdminSerieAddSauterConcluActivity extends Activity {
 		    	dialog.setShowOnlySelectable(false);
 			     
 			    dialog.show();
+			    buttonClicked = 1;
 			}
 		});
 		
@@ -144,16 +151,24 @@ public class AdminSerieAddSauterConcluActivity extends Activity {
 				LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 								
 				Button btn1 = new Button(AdminSerieAddSauterConcluActivity.this);
+				
+				btn1 = (Button)getLayoutInflater().inflate(R.layout.newbutton, null);
 				btn1.setText("Choisissez votre image "+cursor);
+				
 				btn1.setId(id_);
+				
+				
 				linearLayoutButton.addView(btn1, lp);
 				
 				btn1 = ((Button) findViewById(id_));
+				
+				
 				
 				dictionaryImage.put(id_, "");
 				
 			    btn1.setOnClickListener(new View.OnClickListener() {
 			        public void onClick(View view) {
+			        	buttonClicked = cursor;
 			        	FileChooserDialog dialog = new FileChooserDialog(AdminSerieAddSauterConcluActivity.this);
 					    dialog.loadFolder(Environment.getExternalStorageDirectory().getAbsolutePath());
 					     
@@ -165,41 +180,54 @@ public class AdminSerieAddSauterConcluActivity extends Activity {
 				    	dialog.setShowOnlySelectable(false);
 					     
 					    dialog.show();
-					    buttonClicked = id_;
+					    
 					    
 			        }
 			    });
 			    
 			    //adding a text field to linearLayoutTextView
-			    //LinearLayout linearLayoutTextView = (LinearLayout)findViewById(R.id.linearLayoutTextView);
+			    LinearLayout linearLayoutTextView = (LinearLayout)findViewById(R.id.linearLayoutTextView);
 				
 								
-				//TextView tv1 = new TextView(AdminSerieAddSauterConcluActivity.this);
-			    TextView tv1=(TextView) findViewById(R.id.textView3);
+				TextView tv1 = new TextView(AdminSerieAddSauterConcluActivity.this);
+			    //TextView tv1=(TextView) findViewById(R.id.sc_text_prop);
 				tv1.setText("image "+cursor+" :");
 				tv1.setId(9990+id_);
-				//linearLayoutTextView.addView(tv1, lp);
+				linearLayoutTextView.addView(tv1, lp);
 			    
 			    
 			    
 			}
 		});
 		
-		add_proposition = (Button) findViewById(R.id.add_proposition);
+		add_proposition = (Button) findViewById(R.id.sc_add_prop);
 		add_proposition.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				EditText new_prop = (EditText) findViewById(R.id.new_proposition);
-				if (text_proposition.getText().equals("")){
+				EditText new_prop = (EditText) findViewById(R.id.sc_edit_prop);
+				if (propositions.equals("")){
 					text_proposition.setText(new_prop.getText());
+					propositions = new_prop.getText().toString();
 				}else{
 					text_proposition.setText(text_proposition.getText()+","+new_prop.getText());
+					propositions = text_proposition.getText().toString();
 				}
 				new_prop.setText("");
 			}
 			
 		});
 		
+		Button add_answer = (Button) findViewById(R.id.sc_add_answer);
+		add_answer.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				EditText new_answer = (EditText) findViewById(R.id.sc_edit_answer);
+				text_answer.setText(new_answer.getText());
+				new_answer.setText("");
+				answer = text_answer.getText().toString();
+			}
+			
+		});
 		
 		
 		valid=(Button) findViewById(R.id.valid_button);
@@ -253,9 +281,10 @@ public class AdminSerieAddSauterConcluActivity extends Activity {
 						
 						nodeQuestion.setAttribute("reponse", answer.getText().toString());*/
 						Element nodeRep = xml.createElement("rep");
-						nodeRep.setAttribute("list", text_proposition.getText().toString());
-						EditText answer = (EditText) findViewById(R.id.answer);
-						nodeRep.setAttribute("goodanswer", answer.getText().toString());
+						nodeRep.setAttribute("list", propositions);
+						
+						
+						nodeRep.setAttribute("goodanswer", answer);
 						
 						List<Node> listOfImage = new ArrayList<Node>() ;
 						
@@ -376,9 +405,10 @@ public class AdminSerieAddSauterConcluActivity extends Activity {
 				toast.show();
 				
 				TextView t = (TextView) findViewById(9990+buttonClicked);
-				t.setText(t.getText()+" "+file.getAbsolutePath());
-				
 				dictionaryImage.put(buttonClicked, file.getAbsolutePath());
+				t.setText("Image "+buttonClicked+" : "+dictionaryImage.get(buttonClicked));
+				
+				
 				
 				
 				

@@ -18,7 +18,6 @@ public class AdminSerieActivity extends Activity {
 	private TextView text1;
 	
 	private Button add;
-	private Button update;
 	private Button delete;
 	private Button retour;
 	
@@ -70,7 +69,7 @@ public class AdminSerieActivity extends Activity {
 			}
 		});
 	    
-	 retour.setOnClickListener(new View.OnClickListener() {
+	    retour.setOnClickListener(new View.OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
@@ -84,14 +83,6 @@ public class AdminSerieActivity extends Activity {
 				}
 		});
         
-        update=(Button) findViewById(R.id.activity_admin_serie_update);
-        update.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				
-			}
-		});
         
         delete=(Button) findViewById(R.id.activity_admin_serie_delete);
         delete.setOnClickListener(new View.OnClickListener() {

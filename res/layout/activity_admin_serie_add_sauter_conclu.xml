@@ -23,114 +23,133 @@
         android:layout_marginTop="35dp"
         android:text="Ajouter une autre image" />
 
-    <Button
-        android:id="@+id/add_proposition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/new_proposition"
-        android:layout_marginLeft="38dp"
-        android:layout_toRightOf="@+id/new_proposition"
-        android:text="Ajouter la proposition" />
-
-    <TextView
-        android:id="@+id/text_proposition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_toRightOf="@+id/new_proposition" />
-
     <EditText
-        android:id="@+id/answer"
+        android:id="@+id/sc_edit_prop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/text_petite_image"
-        android:layout_alignBottom="@+id/text_petite_image"
-        android:layout_toRightOf="@+id/add_image_field"
+        android:layout_alignRight="@+id/add_image_field"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="22dp"
         android:ems="10" >
 
         <requestFocus />
     </EditText>
 
     <Button
-        android:id="@+id/activity_admin_serie_add_sauter_conclu_retour"
+        android:id="@+id/sc_add_prop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="Retour" />
+        android:layout_alignTop="@+id/sc_edit_prop"
+        android:layout_marginLeft="61dp"
+        android:layout_toRightOf="@+id/sc_edit_prop"
+        android:text="Valider" />
 
-    <TextView
-        android:id="@+id/image1"
+    <EditText
+        android:id="@+id/sc_edit_answer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/add_image1"
-        android:layout_alignBottom="@+id/add_image1"
-        android:layout_alignLeft="@+id/add_image_field"
-        android:layout_weight="3.17"
-        android:text="Image 1 :" />
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_below="@+id/textView4"
+        android:layout_marginTop="22dp"
+        android:ems="10" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/image1"
-        android:layout_below="@+id/add_image1"
-        android:layout_marginTop="56dp"
-        android:text="Ajouter des propositions de réponse"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_alignLeft="@+id/sc_edit_prop"
+        android:layout_below="@+id/sc_add_prop"
+        android:layout_marginTop="25dp"
+        android:text="Choisissez la bonne réponse"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <EditText
-        android:id="@+id/new_proposition"
+    <Button
+        android:id="@+id/sc_add_answer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_centerVertical="true"
-        android:ems="10" />
+        android:layout_alignBottom="@+id/sc_edit_answer"
+        android:layout_alignLeft="@+id/sc_add_prop"
+        android:text="Valider" />
+
+    <TextView
+        android:id="@+id/sc_text_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/sc_edit_answer"
+        android:layout_alignBottom="@+id/sc_edit_answer"
+        android:layout_marginLeft="26dp"
+        android:layout_toRightOf="@+id/sc_add_answer"
+        android:text="Vous n&apos;avez pas encore écrit la bonne réponse"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/sc_text_prop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/sc_add_prop"
+        android:layout_alignBottom="@+id/sc_add_prop"
+        android:layout_alignLeft="@+id/sc_text_answer"
+        android:text="Vous n&apos;avez encore écrit de proposition"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/sauter_conclu_retour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sc_edit_answer"
+        android:layout_below="@+id/sc_edit_answer"
+        android:layout_marginTop="36dp"
+        android:text="Retour" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/new_proposition"
-        android:layout_below="@+id/add_proposition"
-        android:layout_marginTop="47dp"
-        android:text="Proposition de réponse :" />
+        android:layout_alignLeft="@+id/sc_edit_prop"
+        android:layout_centerVertical="true"
+        android:text="Choisissez des propositions de réponse"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/add_image_field"
+        android:layout_below="@+id/add_image_field"
+        android:layout_marginTop="22dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/image1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Image 1 :" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/add_image_field"
+        android:layout_marginRight="80dp"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/add_image1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choisissez votre image 1" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/valid_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="Valider" />
-
-    <TextView
-        android:id="@+id/text_petite_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_below="@+id/text_proposition"
-        android:layout_marginTop="31dp"
-        android:text="Taper la bonne réponse" />
-
-    <Button
-        android:id="@+id/add_image1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/add_image_field"
-        android:layout_marginLeft="131dp"
-        android:layout_marginTop="30dp"
-        android:layout_toRightOf="@+id/add_proposition"
-        android:text="Choisissez votre image 1" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/image1"
-        android:layout_alignBottom="@+id/image1"
-        android:layout_toRightOf="@+id/image1"
-        android:text="TextView" />
+        android:layout_alignBaseline="@+id/sauter_conclu_retour"
+        android:layout_alignBottom="@+id/sauter_conclu_retour"
+        android:layout_alignRight="@+id/linearLayoutButton"
+        android:text="Valider la question" />
 
 </RelativeLayout>

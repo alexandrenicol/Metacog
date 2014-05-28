@@ -140,7 +140,7 @@ public class EtreEmpathiqueII_Activity extends Activity {
     	nbQuestions = countQuestions();
     	
     	Date = new Date(); 
-        filePath=Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog"+"/"+playerName.replace(" ", "_")+"_results.xml";
+        filePath=Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog/Resultats"+"/"+playerName.replace(" ", "_")+"_results.xml";
         initFileTimer();
         createquestion();
         

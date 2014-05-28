@@ -38,6 +38,7 @@ public class MainActivity extends Activity
 		setContentView(R.layout.activity_main);
 		
 		createMetacogFolder();
+		createResultatsFolder();
 		
 		createStructureModuleXML();
 		
@@ -85,6 +86,20 @@ public class MainActivity extends Activity
 	
 	protected void createMetacogFolder(){
 		File theDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog/");  // Defining Directory/Folder Name  
+		try{   
+		    if (!theDir.exists()){  // Checks that Directory/Folder Doesn't Exists!  
+		    	boolean result = theDir.mkdir();    
+		    	if(result){  
+		    	//JOptionPane.showMessageDialog(null, "New Folder created!");
+		    	}
+		    }
+		}catch(Exception e){  
+		    //JOptionPane.showMessageDialog(null, e);  
+		}
+	}
+	
+	protected void createResultatsFolder(){
+		File theDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog/Resultats");  // Defining Directory/Folder Name  
 		try{   
 		    if (!theDir.exists()){  // Checks that Directory/Folder Doesn't Exists!  
 		    	boolean result = theDir.mkdir();    

@@ -134,12 +134,11 @@ public class EtreEmpathiqueI_Activity extends Activity {
 					}
 				}else if(id_question < nbQuestion){
 					encouragement.setText("");
-					RadioButton radioButton = (RadioButton) findViewById(R.id.radio0);
-					radioButton.setTextColor(Color.BLACK);
-					radioButton = (RadioButton) findViewById(R.id.radio1);
-					radioButton.setTextColor(Color.BLACK);
-					radioButton = (RadioButton) findViewById(R.id.radio2);
-					radioButton.setTextColor(Color.BLACK);
+					for (int i = 0; i < radio.getChildCount(); i++) {
+						 radio.getChildAt(i).setEnabled(true);
+						 RadioButton radioBtn = (RadioButton) radio.getChildAt(i);
+						 radioBtn.setTextColor(Color.BLACK);
+					 }
 					loadPictures();
 					radio.clearCheck();
 					
@@ -479,18 +478,21 @@ public class EtreEmpathiqueI_Activity extends Activity {
 	   	}
 		 int checkedRadioButton = radio.getCheckedRadioButtonId();
 		 //checkedRadioButton = radioGroup.getCheckedRadioButtonId();
-		 RadioButton radio = (RadioButton) findViewById(checkedRadioButton);
+		 RadioButton radioAnswered = (RadioButton) findViewById(checkedRadioButton);
 		 RadioButton radioGood = (RadioButton) findViewById(id_radio_goodanswer);
 		 String playerAnswer = "";
+		 for (int i = 0; i < radio.getChildCount(); i++) {
+			 radio.getChildAt(i).setEnabled(false);
+		 }
 		 if (checkedRadioButton != -1){
-			 playerAnswer = radio.getText().toString();
+			 playerAnswer = radioAnswered.getText().toString();
 			 if(playerAnswer != null){
 				 boolean reponse = playerAnswer.equals(rep);
 				 if(reponse){
-					 radio.setTextColor(Color.GREEN);
+					 radioAnswered.setTextColor(Color.GREEN);
 					 encouragement.setText(encouragementTxt);
 				 }else{
-					 radio.setTextColor(Color.RED);
+					 radioAnswered.setTextColor(Color.RED);
 					 radioGood.setTextColor(Color.GREEN);
 				 }
 			 }

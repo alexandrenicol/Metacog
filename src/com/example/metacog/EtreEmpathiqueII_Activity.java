@@ -115,6 +115,9 @@ public class EtreEmpathiqueII_Activity extends Activity {
 					}
 				}else if(id_question < nbQuestions){
 					encouragement.setText("");
+					for (int i = 0; i < radioGroup.getChildCount(); i++) {
+						radioGroup.getChildAt(i).setEnabled(true);
+					}
 					id_question++;
 					id_question_state = 1;
 					radioGroup.clearCheck();
@@ -505,18 +508,21 @@ public class EtreEmpathiqueII_Activity extends Activity {
 		}
 		 int checkedRadioButton = -1;
 		 checkedRadioButton = radioGroup.getCheckedRadioButtonId();
-		 RadioButton radio = (RadioButton) findViewById(checkedRadioButton);
+		 RadioButton radioAnswer = (RadioButton) findViewById(checkedRadioButton);
 		 RadioButton radioGood = (RadioButton) findViewById(id_radio_goodanswer);
 		 String playerAnswer = "";
+		 for (int i = 0; i < radioGroup.getChildCount(); i++) {
+			 radioGroup.getChildAt(i).setEnabled(false);
+		 }
 		 if (checkedRadioButton != -1){
-			 playerAnswer = radio.getText().toString();
+			 playerAnswer = radioAnswer.getText().toString();
 			 if(playerAnswer != null){
 				 boolean reponse = playerAnswer.equals(goodAnswer);
 				 if(reponse){
-					 radio.setTextColor(Color.GREEN);
+					 radioAnswer.setTextColor(Color.GREEN);
 					 encouragement.setText(encouragementTxt);
 				 }else{
-					 radio.setTextColor(Color.RED);
+					 radioAnswer.setTextColor(Color.RED);
 					 radioGood.setTextColor(Color.GREEN);
 				 }
 			 }

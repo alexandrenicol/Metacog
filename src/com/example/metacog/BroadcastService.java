@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -19,6 +18,7 @@ import java.net.NetworkInterface;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,11 +36,12 @@ import android.widget.Toast;
 public class BroadcastService {
 	
 	private static final String TAG = "BcastService";
+	public static String PATH = "test";
     private static final boolean D = true;
     
-    public static final int MESSAGE_READ 	= 1;
-    public static final int MESSAGE_WRITE 	= 2;
-    public static final int MESSAGE_READ_TCPIP	= 3;
+    public static final int MESSAGE_READ = 1;
+    public static final int MESSAGE_WRITE = 2;
+    public static final int MESSAGE_READ_TCPIP = 3;
     
     
 	private final Handler mHandler;
@@ -91,14 +92,18 @@ public class BroadcastService {
     
     public void writeTCPIP(){
     	if (D) Log.d(TAG, "Write TCP/IP");
-       /* mConnectedTCPThread.writeTcpIp("headerTCP,/structure_modules.xml",false);
-        mConnectedTCPThread.writeTcpIp("/structure_modules.xml",true);*/       
-        mConnectedTCPThread.writeTcpIp("/dessin.jpg");
+    	/*mConnectedTCPThread.writeTcpIp("/Img/module01_serie03_question01_image01.jpg");*/
+    	mConnectedTCPThread.writeTcpIp("/structure_modules.xml");
+    	File dirImg = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog/Img/");
+    	String[] imgs=dirImg.list();
+    	for (String img : imgs) {
+    		mConnectedTCPThread.writeTcpIp("/Img/"+img);
+		}
     }
     
     private class ComThread extends Thread {
         
-    	private static final int BCAST_PORT = 8080;
+    	private static final int BCAST_PORT = 8020;
     	DatagramSocket mSocket ;
     	InetAddress myBcastIP;
     	String myLocalIP;
@@ -237,7 +242,7 @@ public class BroadcastService {
     
  class ComTCPThread extends Thread {
         
-    	private static final int TCP_PORT = 8060;
+    	private static final int TCP_PORT = 9666;
     	String myLocalIP ;
     	Socket sock;
     	ServerSocket servsock;
@@ -246,21 +251,8 @@ public class BroadcastService {
     	String nameFile;
     	
         public ComTCPThread() {
-        		   
-        		   
         		   myLocalIP = getIPTCPAddress();
-        		   if(D)Log.d(TAG,"my local ip : "+myLocalIP);
-        		   
-        		   try {
-					sock = new Socket(ipServer,TCP_PORT);
-				} catch (UnknownHostException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-        
+        		   if(D)Log.d(TAG,"my local ip : "+myLocalIP);   
         }
         
         public void cancel() {
@@ -274,65 +266,30 @@ public class BroadcastService {
         public void run() {
         	
         	try {
-				int filesize=900000; // filesize temporary hardcoded
-
-				long start = System.currentTimeMillis();
-				int bytesRead;
-				int current = 0;
-				
-				// localhost for testing
-				// TODO: server's IP address. Socket should match one above in server
-				sock = new Socket(ipServer,TCP_PORT);
-				// receive file
-				byte [] mybytearray  = new byte [filesize];
-				InputStream is = sock.getInputStream();
-				/*BufferedReader in = new BufferedReader (new InputStreamReader(is));
-				String result = in.readLine();
-				if(result.contains("headerTCP")){
-					String [] tmp =result.split(",");
-					nameFile = tmp[tmp.length-1];
-				}else{*/
-				// TODO: Put where you want to save the file
-				/* N.B.:
-				 * * To view if the file transfer was successful:
-				 *       * use `./adb shell` 
-				 *       * use the app: File Manager
-				 * 
-				 * * If you downloaded to '/mnt/sdcard/download',
-				 *   your download might not show up in 'Downloads'
-				 *   
-				 * * You might not have '/mnt/sdcard/download' directory
-				 *   if you have never downloaded anything on your iPhone
-				 */
-				
-					
-					bytesRead = is.read(mybytearray,0,mybytearray.length);
-					current = bytesRead;
-					do {
+        			int bytesRead;
+        			int current = 0;
+        			byte [] mybytearray  = new byte [900000];
+        			while(true){
+        			sock = new Socket(ipServer,TCP_PORT);
+        			BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+        			PATH = in.readLine();
+        			
+        			InputStream is = sock.getInputStream();
+        			bytesRead= is.read(mybytearray);
+        			current = bytesRead;
+        			do {
 						bytesRead = is.read(mybytearray, current, (mybytearray.length-current));
 						if(bytesRead >= 0) current += bytesRead;
 					} while(bytesRead > -1);
-					BufferedReader in = new BufferedReader (new InputStreamReader(is));
-					String result = mybytearray.toString();
-					
-					FileOutputStream fos = new FileOutputStream(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog"+result);
+        			FileOutputStream fos = new FileOutputStream(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog"+PATH);
 					BufferedOutputStream bos = new BufferedOutputStream(fos);
-					bytesRead = is.read(mybytearray,15,mybytearray.length-15);
-					current = bytesRead;
-					/*do {
-						bytesRead = is.read(mybytearray, current, (mybytearray.length-current-15));
-						if(bytesRead >= 0) current += bytesRead;
-					} while(bytesRead > -1);*/
+					bos.write(mybytearray,0,current);
 					
-					bos.write(mybytearray, 15 , mybytearray.length-15);
-					bos.flush();
-					long end = System.currentTimeMillis();
-					
-					bos.close();
-					sock.close();
-				//}	
-				mHandler.obtainMessage(BroadcastService.MESSAGE_READ_TCPIP,-1,-1).sendToTarget(); 
-			} catch ( UnknownHostException e ) {
+        			sock.close();
+        			 
+        			 mHandler.obtainMessage(BroadcastService.MESSAGE_READ_TCPIP,-1,-1).sendToTarget();
+        			}
+				} catch ( UnknownHostException e ) {
 				Log.i("******* :( ", "UnknownHostException");
 			} catch (IOException e){
 				Log.i("Read has IOException", "e: " + e);
@@ -341,48 +298,31 @@ public class BroadcastService {
         
         public void writeTcpIp(String path){
         	try {
-				// create socket
-				// TODO: the port should match the one in Client
-				servsock = new ServerSocket(TCP_PORT);
-				Toast toast = Toast.makeText(mContext,R.string.envoi_data, Toast.LENGTH_SHORT);
-				toast.show();
-				while (true) {
-					Log.i("************", "Waiting...");
-
-					Socket sock = servsock.accept(); // blocks until connection opened
-					Log.i("************", "Accepted connection : " + sock);
-					
-					
-					// sendfile
-
-					// TODO: put the source of the file
+        		servsock = new ServerSocket(TCP_PORT);
+        		Log.i("************", "Waiting...");
+				Socket sock = servsock.accept(); // blocks until connection opened
+				try{
+					OutputStream out = sock.getOutputStream();
+					String outgoingMsg = path+ System.getProperty("line.separator");
 					File myFile = new File (Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog"+path);
 					byte [] mybytearray  = new byte [(int)myFile.length()];
-					Log.i("####### file length = ", String.valueOf(myFile.length()));
 					FileInputStream fis = new FileInputStream(myFile);
 					BufferedInputStream bis = new BufferedInputStream(fis);
+					out.write(outgoingMsg.getBytes());
 					bis.read(mybytearray,0,mybytearray.length);
-					OutputStream os = sock.getOutputStream();
-					Log.i("************", "Sending...");
-					os.write(path.getBytes(), 0, path.getBytes().length);
-					os.write(mybytearray,15,mybytearray.length-15);
-					os.flush();
-					
-					// sendMsg
-					/*PrintWriter out = new PrintWriter(sock.getOutputStream());
-			        out.println(path);
-			        out.flush();		*/				
+					out.write(mybytearray,0,mybytearray.length);
+					out.flush();
 					sock.close();
-					break;
-				}   
+				}catch (IOException e) {
+					Log.i("Io execption ", "e: " + e);
+				}
+				servsock.close();
+				/*Thread t = new WriteTCPThread(sock, path);
+				t.start();*/
 			} catch (IOException e) {
 				Log.i("Io execption ", "e: " + e);
 			}
         }
-        
-       
-
-
 
         /** 
          * Calculate the broadcast IP we need to send the packet along. 
@@ -431,4 +371,69 @@ public class BroadcastService {
 
 }
 
+class WriteTCPThread extends Thread {
+	public Socket sock;
+	public String path;
+
+	public WriteTCPThread(Socket s,String p) {
+		sock=s;
+		path=p;
+	}
+	
+	public void run(){
+		try{
+			OutputStream out = sock.getOutputStream();
+			String outgoingMsg = path+ System.getProperty("line.separator");
+			File myFile = new File (Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog"+path);
+			byte [] mybytearray  = new byte [(int)myFile.length()];
+			FileInputStream fis = new FileInputStream(myFile);
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			out.write(outgoingMsg.getBytes());
+			bis.read(mybytearray,0,mybytearray.length);
+			out.write(mybytearray,0,mybytearray.length);
+			out.flush();
+			sock.close();
+		}catch (IOException e) {
+			Log.i("Io execption ", "e: " + e);
+		}
+	}
+}
+
+/*class ListenTCPThread extends Thread {
+	public Socket sock;
+	public String path;
+	private static final int TCP_PORT = 9666;
+	ServerSocket servsock;
+	List<InetAddress> connect = new ArrayList<InetAddress>();
+	public ListenTCPThread() {
+
+	}
+	
+	public void run(){
+		while(true){
+			try{
+				servsock = new ServerSocket(TCP_PORT);
+        		Log.i("************", "Waiting...");
+				sock = servsock.accept(); // blocks until connection opened
+				servsock.close();
+				if(!connect.contains(sock.getInetAddress())){
+					connect.add(sock.getInetAddress());
+					write("/structure_modules.xml");
+			    	File dirImg = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog/Img/");
+			    	String[] imgs=dirImg.list();
+			    	for (String img : imgs) {
+			    		write("/Img/"+img);
+					}
+				}
+			}catch (IOException e) {
+				Log.i("Io execption ", "e: " + e);
+			}
+		}
+	}
+	
+	public void write(String p){
+		Thread t = new WriteTCPThread(sock, p);
+		t.start();
+	}
+}*/
 

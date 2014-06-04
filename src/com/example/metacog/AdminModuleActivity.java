@@ -235,7 +235,6 @@ public class AdminModuleActivity extends Activity {
         		third.putExtra("selectedSerieName", "None");
         		third.putExtra("type", "Serie");
         		startActivity(third);
-        		finish();
 	    	}
 	    });
         

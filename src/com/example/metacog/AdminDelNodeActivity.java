@@ -60,20 +60,7 @@ public class AdminDelNodeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_admin_del_node);
 		
-		retour = (Button) findViewById(R.id.activity_admin_del_node_retour);
-        retour.setOnClickListener(new View.OnClickListener() {
-    		@Override
-    		public void onClick(View v) {
-    			// TODO Auto-generated method stub
-    			Intent t=new Intent (AdminDelNodeActivity.this,AdminSerieActivity.class);
-    			t.putExtra("selectedModuleId", selectedModuleId);
-        		t.putExtra("selectedModuleName", selectedModuleName);
-        		t.putExtra("selectedSerieId", selectedSerieId);
-        		t.putExtra("selectedSerieName", selectedSerieName);
-				startActivity(t);
-				finish();
-    		}
-    		});
+		
 		
 		externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Metacog";
         structureFilename = externalStorage+"/structure_modules.xml";
@@ -86,6 +73,31 @@ public class AdminDelNodeActivity extends Activity {
 	    selectedSerieId = extras.getInt("selectedSerieId");
 	    selectedSerieName = extras.getString("selectedSerieName");
 	    typeToDel = extras.getString("type");
+	    
+	    
+	    retour = (Button) findViewById(R.id.activity_admin_del_node_retour);
+        retour.setOnClickListener(new View.OnClickListener() {
+    		@Override
+    		public void onClick(View v) {
+    			// TODO Auto-generated method stub
+    			if (typeToDel.equals("Serie")){
+	    			Intent t=new Intent (AdminDelNodeActivity.this,AdminModuleActivity.class);
+	    			t.putExtra("id_module", selectedModuleId);
+	        		t.putExtra("name_module", selectedModuleName);
+					startActivity(t);
+					finish();
+    			}else{
+    				Intent t=new Intent (AdminDelNodeActivity.this,AdminSerieActivity.class);
+	    			t.putExtra("selectedModuleId", selectedModuleId);
+	        		t.putExtra("selectedModuleName", selectedModuleName);
+	        		t.putExtra("selectedSerieId", selectedSerieId);
+	        		t.putExtra("selectedSerieName", selectedSerieName);
+					startActivity(t);
+					finish();
+    				
+    			}
+    		}
+    	});
 	    
 	    if (typeToDel.equals("Serie")){
 	    	List<String> serieList = new ArrayList<String>();
@@ -152,6 +164,12 @@ public class AdminDelNodeActivity extends Activity {
 						
 						Toast toast = Toast.makeText(AdminDelNodeActivity.this,R.string.del_serie, Toast.LENGTH_LONG);
 						toast.show();
+						
+						Intent third = new Intent(AdminDelNodeActivity.this,AdminModuleActivity.class);
+						third.putExtra("id_module", selectedModuleId);
+						third.putExtra("name_module", selectedModuleName);
+		        		
+						startActivity(third);
 						finish();
 		        	}    
 		        });
@@ -233,6 +251,15 @@ public class AdminDelNodeActivity extends Activity {
 						
 						Toast toast = Toast.makeText(AdminDelNodeActivity.this,R.string.del_question, Toast.LENGTH_LONG);
 						toast.show();
+						
+						Intent third = new Intent(AdminDelNodeActivity.this,AdminSerieActivity.class);
+		        		third.putExtra("selectedModuleId", selectedModuleId);
+		        		third.putExtra("selectedModuleName", selectedModuleName);
+		        		third.putExtra("selectedSerieId", selectedSerieId);
+		        		third.putExtra("selectedSerieName", selectedSerieName);
+		        		
+						startActivity(third);
+						
 						finish();
 		        	}    
 		        });

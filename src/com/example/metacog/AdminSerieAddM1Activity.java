@@ -32,6 +32,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v4.app.NavUtils;
@@ -56,9 +57,9 @@ public class AdminSerieAddM1Activity extends Activity {
 	private String proposition2 = "";
 	private String proposition3 = "";
 	
-	private String cursor = "image1";
+	//private String cursor = "image1";
 	private Integer cursorPos = 0;
-	private String[] listOfImages = {"image1","image2","image3","proposition1","proposition2","proposition3"};
+	//private String[] listOfImages = {"image1","image2","image3","proposition1","proposition2","proposition3"};
 	
 	public Button add;
 	public Button add2;
@@ -69,6 +70,8 @@ public class AdminSerieAddM1Activity extends Activity {
 	
 	public Button valid;
 	public Button retour;
+	
+	private RadioGroup radio;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +88,8 @@ public class AdminSerieAddM1Activity extends Activity {
 	    selectedModuleName = extras.getString("selectedModuleName");
 	    selectedSerieId = extras.getInt("selectedSerieId");
 	    selectedSerieName = extras.getString("selectedSerieName");
+	    
+	    radio = (RadioGroup)findViewById(R.id.radioGroup1);
 		
 	    retour=(Button) findViewById(R.id.activity_admin_serie_add_m1_retour);
 	    add=(Button) findViewById(R.id.add_image1);
@@ -228,7 +233,27 @@ public class AdminSerieAddM1Activity extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-				if ((image1!="")&&(image2!="")&&(image3!="")&&(proposition1!="")&&(proposition2!="")&&(proposition3!="")){
+				
+				int checkedRadioButton = radio.getCheckedRadioButtonId();
+		    	 
+		    	String radioButtonSelected = "";
+		    	boolean isChecked = true;
+		    	
+		    	switch (checkedRadioButton) {
+		    	  case R.id.radioButton1 :
+		    		  radioButtonSelected = "A";
+		    	      break;
+		    	  case R.id.radioButton2: 
+		    		  radioButtonSelected = "B";
+		    		  break;
+		    	  case R.id.radioButton3 :
+		    		  radioButtonSelected = "C";
+		    		  break;
+		    	  default:
+		    		  isChecked=false;
+		    	}
+				
+				if (isChecked&&(image1!="")&&(image2!="")&&(image3!="")&&(proposition1!="")&&(proposition2!="")&&(proposition3!="")){
 					
 					DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		    		DocumentBuilder docBuilder;
@@ -265,11 +290,15 @@ public class AdminSerieAddM1Activity extends Activity {
 						proposition3 = Utils.SaveRenamePic(proposition3, "module"+selectedModuleStr+"_serie"+selectedSerieStr+"_question"+num_question_Str+"_image06");
 						
 						
-						EditText answer = (EditText) findViewById(R.id.new_proposition);
+						/*EditText answer = (EditText) findViewById(R.id.new_proposition);
 						answer.getText();
 						
-						nodeQuestion.setAttribute("reponse", answer.getText().toString());
+						nodeQuestion.setAttribute("reponse", answer.getText().toString());*/
 						
+						
+						
+				    	nodeQuestion.setAttribute("reponse", radioButtonSelected);
+				    	
 						Element nodeImg1 = xml.createElement("img");
 						nodeImg1.setAttribute("id", "Q1");
 						nodeImg1.setAttribute("src", image1);

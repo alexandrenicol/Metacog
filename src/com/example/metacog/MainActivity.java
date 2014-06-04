@@ -50,7 +50,7 @@ public class MainActivity extends Activity
 
 				Intent t = new Intent(MainActivity.this, LogActivity.class);
 				startActivity(t);
-				finish();
+				
 				
 			}
 		});
@@ -62,7 +62,7 @@ public class MainActivity extends Activity
 				
 				Intent t = new Intent(MainActivity.this, AdminActivity.class);
 				startActivity(t);
-				finish();
+				
 			}
 		});
         

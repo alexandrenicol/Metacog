@@ -33,6 +33,7 @@ public class ModulesActivity extends Activity {
 	private ListView moduleView;
 	private TextView bonjour;
 	private String name;
+	private Button sources;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -43,6 +44,8 @@ public class ModulesActivity extends Activity {
 	    quitter = (Button) findViewById(R.id.activity_modules_quitModule);
 	    changeUser = (Button) findViewById(R.id.activity_modules_changeUser);
 	    bonjour = (TextView) findViewById(R.id.activity_modules_bonjour);
+	    
+	    sources = (Button) findViewById(R.id.sources);
 	    
 	    Bundle extra=getIntent().getExtras();
 	    name=extra.getString("name");
@@ -55,6 +58,15 @@ public class ModulesActivity extends Activity {
     			Intent t=new Intent (ModulesActivity.this,MainActivity.class);
 				startActivity(t);
 				finish();
+    		}
+    		});
+	    
+	    sources.setOnClickListener(new View.OnClickListener() {
+    		@Override
+    		public void onClick(View v) {
+    			// TODO Auto-generated method stub
+    			Intent t=new Intent (ModulesActivity.this,SourcesActivity.class);
+				startActivity(t);
     		}
     		});
 	    

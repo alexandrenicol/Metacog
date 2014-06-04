@@ -44,4 +44,13 @@
             android:text="Bonjour Bob"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
+        <Button
+            android:id="@+id/sources"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/activity_modules_bonjour"
+            android:layout_marginRight="37dp"
+            android:text="Sources" />
+
 </RelativeLayout>

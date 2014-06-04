@@ -83,6 +83,8 @@ public class AdminActivity extends Activity {
 	            	if(!sender){
 	                	Toast toast = Toast.makeText(AdminActivity.this,R.string.receive, Toast.LENGTH_SHORT);
 	            		toast.show();
+	            		TextView t = (TextView)findViewById(R.id.textView4);
+	                	//t.setText(t.getText().toString()+" path: "+BroadcastService.PATH.toString());
 	                }
 	                //broadcastService.mConnectedTCPThread.start();
 	                

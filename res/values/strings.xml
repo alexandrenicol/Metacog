@@ -13,6 +13,7 @@
     <string name="title_activity_end_exercice">EndExerciceActivity</string>
     <string name="title_activity_sauter_conclu">SauterConcluActivity</string>
     <string name="title_activity_etre_empathique_2">EtreEmpathiqueII_Activity</string>
+    <string name="title_activity_sources">SourcesActivity</string>
 	
 	<string name="del_serie">Votre série a été effacée</string>
 	<string name="del_question">Votre question a été effacée</string>

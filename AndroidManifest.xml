@@ -125,6 +125,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.metacog.AdminSerieActivity" />
         </activity>
+        <activity
+            android:name="com.example.metacog.SourcesActivity"
+            android:label="@string/title_activity_sources" >
+        </activity>
     </application>
 
 </manifest>
